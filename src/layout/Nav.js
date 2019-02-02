@@ -30,15 +30,17 @@ class Nav extends Component {
     }
     return(
         <div>
+          <div class="nav-wrapper">
           <nav className="nav">
             <Link to="/">Home</Link>
-            <Link to="/mood">Today's Mood</Link> 
+            <Link to="/result">Today's Mood</Link> 
             {links}
           </nav>
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Don't Be Salty!</h1>
           </header>
+        </div>
         </div>
       );
   }

@@ -7,6 +7,7 @@ class Profile extends Component {
           <div>
             <h2>Hello again, {this.props.user.name}!</h2>
             <h4>Your email is {this.props.user.email}</h4>
+            <h4>Your current location is {this.props.user.location}</h4>
           </div>
         );
     }

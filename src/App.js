@@ -8,7 +8,7 @@ import Home from './Home';
 import Login from './auth/Login';
 import Nav from './layout/Nav';
 import Profile from './Profile';
-import Mood from './Mood';
+import Result from './Result';
 import Signup from './auth/Signup';
 
 class App extends Component {
@@ -66,8 +66,8 @@ class App extends Component {
             <Route path="/profile" component={
               () => (<Profile user={this.state.user} />)
             } />
-            <Route path="/mood" component={
-              () => (<Mood user={this.state.user} />)
+            <Route path="/result" component={
+              () => (<Result user={this.state.user} />)
             } />
           </div>
         </Router>
