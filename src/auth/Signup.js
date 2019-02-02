@@ -9,7 +9,8 @@ class Signup extends Component {
     this.state = {
       name: '',
       email: '',
-      password: ''
+      password: '',
+      location:''
     };
   }
 
@@ -18,6 +19,8 @@ class Signup extends Component {
   handleEmailChange = (e) => { this.setState({ email: e.target.value }); }
 
   handlePasswordChange = (e) => { this.setState({ password: e.target.value }); }
+
+  handleLocationChange = (e) => { this.setState({ location: e.target.value }); }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +41,7 @@ class Signup extends Component {
 
   render() {
     if(this.props.user){
-      return (<Redirect to="/profile" />);
+      return (<Redirect to="/question" />);
     }
     return(
         <div>
