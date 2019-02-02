@@ -45,7 +45,9 @@ class Login extends Component {
             <div>
               <input name="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
             </div>
-            <input type="submit" value="Log Me In!" className="button" />
+            <button class="btn waves-effect waves-light" type="submit" name="action">Log Me In NOW
+              <i class="material-icons right">arrow_forward</i>
+            </button>
           </form>
         </div>
       );
