@@ -51,9 +51,14 @@ class Signup extends Component {
               <input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange} />
             </div>
             <div>
-              <input name="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+              <input name="Password" placeholder="Set your password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
             </div>
-            <input type="submit" value="Sign Me Up!" className="button" />
+            <div>
+              <input name="Location" type="text" placeholder="Which city do you live in? (ex. Seattle, WA)" value={this.state.location} onChange={this.handleLocationChange} />
+            </div>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Sign Me Up NOW
+              <i class="material-icons right">add</i>
+            </button>
           </form>
         </div>
       );
