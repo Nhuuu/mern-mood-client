@@ -9,9 +9,9 @@ class Food extends Component {
 		}
 	}
 
-	componentDidMount(){
-		this.getFood()
-	}	
+	// componentDidMount(){
+	// 	this.getFood()
+	// }	
 
 	//Grab Food
 	// getFood = () => {
@@ -31,10 +31,8 @@ class Food extends Component {
   render() {
     return(
     	<div>
-        	<h3> This displays your mood page </h3>
-        	<div>
-        		<h1>{ this.state.food }</h1>
-        	</div>
+			<h3>Eat this</h3>
+			<h1>{ this.state.food }</h1>
         </div>
       );
   }

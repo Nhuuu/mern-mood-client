@@ -1,18 +1,26 @@
-import React from 'react';
-import SERVER_URL from './constants/server';
+import React from 'react'
+import SERVER_URL from './constants/server'
+import Weather from './Weather'
+import Music from './Music'
+import Food from './Food'
 
 
 const Result = () => {
-    return(
+  return(
+  	<div>
     	<div>
-        	<h3> This displays your mood page </h3>
-        	<div>
-        		<h1>This is the weather</h1>
-        		<h1>This is where food will display</h1>
-        		<h1>This is where spotify suggestion will be</h1>
-        	</div>
+        <div className="weather-field">
+          <Weather />
         </div>
-      );
+        <div className="music-field">
+          <Music />
+        </div>
+        <div className="food-field">
+    		  <Food />
+        </div>
+    	</div>
+    </div>
+    )
 }
 
 export default Result

@@ -1,1 +1,3 @@
-export default 'https://api.darksky.net/forecast/2931a90b9260455bec5edfa409bf0bc0/'
+require('dotenv').config()
+
+export default 'https://api.darksky.net/forecast/'+process.env.DARKSKY_API_KEY

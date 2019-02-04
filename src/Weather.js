@@ -32,7 +32,7 @@ class Weather extends Component {
   render() {
     return(
     	<div>
-        	<h3> This displays your mood page </h3>
+        	<h3>WTH, It's Raining!</h3>
         	<div>
         		<h1>{ this.state.weather }</h1>
         	</div>
