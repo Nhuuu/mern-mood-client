@@ -1,13 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react'
+import SERVER_URL from './constants/server'
 
-class Result extends Component {
+
+const Result = () => {
+
   render() {
     return(
     	<div>
         	<h3> This displays your mood page </h3>
+        	<div>
+        		<h1>This is the weather</h1>
+        		<h1>This is where food will display</h1>
+        		<h1>This is where spotify suggestion will be</h1>
+        	</div>
         </div>
       );
   }
 }
 
-export default Result;
+export default Result
