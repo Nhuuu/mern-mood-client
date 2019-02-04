@@ -52,9 +52,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Router>
-          <div className="container">
+          <div>
             <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={Home} />
             <Route path="/login" component={

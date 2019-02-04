@@ -1,10 +1,8 @@
-import React from 'react'
-import SERVER_URL from './constants/server'
+import React from 'react';
+import SERVER_URL from './constants/server';
 
 
 const Result = () => {
-
-  render() {
     return(
     	<div>
         	<h3> This displays your mood page </h3>
@@ -15,7 +13,6 @@ const Result = () => {
         	</div>
         </div>
       );
-  }
 }
 
 export default Result
