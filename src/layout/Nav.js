@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../logo.svg';
+
 
 class Nav extends Component {
   handleLogout = (e) => {
@@ -29,18 +29,22 @@ class Nav extends Component {
         );
     }
     return(
-        <div>
-          <div className="nav-wrapper">
+
+        <div className="nav-wrapper">
           <nav className="nav">
-            <Link to="/">Home</Link>
-            <Link to="/result">Today's Mood</Link> 
-            {links}
+            <div className="leftlogo">
+              <Link to="/">Don't Be Salty</Link>
+            </div>
+            <div className="rightnav">
+              <Link to="/result">Today's Mood</Link> 
+              {links}
+            </div>
           </nav>
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Don't Be Salty!</h1>
+          <header>
+            <div className="logo-wrapper">
+              <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            
+            </div>
           </header>
-        </div>
         </div>
       );
   }

@@ -1,13 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react'
+import SERVER_URL from './constants/server'
+import Weather from './Weather'
+import Music from './Music'
+import Food from './Food'
 
-class Result extends Component {
-  render() {
-    return(
+
+const Result = () => {
+  return(
+  	<div>
     	<div>
-        	<h3> This displays your mood page </h3>
+        <div className="weather-field">
+          <Weather />
         </div>
-      );
-  }
+        <div className="music-field">
+          <Music />
+        </div>
+        <div className="food-field">
+    		  <Food />
+        </div>
+    	</div>
+    </div>
+    )
 }
 
-export default Result;
+export default Result
