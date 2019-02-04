@@ -30,7 +30,7 @@ class Nav extends Component {
     }
     return(
         <div>
-          <div class="nav-wrapper">
+          <div className="nav-wrapper">
           <nav className="nav">
             <Link to="/">Home</Link>
             <Link to="/result">Today's Mood</Link> 
