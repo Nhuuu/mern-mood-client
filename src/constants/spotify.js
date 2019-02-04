@@ -1,1 +1,2 @@
-SPOTIFY_API_KEY=c9cf89e8ae6044f4800743423f2c8f4f
+require('dotenv').config()
+

@@ -3,19 +3,23 @@ import SERVER_URL from './constants/server'
 
 
 const Result = () => {
-
-  render() {
-    return(
-    	<div>
-        	<h3> This displays your mood page </h3>
-        	<div>
-        		<h1>This is the weather</h1>
-        		<h1>This is where food will display</h1>
-        		<h1>This is where spotify suggestion will be</h1>
-        	</div>
-        </div>
-      );
-  }
+  return(
+  	<div>
+      	<div>
+          <div className="weather-field">
+      		  <h3>WTH, It's Raining!</h3>
+            <h5>Temp</h5>
+          </div>
+          <div className="music-field">
+      		  <h3>Need some music?</h3>
+            <button>Spotify</button>
+          </div>
+          <div className="food-field">
+      		  <h3>Eat this</h3>
+          </div>
+      	 </div>
+      </div>
+    )
 }
 
 export default Result
