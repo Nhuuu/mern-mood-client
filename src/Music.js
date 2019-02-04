@@ -10,9 +10,9 @@ class Music extends Component {
 		}
 	}
 
-	componentDidMount(){
-		this.getMusic()
-	}	
+	// componentDidMount(){
+	// 	this.getMusic()
+	// }	
 
 	//Grab music
 	// getMusic = () => {
@@ -32,9 +32,10 @@ class Music extends Component {
   render() {
     return(
     	<div>
-        	<h3> This displays music suggestion </h3>
+        	<h3>Need some music?</h3>
         	<div>
         		<h1>{ this.state.music }</h1>
+        		<button>Spotify</button>
         	</div>
         </div>
       );

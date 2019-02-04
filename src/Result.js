@@ -1,24 +1,25 @@
 import React from 'react'
 import SERVER_URL from './constants/server'
+import Weather from './Weather'
+import Music from './Music'
+import Food from './Food'
 
 
 const Result = () => {
   return(
   	<div>
-      	<div>
-          <div className="weather-field">
-      		  <h3>WTH, It's Raining!</h3>
-            <h5>Temp</h5>
-          </div>
-          <div className="music-field">
-      		  <h3>Need some music?</h3>
-            <button>Spotify</button>
-          </div>
-          <div className="food-field">
-      		  <h3>Eat this</h3>
-          </div>
-      	 </div>
-      </div>
+    	<div>
+        <div className="weather-field">
+          <Weather />
+        </div>
+        <div className="music-field">
+          <Music />
+        </div>
+        <div className="food-field">
+    		  <Food />
+        </div>
+    	</div>
+    </div>
     )
 }
 
