@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DARKSKY_URL from './constants/darksky'
+import SERVER_URL from './constants/server'
 
 
 class Weather extends Component {
@@ -14,9 +14,9 @@ class Weather extends Component {
 		this.getWeather()
 	}	
 
-	//Grab weather
+	//Grab user location from server and then grab weather
 	getWeather = () => {
-		fetch(DARKSKY_URL)
+		fetch(SERVER_URL)
 		.then(response => {
 			return response.json()
 		})
