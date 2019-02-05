@@ -11,7 +11,7 @@ class Result extends Component {
   constructor(){
     super()
     this.state = {
-      films:[{}]
+      films: []
     }
   }
 
@@ -24,11 +24,15 @@ class Result extends Component {
      fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
       .then(response => response.json())
       .then((json)=> {
-        this.setState({
-          films: json
+        const filmObj = json.results
+        const allTitles = []
+        const filmTitle = filmObj.forEach((obj, i) => {
+          return allTitles.push(obj.original_title)
         })
-        // console.log(json);
-        console.log(json.results);
+        this.setState({
+          films: allTitles
+        })
+        console.log(this.state.films);
       })
       .catch(error => {
         console.log("Error:", error)
@@ -42,7 +46,7 @@ class Result extends Component {
 
 
   render() {
-    const filmList = this.state.films.map((filmObj, i) => <li key={i}> {filmObj.original_title} </li>)
+    const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
     return(
     	<div className="results">
         <div className="weather-field">
@@ -55,7 +59,8 @@ class Result extends Component {
     		  <Food />
         </div>
         <div className="movie-field">
-          <Movie films={filmList} />
+          {filmList}
+          {/*<Movie films={films} />*/}
         </div>
     	</div>
     );

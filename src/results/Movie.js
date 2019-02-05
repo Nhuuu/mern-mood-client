@@ -1,16 +1,14 @@
-import React from 'react';
-import '../App.css';
+import React from 'react'
+import '../App.css'
 
-const Movie = () => {
+const Movie = (props) => {
     return (
       <div>
          <div className="film-library">
-         <h4>Try watching this movies: </h4>
-          {/*{this.props.films}*/}
-
+          {props.films}
         </div>
       </div>
-    );
+    )
 }
 
-export default Movie;
+export default Movie

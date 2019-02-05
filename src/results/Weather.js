@@ -29,7 +29,7 @@ class Weather extends Component {
 			return response.json()
 		})
 		.then(json => {
-			this.setState({ weather: json })
+			// this.setState({ weather: json })
 			console.log(weather);
 		})
 		.catch(err => {
