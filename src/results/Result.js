@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import SERVER_URL from '../constants/server';
+// import SERVER_URL from '../constants/server';
 import Weather from './Weather';
 import Music from './Music';
 import Food from './Food';
@@ -11,7 +11,7 @@ class Result extends Component {
   constructor(){
     super()
     this.state = {
-      films:{}
+      films:[{}]
     }
   }
 
@@ -27,13 +27,14 @@ class Result extends Component {
         this.setState({
           films: json
         })
-        console.log(this.state.films)
+        // console.log(json);
+        console.log(json.results);
       })
       .catch(error => {
         console.log("Error:", error)
       })
     }
-  }
+  
 
   //getMusic 
 
