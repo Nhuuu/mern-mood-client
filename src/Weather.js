@@ -23,9 +23,7 @@ class Weather extends Component {
 		let	lng= -122.3321;
 		// let lng = locations.x;
 		// let lat = locations.y;
-		fetch(DARKSKY_URL+ lat.toString() + ',' + lng.toString(), function(weather){
-			console.log(weather)
-		})
+		fetch(DARKSKY_URL+ lat.toString() + ',' + lng.toString())
 		.then(response => {
 			return response.json()
 		})

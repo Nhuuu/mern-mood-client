@@ -1,8 +1,9 @@
-import React from 'react'
-import SERVER_URL from './constants/server'
-import Weather from './Weather'
-import Music from './Music'
-import Food from './Food'
+import React from 'react';
+import SERVER_URL from './constants/server';
+import Weather from './Weather';
+import Music from './Music';
+import Food from './Food';
+import Movie from './Movie';
 
 
 const Result = () => {
@@ -17,6 +18,9 @@ const Result = () => {
         </div>
         <div className="food-field">
     		  <Food />
+        </div>
+        <div className="movie-field">
+          <Movie/>
         </div>
     	</div>
     </div>
