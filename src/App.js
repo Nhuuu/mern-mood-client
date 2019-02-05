@@ -10,6 +10,7 @@ import Nav from './layout/Nav';
 import Profile from './Profile';
 import Result from './results//Result';
 import Signup from './auth/Signup';
+import Profile_Edit from './Profile_Edit';
 
 class App extends Component {
   constructor(props){
@@ -64,10 +65,13 @@ class App extends Component {
               () => (<Signup user={this.state.user} updateUser={this.getUser} />)
             } />
             <Route path="/profile" component={
-              () => (<Profile user={this.state.user} />)
+              () => (<Profile user={this.state.user} updateUser={this.getUser} />)
             } />
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
+            } />
+            <Route path="/profile/edit" component={
+              () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)
             } />
           </div>
         </Router>
