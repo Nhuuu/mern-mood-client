@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Question from './Question'
-import SERVER_URL from './constants/server'
+import SERVER_URL from '../constants/server';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -16,11 +16,9 @@ class QuestionForm extends Component {
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
-		let newState;
 		this.setState({
 			category: e.target.value,
-			score: e.target.value,
-			average: // average all 3 score inputs	
+			score: e.target.value
 		})
 	}
 	
@@ -55,9 +53,9 @@ class QuestionForm extends Component {
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		<input type="hidden" name="timestamp">
+	        		<input type="hidden" name="timestamp" />
 	        		<input type="hidden" name="average" onChange={this.storeInput} />
-	        		<input type="submit" value="Your day will be...">
+	        		<input type="submit" value="Your day will be..." />
 	     	   </div>
 	     	 </form>
 	    )
