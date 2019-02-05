@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import DARKSKY_URL from './constants/darksky';
-import axios from 'axios';
+import SERVER_URL from './constants/server'
+
 
 
 
@@ -24,7 +24,7 @@ class Weather extends Component {
 		let	lng= -122.3321;
 		// let lng = locations.x;
 		// let lat = locations.y;
-		fetch(DARKSKY_URL+ lat.toString() + ',' + lng.toString())
+		fetch(SERVER_URL)
 		.then(response => {
 			return response.json()
 		})
