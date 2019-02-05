@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Question from './Question'
 import SERVER_URL from '../constants/server';
+import Question from './Question';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -9,10 +9,29 @@ class QuestionForm extends Component {
 			category: '',
 			score: 0,
 			timestamp: new Date(),
-			average: 0
+			average: 0,
+			questions: [{}]
 		}
 	}
 
+	componentDidMount(){
+		this.getQuestion()
+	}
+	
+	getQuestion = () => {
+		fetch(SERVER_URL + '/question')
+		.then(response => {
+			console.log('say something')
+			return response.json()
+		})
+		.then(json => {
+			this.setState({ question: json })
+			console.log(json)
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	}
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -22,7 +41,6 @@ class QuestionForm extends Component {
 		})
 	}
 	
-
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
@@ -46,7 +64,7 @@ class QuestionForm extends Component {
 	    return(
         	<form onSubmit={this.postAnswer}>
 	        	<div className="question-form">
-	        		<Question /> 
+	        		<Question question={this.question.mental[0].question}/> 
 	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
