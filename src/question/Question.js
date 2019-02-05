@@ -5,7 +5,7 @@ class Question extends Component {
 	constructor(){
 		super()
 		this.state = {
-			question: []
+			questions: [{}]
 		}
 	}
 
@@ -33,9 +33,7 @@ class Question extends Component {
   	render() {
 	    return(
 	    	<div>
-	        	<h3> {this.state.question.mental[0].question} </h3>
-{/*	        	<h3> {this.state.question.mental} </h3>
-	        	<h3> {this.state.question.emotional} </h3>*/}
+	        <h3>{this.question.mental[0].question} </h3>    	
 	        </div>
 	      );
   }
