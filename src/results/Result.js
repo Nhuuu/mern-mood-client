@@ -4,6 +4,7 @@ import Weather from './Weather';
 import Music from './Music';
 import Food from './Food';
 import Movie from './Movie';
+import Output from './Output'
 
 
 // Need all of the gets to pass down as props for each component?
@@ -16,7 +17,6 @@ class Result extends Component {
   }
 
   componentDidMount(){
-    //fetch movie per genre (35 is for comedy)
     this.getFilms()
   }
 
@@ -32,17 +32,19 @@ class Result extends Component {
         this.setState({
           films: allTitles
         })
-        console.log(this.state.films);
       })
       .catch(error => {
         console.log("Error:", error)
       })
     }
-  
 
   //getMusic 
 
   //getFood
+
+  // getWeather
+
+  // getOutput
 
 
   render() {
@@ -52,6 +54,9 @@ class Result extends Component {
         <div className="weather-field">
           <Weather />
         </div>
+        <div className="output-field">
+          <Output />
+        </div>        
         <div className="music-field">
           <Music />
         </div>
@@ -60,7 +65,6 @@ class Result extends Component {
         </div>
         <div className="movie-field">
           {filmList}
-          {/*<Movie films={films} />*/}
         </div>
     	</div>
     );
