@@ -59,8 +59,8 @@ class Signup extends Component {
             <div>
               <input name="Location" type="text" placeholder="Which city do you live in? (ex. Seattle, WA)" value={this.state.location} onChange={this.handleLocationChange} />
             </div>
-            <button class="btn waves-effect waves-light" type="submit" name="action">Sign Me Up NOW
-              <i class="material-icons right">add</i>
+            <button className="btn waves-effect waves-light" type="submit" name="action">Sign Me Up NOW
+              <i className="material-icons right">add</i>
             </button>
           </form>
         </div>

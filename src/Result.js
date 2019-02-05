@@ -1,5 +1,4 @@
 import React from 'react'
-import SERVER_URL from './constants/server'
 import Weather from './Weather'
 import Music from './Music'
 import Food from './Food'

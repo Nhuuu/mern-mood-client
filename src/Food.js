@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import SERVER_URL from './constants/server'
 
 class Food extends Component {
 	constructor(){
@@ -9,24 +9,24 @@ class Food extends Component {
 		}
 	}
 
-	// componentDidMount(){
-	// 	this.getFood()
-	// }	
+	componentDidMount(){
+		this.getFood()
+	}
 
-	//Grab Food
-	// getFood = () => {
-	// 	fetch()
-	// 	.then(response => {
-	// 		return response.json()
-	// 	})
-	// 	.then(json => {
-	// 		console.log(json)
-	// 		this.setState({ foods: json })
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err)
-	// 	})
-	// }
+	// Grab food
+	getFood = () => {
+		fetch(SERVER_URL)
+		.then(response => {
+			return response.json()
+		})
+		.then(json => {
+			console.log(json)
+			// this.setState({ food: json })
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	}
 
   render() {
     return(
