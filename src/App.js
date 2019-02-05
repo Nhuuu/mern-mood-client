@@ -8,7 +8,7 @@ import Home from './Home';
 import Login from './auth/Login';
 import Nav from './layout/Nav';
 import Profile from './Profile';
-import Result from './Result';
+import Result from './results//Result';
 import Signup from './auth/Signup';
 
 class App extends Component {
