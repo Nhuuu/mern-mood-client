@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SERVER_URL from '../constants/server';
 
 class Question extends Component {
 	constructor(){
@@ -14,13 +15,14 @@ class Question extends Component {
 
 	// Grab questions
 	getQuestion = () => {
-		fetch(SERVER_URL)
+		fetch(SERVER_URL + '/question')
 		.then(response => {
+			console.log('say something')
 			return response.json()
 		})
 		.then(json => {
-			console.log(json)
 			this.setState({ question: json })
+			console.log(json)
 		})
 		.catch(err => {
 			console.log(err)
@@ -31,7 +33,9 @@ class Question extends Component {
   	render() {
 	    return(
 	    	<div>
-	        	<h3> {this.state.question} </h3>
+	        	<h3> {this.state.question.mental[0].question} </h3>
+{/*	        	<h3> {this.state.question.mental} </h3>
+	        	<h3> {this.state.question.emotional} </h3>*/}
 	        </div>
 	      );
   }

@@ -11,6 +11,7 @@ import Profile from './Profile';
 import Result from './results//Result';
 import Signup from './auth/Signup';
 import Profile_Edit from './Profile_Edit';
+import Question from './question/Question';
 
 class App extends Component {
   constructor(props){
@@ -69,6 +70,9 @@ class App extends Component {
             } />
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
+            } />
+            <Route path="/question" component={
+              () => (<Question user={this.state.user} />)
             } />
             <Route path="/profile/edit" component={
               () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)

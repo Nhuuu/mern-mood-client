@@ -37,6 +37,7 @@ class Nav extends Component {
             </div>
             <div className="rightnav">
               <Link to="/result">Today's Mood</Link> 
+              <Link to="/question">Questions</Link> 
               {links}
             </div>
           </nav>
