@@ -1,28 +1,36 @@
-import React, { Component } from 'react'
-import SERVER_URL from './constants/server'
+import React, { Component } from 'react';
+import DARKSKY_URL from './constants/darksky';
+import axios from 'axios';
+
 
 
 class Weather extends Component {
 	constructor(){
 		super()
 		this.state = {
-			weather: 23
+			weather: '',
+			temp:''
 		}
 	}
 
 	componentDidMount(){
-		this.getWeather()
+		 this.getWeather()
 	}	
 
 	//Grab user location from server and then grab weather
 	getWeather = () => {
-		fetch(SERVER_URL)
+		let weather=[];
+		let lat= 47.6062;
+		let	lng= -122.3321;
+		// let lng = locations.x;
+		// let lat = locations.y;
+		fetch(DARKSKY_URL+ lat.toString() + ',' + lng.toString())
 		.then(response => {
 			return response.json()
 		})
 		.then(json => {
-			console.log(json)
-			this.setState({ weathers: json })
+			this.setState({ weather: json })
+			console.log(weather);
 		})
 		.catch(err => {
 			console.log(err)
@@ -34,7 +42,8 @@ class Weather extends Component {
     	<div>
         	<h3>WTH, It's Raining!</h3>
         	<div>
-        		<h1>{ this.state.weather }</h1>
+        		<h3>{this.state.weather}</h3>
+        		<h3>{this.state.temp}</h3>
         	</div>
         </div>
       );

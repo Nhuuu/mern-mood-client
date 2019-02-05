@@ -32,14 +32,6 @@ class Question extends Component {
 	    return(
 	    	<div>
 	        	<h3> How tired are you today? </h3>
-	        	<form>
-	        		<input type="radio">
-	        		<input type="radio">
-	        		<input type="radio">
-	        		<input type="radio">
-	        		<input type="radio">
-	        		<input type="submit" value="Your day will be...">
-	        	</form>
 	        </div>
 	      );
   }
