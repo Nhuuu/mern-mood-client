@@ -16,6 +16,7 @@ class QuestionForm extends Component {
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
+		let newState;
 		this.setState({
 			category: e.target.value,
 			score: e.target.value,
@@ -25,7 +26,7 @@ class QuestionForm extends Component {
 	
 
 	// POST form answers to the fetch call
-	postAnswer = (q) => {
+	postAnswer = (e) => {
 		e.preventDefault()
 		fetch(SERVER_URL, {
 			method: "POST",
@@ -35,6 +36,7 @@ class QuestionForm extends Component {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
+			this.props.rerender()
 		})
 		.catch(err => {
 			console.log('Error fetching data', err) 
@@ -44,20 +46,20 @@ class QuestionForm extends Component {
 
   	render() {
 	    return(
-	    	<div className="question-form">
-	        	<form onSubmit={this.postAnswer}>
+        	<form onSubmit={this.postAnswer}>
+	        	<div className="question-form">
 	        		<Question /> 
-	        		<input type="hidden" name="category" value={this.state.category}>
-	        		<input type="radio" value="1" name="score">
-	        		<input type="radio" value="2" name="score">
-	        		<input type="radio" value="3" name="score">
-	        		<input type="radio" value="4" name="score">
-	        		<input type="radio" value="5" name="score">
+	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
+	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
 	        		<input type="hidden" name="timestamp">
-	        		<input type="hidden" name="average">
+	        		<input type="hidden" name="average" onChange={this.storeInput} />
 	        		<input type="submit" value="Your day will be...">
-	        	</form>
-	        </div>
+	     	   </div>
+	     	 </form>
 	    )
   	}
 }

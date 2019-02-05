@@ -4,7 +4,7 @@ class Question extends Component {
 	constructor(){
 		super()
 		this.state = {
-			question: []
+			question: ''
 		}
 	}
 
@@ -20,7 +20,7 @@ class Question extends Component {
 		})
 		.then(json => {
 			console.log(json)
-			this.setState({ question: json })
+			// this.setState({ question: json })
 		})
 		.catch(err => {
 			console.log(err)
@@ -31,10 +31,18 @@ class Question extends Component {
   	render() {
 	    return(
 	    	<div>
-	        	<h3> {this.state.question} </h3>
+	        	<h3> How tired are you today? </h3>
+	        	<form>
+	        		<input type="radio" />
+	        		<input type="radio" />
+	        		<input type="radio" />
+	        		<input type="radio" />
+	        		<input type="radio" />
+	        		<input type="submit" value="Your day will be..." />
+	        	</form>
 	        </div>
 	      );
-  }
+  	}
 }
 
 export default Question;
