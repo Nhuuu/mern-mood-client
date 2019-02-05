@@ -33,7 +33,7 @@ class Question extends Component {
   	render() {
 	    return(
 	    	<div>
-	        <h3>{this.question.mental[0].question} </h3>    	
+	        {/*<h3>{this.question.mental[0].question} </h3>    	*/}
 	        </div>
 	      );
   }
