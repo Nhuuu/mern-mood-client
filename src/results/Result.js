@@ -30,12 +30,16 @@ class Result extends Component {
 
   getFilms = () => {
     fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
-    .then(response => response.json())
-    .then(json=> {
-      const filmObj = json.results
-      const allTitles = []
-      const filmTitle = filmObj.forEach((obj, i) => {
-        return allTitles.push(obj.original_title)
+      .then(response => response.json())
+      .then(json=> {
+        const filmObj = json.results
+        const allTitles = []
+        const filmTitle = filmObj.forEach((obj) => {
+          return allTitles.push(obj.original_title)
+        })
+        this.setState({
+          films: allTitles
+        })
       })
       this.setState({
         films: allTitles
