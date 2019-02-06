@@ -13,7 +13,7 @@ class QuestionForm extends Component {
 			mentalQs: [],
 			physicalQs: [],
 			emotionalQs: [],
-			isLoading: true,  // loader
+			isLoading: true  // loader
 			// questions: [{}],
 			// currentQuestion: {}
 		}

@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
-import SERVER_URL from '../constants/server'
+import React, { Component } from 'react'
 
-
-const Weather = () => {
-
-    return(
-    	<div>
-    	{this.state.weather}
-{/*        	<h3>WTH, It's Raining!</h3>
-        	<div>
-        		<h3>{this.state.weather}</h3>
-        		<h3>{this.state.temp}</h3>
-        	</div>*/}
-        </div>
-      );
+export default class Weather extends Component {
+  render() {
+	return (
+	  <div>
+		
+	  </div>
+	)
   }
+}
 
-export default Weather
