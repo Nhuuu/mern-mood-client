@@ -7,19 +7,15 @@ class QuestionForm extends Component {
 	constructor(){
 		super()
 		this.state = {
-			category: '',
+			category: [],
 			score: 0,
-<<<<<<< HEAD
-			timestamp: new Date(),
-			average: 0,
-			question: []
-=======
 			// average: 0,
 			mentalQs: [],
 			physicalQs: [],
 			emotionalQs: [],
-			isLoading: true  // loader
->>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
+			isLoading: true,  // loader
+			// questions: [{}],
+			// currentQuestion: {}
 		}
 	}
 
@@ -35,6 +31,14 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
+			// const questionArr = []
+			// questionArr.push(json[0].question)
+			// this.setState({ questions: questionArr })
+			// this.setState({ currentQuestion: questionArr[0].mental})
+			// console.log(this.state.currentQuestion)
+
+
+// indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
 			const mentalArr = json[0].question.mental
 			const mentalQs = []
 			const oneMentalQ = mentalArr.forEach((q) => {
@@ -53,7 +57,8 @@ class QuestionForm extends Component {
 			this.setState({ mentalQs: mentalQs })
 			this.setState({ physicalQs: physicalQs })
 			this.setState({ emotionalQs: emotionalQs })
-			console.log('this is json', json[0].question)
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+			// console.log('this is json', json[0].question)
 			// console.log('this is json', physicalQs)
 			// console.log('this is json', emotionalQs)
 		})
@@ -61,6 +66,9 @@ class QuestionForm extends Component {
 			console.log(err)
 		})
 	}
+
+	// random category of questions
+
 
 	// Need a random question generate function
 	getRandomQ = (q) => {
@@ -105,7 +113,7 @@ class QuestionForm extends Component {
 	    	<div className="question-form">
        			<form onSubmit={this.postAnswer}>
 	        		<Question question={this.getRandomQ()}/>
-	        		<input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
