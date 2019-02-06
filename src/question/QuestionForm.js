@@ -8,7 +8,6 @@ class QuestionForm extends Component {
 		this.state = {
 			category: '',
 			score: 0,
-			timestamp: new Date(),
 			// average: 0,
 			mentalQs: [],
 			physicalQs: [],
@@ -45,7 +44,7 @@ class QuestionForm extends Component {
 			this.setState({ mentalQs: mentalQs })
 			this.setState({ physicalQs: physicalQs })
 			this.setState({ emotionalQs: emotionalQs })
-			// console.log('this is json', mentalQs)
+			console.log('this is json', json[0].question)
 			// console.log('this is json', physicalQs)
 			// console.log('this is json', emotionalQs)
 		})
@@ -56,12 +55,9 @@ class QuestionForm extends Component {
 
 	// Need a random question generate function
 	getRandomQ = (q) => {
-		const mRandom = this.state.mentalQs
-		console.log(mRandom)
-		return mRandom[Math.floor(mRandom.length * Math.random())]
+		const mRand = this.state.mentalQs
+		return mRand[Math.floor(mRand.length * Math.random())]
 	}
-
-
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -101,7 +97,6 @@ class QuestionForm extends Component {
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		<input type="hidden" name="timestamp" />
 	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 	        		<input type="submit" value="Your day will be..." />
 		     	</form>
