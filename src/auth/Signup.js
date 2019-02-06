@@ -41,7 +41,10 @@ class Signup extends Component {
 
   render() {
     if(this.props.user){
-      return (<Redirect to="/question" />);
+      return (
+        <Redirect to="/question" />
+        // <Food userLocation={this.state.location} />
+      );
     }
     return(
         <div>

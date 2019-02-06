@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SERVER_URL from '../constants/server';
 import Question from './Question';
+import Loader from 'react-loader-spinner'
 
 class QuestionForm extends Component {
 	constructor(){
@@ -8,29 +9,63 @@ class QuestionForm extends Component {
 		this.state = {
 			category: '',
 			score: 0,
+<<<<<<< HEAD
 			timestamp: new Date(),
 			average: 0,
 			question: []
+=======
+			// average: 0,
+			mentalQs: [],
+			physicalQs: [],
+			emotionalQs: [],
+			isLoading: true  // loader
+>>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
 		}
 	}
 
 	componentDidMount(){
-		this.getQuestion()
+		this.getQuestions()
+		setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
 	}
-	
-	getQuestion = () => {
+
+	// Grab questions
+	getQuestions = () => {
 		fetch(SERVER_URL + '/question')
 		.then(response => {
-			console.log('say something')
 			return response.json()
 		})
 		.then(json => {
-			this.setState({ question: json })
-			console.log(json)
+			const mentalArr = json[0].question.mental
+			const mentalQs = []
+			const oneMentalQ = mentalArr.forEach((q) => {
+				return mentalQs.push(q.question)
+			})
+			const physicalArr = json[0].question.physical
+			const physicalQs = []
+			const onePhysicalQ = physicalArr.forEach((q) => {
+				return physicalQs.push(q.question)
+			})
+			const emotionalArr = json[0].question.emotional
+			const emotionalQs = []
+			const oneEmotionalQ = emotionalArr.forEach((q) => {
+				return emotionalQs.push(q.question)
+			})
+			this.setState({ mentalQs: mentalQs })
+			this.setState({ physicalQs: physicalQs })
+			this.setState({ emotionalQs: emotionalQs })
+			console.log('this is json', json[0].question)
+			// console.log('this is json', physicalQs)
+			// console.log('this is json', emotionalQs)
 		})
 		.catch(err => {
 			console.log(err)
 		})
+	}
+
+	// Need a random question generate function
+	getRandomQ = (q) => {
+		const mRand = this.state.mentalQs
+		return mRand[Math.floor(mRand.length * Math.random())]
 	}
 
 	// Update state to reflect user input - store input
@@ -61,21 +96,25 @@ class QuestionForm extends Component {
 
 
   	render() {
+			if(this.state.isLoading){
+				return(
+					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+				)
+			}
 	    return(
-        	<form onSubmit={this.postAnswer}>
-	        	<div className="question-form">
-	        		<Question question={this.question.mental[0].question}/> 
-	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
+	    	<div className="question-form">
+       			<form onSubmit={this.postAnswer}>
+	        		<Question question={this.getRandomQ()}/>
+	        		<input type="hidden" name="category" value="mental" onChange={this.storeInput} />
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		<input type="hidden" name="timestamp" />
-	        		<input type="hidden" name="average" onChange={this.storeInput} />
+	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 	        		<input type="submit" value="Your day will be..." />
-	     	   </div>
-	     	 </form>
+		     	</form>
+	     	</div>
 	    )
   	}
 }

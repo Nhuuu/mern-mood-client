@@ -4,6 +4,9 @@ import Weather from './Weather';
 import Music from './Music';
 import Food from './Food';
 import Movie from './Movie';
+import Output from './Output'
+import axios from 'axios';
+import Loader from 'react-loader-spinner' //module for loading gif
 
 
 // Need all of the gets to pass down as props for each component?
@@ -12,33 +15,44 @@ class Result extends Component {
     super()
     this.state = {
       films: [],
+<<<<<<< HEAD
       weather: ''
+=======
+      food: '',
+      isLoading: true  // loader
+>>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
     }
   }
 
   componentDidMount(){
-    //fetch movie per genre (35 is for comedy)
     this.getFilms()
+<<<<<<< HEAD
     this.getWeather()
+=======
+    this.getFood()
+    // this.setState({isLoading: false}) // This is used for acutal loader usage:
+    setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
+    
+>>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
   }
 
   getFilms = () => {
+
      fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
       .then(response => response.json())
-      .then((json)=> {
+      .then(json=> {
         const filmObj = json.results
         const allTitles = []
-        const filmTitle = filmObj.forEach((obj, i) => {
+        const filmTitle = filmObj.forEach((obj) => {
           return allTitles.push(obj.original_title)
         })
         this.setState({
           films: allTitles
-        })
-        console.log(this.state.films);
       })
-      .catch(error => {
-        console.log("Error:", error)
+      this.setState({
+        films: allTitles
       })
+<<<<<<< HEAD
     }
   
   //Grab user location from server and then grab weather
@@ -54,15 +68,53 @@ class Result extends Component {
     })
     .catch(err => {
       console.log(err)
+=======
+    })
+    .catch(error => {
+      console.log("Error:", error)
+>>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
     })
   }
 
   //getMusic 
 
+
   //getFood
+  getFood = () => {
+    axios.post(`${SERVER_URL}/restaurant`, )
+
+
+    // fetch(SERVER_URL+'/restaurant', {
+    //   method: 'POST',
+    //   headers: 
+    // })
+    // .then(response => response.json())
+    // .then(json => {
+    //   console.log(json)
+    // })
+    // .catch(err => {
+    //   console.log(err)
+    // })
+  }
+
+  // getWeather
+  getWeather = () => {
+    fetch(SERVER_URL+'/weather')
+    .then(response => response.json())
+    .then(json => {
+      console.log(json)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+
+  // getOutput
 
 
   render() {
+<<<<<<< HEAD
     const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
     return(
     	<div className="results">
@@ -79,9 +131,33 @@ class Result extends Component {
         <div className="movie-field">
           {filmList}
           {/*<Movie films={films} />*/}
+=======
+    if(this.state.isLoading){
+      return(
+        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+      )
+    }
+      const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
+      return(
+        <div className="results">
+          <div className="weather-field">
+            <Weather />
+          </div>
+          <div className="output-field">
+            <Output />
+          </div>        
+          <div className="music-field">
+            <Music />
+          </div>
+          <div className="food-field">
+            <Food foodItem={this.state.food} />
+          </div>
+          <div className="movie-field">
+            {filmList}
+          </div>
+>>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
         </div>
-    	</div>
-    );
+      );
   }
 }
 
