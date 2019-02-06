@@ -42,8 +42,7 @@ class Result extends Component {
       console.log("Error:", error)
     })
   }
-<<<<<<< HEAD
-=======
+
   
   //Grab user location from server and then grab weather
   getWeather = () => {
@@ -60,7 +59,7 @@ class Result extends Component {
       console.log(err)
     })
   }
->>>>>>> ae0a7c71962c3f92b13797c6d2d0aa11266563ed
+
   //getMusic 
   //getFood
   getFood = () => {
@@ -118,9 +117,3 @@ class Result extends Component {
   }
 }
 export default Result
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> ae0a7c71962c3f92b13797c6d2d0aa11266563ed
