@@ -70,7 +70,7 @@ class Result extends Component {
     })
     .then(json => {
       console.log("weather got");
-      const currWeather=json.currently.summary;
+      const currWeather=json.currently;
       this.setState({ weather: currWeather })
     })
     .catch(err => {
@@ -88,7 +88,7 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather weather={this.state.weather} />
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature}/>
           </div>
           <div className="output-field">
             <Output />
