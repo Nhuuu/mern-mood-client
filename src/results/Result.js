@@ -7,27 +7,24 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
-
-
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
   constructor(){
     super()
     this.state = {
       films: [],
+      weather: '',
       food: '',
       isLoading: true  // loader
     }
   }
-
   componentDidMount(){
     this.getFilms()
+    this.getWeather()
     this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
-    
   }
-
   getFilms = () => {
    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
     .then(response => response.json())
@@ -46,14 +43,27 @@ class Result extends Component {
     })
   }
 
+  
+  //Grab user location from server and then grab weather
+  getWeather = () => {
+    fetch(SERVER_URL + '/result/weather')
+    .then(response => {
+      return response.json()
+    })
+    .then((json) => {
+      console.log('shitttttttttttttttttttttt')
+      this.setState({ weather: json })
+      console.log(json);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   //getMusic 
-
-
   //getFood
   getFood = () => {
     axios.post(`${SERVER_URL}/restaurant`, )
-
-
     // fetch(SERVER_URL+'/restaurant', {
     //   method: 'POST',
     //   headers: 
@@ -66,7 +76,6 @@ class Result extends Component {
     //   console.log(err)
     // })
   }
-
   // getWeather
   getWeather = () => {
     fetch(SERVER_URL+'/weather')
@@ -78,11 +87,7 @@ class Result extends Component {
       console.log(err)
     })
   }
-
-
   // getOutput
-
-
   render() {
     if(this.state.isLoading){
       return(
@@ -111,6 +116,4 @@ class Result extends Component {
       );
   }
 }
-
-
 export default Result
