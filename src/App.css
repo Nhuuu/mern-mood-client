@@ -1,5 +1,5 @@
 /* CUSTOM STYLES */
-/* nav {
+nav {
   font-family: 'Oxygen', sans-serif;
   width: 100%;
   background-color: #B0C0BF;
@@ -47,7 +47,7 @@ nav a:hover {
 .footer-text{
   color: white;
   font-size: 11px;
-} */
+}
 
 /* DEFAULT STYLES */
 .App {
