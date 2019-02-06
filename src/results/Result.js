@@ -23,29 +23,28 @@ class Result extends Component {
   componentDidMount(){
     this.getFilms()
     this.getFood()
-    // This is used for acutal loader usage:
-    // this.setState({isLoading: false})
-    setTimeout(() => this.setState({isLoading: false}), 3000) 
-    //  Set to 3 sec timeout to see the effect
+    // this.setState({isLoading: false}) // This is used for acutal loader usage:
+    setTimeout(() => this.setState({isLoading: false}), 3000)  //  Set to 3 sec timeout to see the effect
+    
   }
 
   getFilms = () => {
-     fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
-      .then(response => response.json())
-      .then(json=> {
-        const filmObj = json.results
-        const allTitles = []
-        const filmTitle = filmObj.forEach((obj, i) => {
-          return allTitles.push(obj.original_title)
-        })
-        this.setState({
-          films: allTitles
-        })
+    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
+    .then(response => response.json())
+    .then(json=> {
+      const filmObj = json.results
+      const allTitles = []
+      const filmTitle = filmObj.forEach((obj, i) => {
+        return allTitles.push(obj.original_title)
       })
-      .catch(error => {
-        console.log("Error:", error)
+      this.setState({
+        films: allTitles
       })
-    }
+    })
+    .catch(error => {
+      console.log("Error:", error)
+    })
+  }
 
   //getMusic 
 
@@ -87,7 +86,7 @@ class Result extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <div class="loading"><Loader type="Bars" color="#B0C0BF" height={80} width={80} /> </div>
+        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
