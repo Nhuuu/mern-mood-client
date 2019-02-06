@@ -29,7 +29,7 @@ class Result extends Component {
       .then(json=> {
         const filmObj = json.results
         const allTitles = []
-        const filmTitle = filmObj.forEach((obj, i) => {
+        const filmTitle = filmObj.forEach((obj) => {
           return allTitles.push(obj.original_title)
         })
         this.setState({
