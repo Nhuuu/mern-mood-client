@@ -33,7 +33,10 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
+<<<<<<< HEAD
 			console.log('question JSON', json)
+=======
+>>>>>>> e9fb73ddc30ac155ef34cc4dbd93cb1f77326a81
 			// const questionArr = []
 			// questionArr.push(json[0].question)
 			// this.setState({ questions: questionArr[0] })
@@ -124,9 +127,15 @@ class QuestionForm extends Component {
 				              {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 				  <input type="submit" value="Your day will be..." />
 			</Row>
+<<<<<<< HEAD
   </form>
 </div>
 	    
+=======
+    		</form>
+		</div>
+	   
+>>>>>>> e9fb73ddc30ac155ef34cc4dbd93cb1f77326a81
 	    )
   	}
 }
