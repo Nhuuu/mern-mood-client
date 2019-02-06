@@ -9,7 +9,7 @@ class QuestionForm extends Component {
 			category: '',
 			score: 0,
 			timestamp: new Date(),
-			average: 0,
+			// average: 0,
 			mentalQs: [],
 			physicalQs: [],
 			emotionalQs: []
@@ -54,6 +54,15 @@ class QuestionForm extends Component {
 		})
 	}
 
+	// Need a random question generate function
+	getRandomQ = (q) => {
+		const mRandom = this.state.mentalQs
+		console.log(mRandom)
+		return mRandom[Math.floor(mRandom.length * Math.random())]
+	}
+
+
+
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
 		this.setState({
@@ -83,20 +92,18 @@ class QuestionForm extends Component {
 
   	render() {
 	    return(
-	    	<div>
-       		<form onSubmit={this.postAnswer}>
-		        	<div className="question-form">
-		        		<Question question={this.state.mentalQs[0]}/>
-		        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
-		        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
-		        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
-		        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
-		        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
-		        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-		        		<input type="hidden" name="timestamp" />
-		        		<input type="hidden" name="average" onChange={this.storeInput} />
-		        		<input type="submit" value="Your day will be..." />
-		     	   </div>
+	    	<div className="question-form">
+       			<form onSubmit={this.postAnswer}>
+	        		<Question question={this.getRandomQ()}/>
+	        		<input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
+	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
+	        		<input type="hidden" name="timestamp" />
+	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
+	        		<input type="submit" value="Your day will be..." />
 		     	</form>
 	     	</div>
 	    )
