@@ -17,7 +17,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: null
+      user: null,
+      currentCategory: ''
     }
   }
 
@@ -72,7 +73,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/questionform" component={
-              () => (<QuestionForm user={this.state.user} />)
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory}/>)
             } />
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
