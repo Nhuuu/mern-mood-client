@@ -13,17 +13,11 @@ class QuestionForm extends Component {
 			score: 0,
 			timestamp: new Date(),
 			// average: 0,
-<<<<<<< HEAD
-			mentalQs: [],
-			physicalQs: [],
-			emotionalQs: []
-=======
 			// mentalQs: [],
 			// physicalQs: [],
 			// emotionalQs: [],
 			isLoading: true,  // loader
 			currentQuestions: []
->>>>>>> 852025374826b77ac21ced91a24fc21817de8b2d
 		}
 	}
 
@@ -39,9 +33,6 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
-<<<<<<< HEAD
-			console.log('question JSON', json)
-=======
 			// const questionArr = []
 			// questionArr.push(json[0].question)
 			// this.setState({ questions: questionArr[0] })
@@ -51,7 +42,6 @@ class QuestionForm extends Component {
 			// console.log(this.state.currentQuestions)
 
 // indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
->>>>>>> 852025374826b77ac21ced91a24fc21817de8b2d
 			const mentalArr = json[0].question.mental
 			const mentalQs = []
 			const oneMentalQ = mentalArr.forEach((q) => {
@@ -81,18 +71,9 @@ class QuestionForm extends Component {
 
 	// Need a random question generate function
 	getRandomQ = (q) => {
-<<<<<<< HEAD
-		const mRandom = this.state.mentalQs
-		console.log(mRandom)
-		return mRandom[Math.floor(mRandom.length * Math.random())]
-	}
-
-
-=======
 		const mRand = this.state.mentalQs
 		return mRand[Math.floor(mRand.length * Math.random())]
 	}
->>>>>>> 852025374826b77ac21ced91a24fc21817de8b2d
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -129,7 +110,6 @@ class QuestionForm extends Component {
 				)
 			}
 	    return(
-<<<<<<< HEAD
 			<div className="question-form">
 					<form onSubmit={this.postAnswer}>
     				 <Question question={this.getRandomQ()}/>
@@ -143,36 +123,9 @@ class QuestionForm extends Component {
 				              {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 				  <input type="submit" value="Your day will be..." />
 			</Row>
-  </form>
-</div>
-	    
-=======
-	    	<div className="question-form">
-	    		    {/*<Question question={this.getRandomQ()}/>*/}
-{/*       			<form onSubmit={this.postAnswer}>
-	        		<label name="category">Category
-	        		<input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
-					</label>
-					<label name="1">1
-	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="2">2
-	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="3">3
-	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="4">4
-	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="5">5
-	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		</label>*/}
-	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
-{/*	        		<input type="submit" value="Your day will be..." />
-		     	</form>*/}
-	     	</div>
->>>>>>> 852025374826b77ac21ced91a24fc21817de8b2d
+    		</form>
+		</div>
+	   
 	    )
   	}
 }
