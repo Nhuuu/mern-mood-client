@@ -13,7 +13,7 @@ class Result extends Component {
     super()
     this.state = {
       films: [],
-      weather: ''
+      weather: '',
       food: '',
       isLoading: true  // loader
     }
@@ -37,7 +37,11 @@ class Result extends Component {
       this.setState({
         films: allTitles
       })
-    }
+    })
+    .catch(error => {
+      console.log("Error:", error)
+    })
+  }
   
   //Grab user location from server and then grab weather
   getWeather = () => {
@@ -52,9 +56,6 @@ class Result extends Component {
     })
     .catch(err => {
       console.log(err)
-    })
-    .catch(error => {
-      console.log("Error:", error)
     })
   }
   //getMusic 
@@ -86,22 +87,6 @@ class Result extends Component {
   }
   // getOutput
   render() {
-    const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
-    return(
-    	<div className="results">
-        <div className="weather-field">
-          <Weather />
-          }
-        </div>
-        <div className="music-field">
-          <Music />
-        </div>
-        <div className="food-field">
-    		  <Food />
-        </div>
-        <div className="movie-field">
-          {filmList}
-          {/*<Movie films={films} />*/}
     if(this.state.isLoading){
       return(
         <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
