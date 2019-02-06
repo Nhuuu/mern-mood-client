@@ -11,12 +11,11 @@ class QuestionForm extends Component {
 			category: [],
 			score: 0,
 			// average: 0,
-			mentalQs: [],
-			physicalQs: [],
-			emotionalQs: [],
+			// mentalQs: [],
+			// physicalQs: [],
+			// emotionalQs: [],
 			isLoading: true,  // loader
-			// questions: [{}],
-			// currentCategory: {}
+			currentQuestions: []
 		}
 	}
 
@@ -36,10 +35,9 @@ class QuestionForm extends Component {
 			// questionArr.push(json[0].question)
 			// this.setState({ questions: questionArr[0] })
 			// this.setState({ currentCategory: questionArr[0] })
-			// // this.state.questions.splice(0, 1)
-			// console.log(this.state.questions)
-			// console.log(this.state.currentCategory)
 
+			// console.log(this.state.questions)
+			// console.log(this.state.currentQuestions)
 
 // indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
 			const mentalArr = json[0].question.mental
@@ -70,14 +68,11 @@ class QuestionForm extends Component {
 		})
 	}
 
-	// random category of questions
-
-
 	// Need a random question generate function
-	// getRandomQ = (q) => {
-	// 	const mRand = this.state.mentalQs
-	// 	return mRand[Math.floor(mRand.length * Math.random())]
-	// }
+	getRandomQ = (q) => {
+		const mRand = this.state.mentalQs
+		return mRand[Math.floor(mRand.length * Math.random())]
+	}
 
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -98,7 +93,8 @@ class QuestionForm extends Component {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
-			this.props.rerender()
+			this.props.rerender() // redirect here, if cat is mental, redirect to physical 
+			// <Redirect to=`${next}` />  const next  
 		})
 		.catch(err => {
 			console.log('Error fetching data', err) 
@@ -114,10 +110,10 @@ class QuestionForm extends Component {
 			}
 	    return(
 	    	<div className="question-form">
-       			<form onSubmit={this.postAnswer}>
-	        		{/*<Question question={this.getRandomQ()}/>*/}
+	    		    {/*<Question question={this.getRandomQ()}/>*/}
+{/*       			<form onSubmit={this.postAnswer}>
 	        		<label name="category">Category
-	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
+	        		<input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
 					</label>
 					<label name="1">1
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
@@ -133,10 +129,10 @@ class QuestionForm extends Component {
 	        		</label>
 	        		<label name="5">5
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		</label>
+	        		</label>*/}
 	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
-	        		<input type="submit" value="Your day will be..." />
-		     	</form>
+{/*	        		<input type="submit" value="Your day will be..." />
+		     	</form>*/}
 	     	</div>
 	    )
   	}
