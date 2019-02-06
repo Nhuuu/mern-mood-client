@@ -6,7 +6,7 @@ const Weather = (props) => {
       <div>
         <h3>Current weather is:</h3>
   
-         <div> {props.weathers} </div>
+         <div> {props.weather} </div>
 
       </div>
     )
