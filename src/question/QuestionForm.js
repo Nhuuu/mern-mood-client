@@ -107,7 +107,7 @@ class QuestionForm extends Component {
   	render() {
 			if(this.state.isLoading){
 				return(
-					<div class="loadingMain"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
 			}
 	    return(
