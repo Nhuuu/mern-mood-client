@@ -78,10 +78,10 @@ class Result extends Component {
   }
   // getWeather
   getWeather = () => {
-    fetch(SERVER_URL+'/weather')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
+    fetch(SERVER_URL+'/result/weather')
+    .then(response => console.log(JSON.parse(response)))
+    .then(text => {
+      console.log(text)
     })
     .catch(err => {
       console.log(err)
