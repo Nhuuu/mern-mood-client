@@ -9,7 +9,7 @@ class QuestionForm extends Component {
 		this.state = {
 			category: [],
 			score: 0,
-			average: 0,
+			// average: 0,
 			mentalQs: [],
 			physicalQs: [],
 			emotionalQs: [],
@@ -83,7 +83,7 @@ class QuestionForm extends Component {
 			score: e.target.value
 		})
 	}
-	
+
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
