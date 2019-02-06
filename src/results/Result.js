@@ -78,7 +78,7 @@ class Result extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+        <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)

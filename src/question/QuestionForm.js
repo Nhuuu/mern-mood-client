@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SERVER_URL from '../constants/server';
 import Question from './Question';
+import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
 
@@ -8,8 +9,9 @@ class QuestionForm extends Component {
 	constructor(){
 		super()
 		this.state = {
-			category: [],
+			category: '',
 			score: 0,
+			timestamp: new Date(),
 			// average: 0,
 			// mentalQs: [],
 			// physicalQs: [],
@@ -21,7 +23,7 @@ class QuestionForm extends Component {
 
 	componentDidMount(){
 		this.getQuestions()
-		setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
+		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
 	// Grab questions
@@ -31,6 +33,7 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
+			console.log('question JSON', json)
 			// const questionArr = []
 			// questionArr.push(json[0].question)
 			// this.setState({ questions: questionArr[0] })
@@ -58,8 +61,7 @@ class QuestionForm extends Component {
 			this.setState({ mentalQs: mentalQs })
 			this.setState({ physicalQs: physicalQs })
 			this.setState({ emotionalQs: emotionalQs })
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-			// console.log('this is json', json[0].question)
+			// console.log('this is json', mentalQs)
 			// console.log('this is json', physicalQs)
 			// console.log('this is json', emotionalQs)
 		})
@@ -81,7 +83,7 @@ class QuestionForm extends Component {
 			score: e.target.value
 		})
 	}
-
+	
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
@@ -105,35 +107,26 @@ class QuestionForm extends Component {
   	render() {
 			if(this.state.isLoading){
 				return(
-					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+					<div class="loadingMain"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
 			}
 	    return(
-	    	<div className="question-form">
-	    		    {/*<Question question={this.getRandomQ()}/>*/}
-{/*       			<form onSubmit={this.postAnswer}>
-	        		<label name="category">Category
-	        		<input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
-					</label>
-					<label name="1">1
-	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="2">2
-	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="3">3
-	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="4">4
-	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
-	        		</label>
-	        		<label name="5">5
-	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
-	        		</label>*/}
-	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
-{/*	        		<input type="submit" value="Your day will be..." />
-		     	</form>*/}
-	     	</div>
+			<div className="question-form">
+					<form onSubmit={this.postAnswer}>
+    				 <Question question={this.getRandomQ()}/>
+      			 <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+			<Row>
+				<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				<Input name='group1' type='checkbox' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				<Input name='group1' type='checkbox' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				<Input name='group1' type='checkbox' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				              {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
+				  <input type="submit" value="Your day will be..." />
+			</Row>
+  </form>
+</div>
+	    
 	    )
   	}
 }

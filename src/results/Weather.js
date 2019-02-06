@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import SERVER_URL from '../constants/server'
+import React from 'react'
 
 
 const Weather = (props) => {
