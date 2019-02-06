@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Question extends Component {
   	render() {
 	    return(
-	    	<div>
-	        <h3>{this.props.question} </h3> 
+	    	<div className="question">
+	        <p>{this.props.question}</p>
 	        </div>
 	      );
   }
