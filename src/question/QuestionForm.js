@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Question from './Question'
-import SERVER_URL from '../constants/server'
+import SERVER_URL from '../constants/server';
+import Question from './Question';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -62,7 +62,6 @@ class QuestionForm extends Component {
 		})
 	}
 	
-
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
