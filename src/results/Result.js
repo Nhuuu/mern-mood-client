@@ -19,8 +19,8 @@ class Result extends Component {
     }
   }
   componentDidMount(){
-    this.getFilms()
     this.getWeather()
+    this.getFilms()
     this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
@@ -43,23 +43,6 @@ class Result extends Component {
     })
   }
 
-  
-  //Grab user location from server and then grab weather
-  getWeather = () => {
-    fetch(SERVER_URL + '/result/weather')
-    .then(response => {
-      return response.json()
-    })
-    .then((json) => {
-      console.log('shitttttttttttttttttttttt')
-      this.setState({ weather: json })
-      console.log(json);
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
   //getMusic 
   //getFood
   getFood = () => {
@@ -79,9 +62,13 @@ class Result extends Component {
   // getWeather
   getWeather = () => {
     fetch(SERVER_URL+'/result/weather')
-    .then(response => console.log(JSON.parse(response)))
-    .then(text => {
-      console.log(text)
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      this.setState({ weather: json })
+      const currWeather=json.currently.summary;
+      console.log(currWeather)
     })
     .catch(err => {
       console.log(err)
@@ -91,7 +78,7 @@ class Result extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+        <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
