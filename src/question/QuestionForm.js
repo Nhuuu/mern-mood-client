@@ -63,6 +63,7 @@ class QuestionForm extends Component {
 			// console.log('this is json', mentalQs)
 			// console.log('this is json', physicalQs)
 			// console.log('this is json', emotionalQs)
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 		})
 		.catch(err => {
 			console.log(err)
@@ -76,12 +77,12 @@ class QuestionForm extends Component {
 	}
 
 	// Update state to reflect user input - store input
-	storeInput = (e) => {
-		this.setState({
-			category: e.target.value,
-			score: e.target.value
-		})
-	}
+	// storeInput = (e) => {
+	// 	this.setState({
+	// 		category: e.target.value,
+	// 		score: e.target.value
+	// 	})
+	// }
 	
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
@@ -111,21 +112,20 @@ class QuestionForm extends Component {
 			}
 	    return(
 			<div className="question-form">
-					<form onSubmit={this.postAnswer}>
-    				 <Question question={this.getRandomQ()}/>
-      			 <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
-			<Row>
-				<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				              {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
-				  <input type="submit" value="Your day will be..." />
-			</Row>
-    		</form>
-		</div>
-	   
+			    <Question question={this.getRandomQ()}/>
+				<form onSubmit={this.postAnswer}>
+      			    <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+					<Row>
+						<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='checkbox' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='checkbox' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='checkbox' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+				        {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
+				        <input type="submit" value="Your day will be..." />
+					</Row>
+    			</form>
+			</div>
 	    )
   	}
 }
