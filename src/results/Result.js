@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import SERVER_URL from '../constants/server';
+import SERVER_URL from '../constants/server';
 import Weather from './Weather';
 import Music from './Music';
 import Food from './Food';
@@ -11,13 +11,15 @@ class Result extends Component {
   constructor(){
     super()
     this.state = {
-      films: []
+      films: [],
+      weather: ''
     }
   }
 
   componentDidMount(){
     //fetch movie per genre (35 is for comedy)
     this.getFilms()
+    this.getWeather()
   }
 
   getFilms = () => {
@@ -39,6 +41,21 @@ class Result extends Component {
       })
     }
   
+  //Grab user location from server and then grab weather
+  getWeather = () => {
+    fetch(SERVER_URL + '/result/weather')
+    .then(response => {
+      return response.json()
+    })
+    .then((json) => {
+      console.log('shitttttttttttttttttttttt')
+      this.setState({ weather: json })
+      console.log(json);
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
 
   //getMusic 
 
@@ -51,6 +68,7 @@ class Result extends Component {
     	<div className="results">
         <div className="weather-field">
           <Weather />
+          }
         </div>
         <div className="music-field">
           <Music />

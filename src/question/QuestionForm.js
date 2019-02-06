@@ -10,7 +10,7 @@ class QuestionForm extends Component {
 			score: 0,
 			timestamp: new Date(),
 			average: 0,
-			questions: [{}]
+			question: []
 		}
 	}
 
@@ -40,7 +40,7 @@ class QuestionForm extends Component {
 			score: e.target.value
 		})
 	}
-	
+
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
