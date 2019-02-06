@@ -7,20 +7,17 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
-
-
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
   constructor(){
     super()
     this.state = {
       films: [],
-      weather: ''
+      weather: '',
       food: '',
       isLoading: true  // loader
     }
   }
-
   componentDidMount(){
     this.getFilms()
     this.getWeather()
@@ -28,7 +25,6 @@ class Result extends Component {
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
   }
-
   getFilms = () => {
    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
     .then(response => response.json())
@@ -41,7 +37,11 @@ class Result extends Component {
       this.setState({
         films: allTitles
       })
-    }
+    })
+    .catch(error => {
+      console.log("Error:", error)
+    })
+  }
   
   //Grab user location from server and then grab weather
   getWeather = () => {
@@ -57,19 +57,11 @@ class Result extends Component {
     .catch(err => {
       console.log(err)
     })
-    .catch(error => {
-      console.log("Error:", error)
-    })
   }
-
   //getMusic 
-
-
   //getFood
   getFood = () => {
     axios.post(`${SERVER_URL}/restaurant`, )
-
-
     // fetch(SERVER_URL+'/restaurant', {
     //   method: 'POST',
     //   headers: 
@@ -82,7 +74,6 @@ class Result extends Component {
     //   console.log(err)
     // })
   }
-
   // getWeather
   getWeather = () => {
     fetch(SERVER_URL+'/weather')
@@ -94,28 +85,8 @@ class Result extends Component {
       console.log(err)
     })
   }
-
-
   // getOutput
-
-
   render() {
-    const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
-    return(
-    	<div className="results">
-        <div className="weather-field">
-          <Weather />
-          }
-        </div>
-        <div className="music-field">
-          <Music />
-        </div>
-        <div className="food-field">
-    		  <Food />
-        </div>
-        <div className="movie-field">
-          {filmList}
-          {/*<Movie films={films} />*/}
     if(this.state.isLoading){
       return(
         <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
@@ -143,6 +114,4 @@ class Result extends Component {
       );
   }
 }
-
-
 export default Result
