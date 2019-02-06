@@ -115,19 +115,34 @@ class QuestionForm extends Component {
 	    return(
 	    	<div className="question-form">
        			<form onSubmit={this.postAnswer}>
+<<<<<<< HEAD
 				   <Question question={this.getRandomQ()}/>
 	        		<label name="category"></label>
+=======
+	        		{/*<Question question={this.getRandomQ()}/>*/}
+	        		<label name="category">Category
+>>>>>>> 25509c0ed94ffad1309428cf291da8ee7d2e9507
 	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
-					<label name="1"></label>
+					</label>
+					<label name="1">1
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
+<<<<<<< HEAD
 	        		<label name="2"></label>d
+=======
+	        		</label>
+	        		<label name="2">2
+>>>>>>> 25509c0ed94ffad1309428cf291da8ee7d2e9507
 	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
-	        		<label name="3"></label>
+	        		</label>
+	        		<label name="3">3
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
-	        		<label name="4"></label>
+	        		</label>
+	        		<label name="4">4
 	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
-	        		<label name="5"></label>
+	        		</label>
+	        		<label name="5">5
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
+	        		</label>
 	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 	        		<input type="submit" value="Your day will be..." />
 		     	</form>
