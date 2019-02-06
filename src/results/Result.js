@@ -24,12 +24,13 @@ class Result extends Component {
     this.getFilms()
     this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
-    setTimeout(() => this.setState({isLoading: false}), 3000)  //  Set to 3 sec timeout to see the effect
+    setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
     
   }
 
   getFilms = () => {
-    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
+
+     fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
       .then(response => response.json())
       .then(json=> {
         const filmObj = json.results
@@ -39,7 +40,6 @@ class Result extends Component {
         })
         this.setState({
           films: allTitles
-        })
       })
       this.setState({
         films: allTitles
