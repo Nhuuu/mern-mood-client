@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SERVER_URL from '../constants/server';
 import Question from './Question';
 import Loader from 'react-loader-spinner'
+import '../App.css';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -15,7 +16,7 @@ class QuestionForm extends Component {
 			emotionalQs: [],
 			isLoading: true  // loader
 			// questions: [{}],
-			// currentQuestion: {}
+			// currentCategory: {}
 		}
 	}
 
@@ -33,9 +34,11 @@ class QuestionForm extends Component {
 		.then(json => {
 			// const questionArr = []
 			// questionArr.push(json[0].question)
-			// this.setState({ questions: questionArr })
-			// this.setState({ currentQuestion: questionArr[0].mental})
-			// console.log(this.state.currentQuestion)
+			// this.setState({ questions: questionArr[0] })
+			// this.setState({ currentCategory: questionArr[0] })
+			// // this.state.questions.splice(0, 1)
+			// console.log(this.state.questions)
+			// console.log(this.state.currentCategory)
 
 
 // indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
@@ -106,18 +109,24 @@ class QuestionForm extends Component {
   	render() {
 			if(this.state.isLoading){
 				return(
-					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
 			}
 	    return(
 	    	<div className="question-form">
        			<form onSubmit={this.postAnswer}>
-	        		<Question question={this.getRandomQ()}/>
+				   <Question question={this.getRandomQ()}/>
+	        		<label name="category"></label>
 	        		<input type="hidden" name="category" value={this.state.category} onChange={this.storeInput} />
+					<label name="1"></label>
 	        		<input type="radio" value="1" name="score" onChange={this.storeInput} />
+	        		<label name="2"></label>d
 	        		<input type="radio" value="2" name="score" onChange={this.storeInput} />
+	        		<label name="3"></label>
 	        		<input type="radio" value="3" name="score" onChange={this.storeInput} />
+	        		<label name="4"></label>
 	        		<input type="radio" value="4" name="score" onChange={this.storeInput} />
+	        		<label name="5"></label>
 	        		<input type="radio" value="5" name="score" onChange={this.storeInput} />
 	        		{/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 	        		<input type="submit" value="Your day will be..." />
@@ -127,4 +136,4 @@ class QuestionForm extends Component {
   	}
 }
 
-export default QuestionForm
+export default QuestionForm;
