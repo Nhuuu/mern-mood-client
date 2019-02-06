@@ -15,25 +15,18 @@ class Result extends Component {
     super()
     this.state = {
       films: [],
-<<<<<<< HEAD
       weather: ''
-=======
       food: '',
       isLoading: true  // loader
->>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
     }
   }
 
   componentDidMount(){
     this.getFilms()
-<<<<<<< HEAD
     this.getWeather()
-=======
     this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
-    
->>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
   }
 
   getFilms = () => {
@@ -52,7 +45,6 @@ class Result extends Component {
       this.setState({
         films: allTitles
       })
-<<<<<<< HEAD
     }
   
   //Grab user location from server and then grab weather
@@ -68,11 +60,9 @@ class Result extends Component {
     })
     .catch(err => {
       console.log(err)
-=======
     })
     .catch(error => {
       console.log("Error:", error)
->>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
     })
   }
 
@@ -114,7 +104,6 @@ class Result extends Component {
 
 
   render() {
-<<<<<<< HEAD
     const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
     return(
     	<div className="results">
@@ -131,7 +120,6 @@ class Result extends Component {
         <div className="movie-field">
           {filmList}
           {/*<Movie films={films} />*/}
-=======
     if(this.state.isLoading){
       return(
         <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
@@ -155,7 +143,6 @@ class Result extends Component {
           <div className="movie-field">
             {filmList}
           </div>
->>>>>>> 65124c851b086552ca74e4d388e794085d8ce0d2
         </div>
       );
   }
