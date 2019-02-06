@@ -9,13 +9,13 @@ class QuestionForm extends Component {
 		this.state = {
 			category: [],
 			score: 0,
-			average: 0,
-			mentalQs: [],
-			physicalQs: [],
-			emotionalQs: [],
+			// average: 0,
+			// mentalQs: [],
+			// physicalQs: [],
+			// emotionalQs: [],
 			isLoading: true,  // loader
-			// questions: [{}],
-			// currentQuestion: {}
+			questions: [{}],
+			currentCategory: {}
 		}
 	}
 
@@ -31,32 +31,34 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
-			// const questionArr = []
-			// questionArr.push(json[0].question)
-			// this.setState({ questions: questionArr })
-			// this.setState({ currentQuestion: questionArr[0].mental})
-			// console.log(this.state.currentQuestion)
+			const questionArr = []
+			questionArr.push(json[0].question)
+			this.setState({ questions: questionArr[0] })
+			this.setState({ currentCategory: questionArr[0].mental })
+			// this.state.questions.splice(0, 1)
+			console.log(this.state.questions)
+			console.log(this.state.currentCategory)
 
 
 // indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
-			const mentalArr = json[0].question.mental
-			const mentalQs = []
-			const oneMentalQ = mentalArr.forEach((q) => {
-				return mentalQs.push(q.question)
-			})
-			const physicalArr = json[0].question.physical
-			const physicalQs = []
-			const onePhysicalQ = physicalArr.forEach((q) => {
-				return physicalQs.push(q.question)
-			})
-			const emotionalArr = json[0].question.emotional
-			const emotionalQs = []
-			const oneEmotionalQ = emotionalArr.forEach((q) => {
-				return emotionalQs.push(q.question)
-			})
-			this.setState({ mentalQs: mentalQs })
-			this.setState({ physicalQs: physicalQs })
-			this.setState({ emotionalQs: emotionalQs })
+			// const mentalArr = json[0].question.mental
+			// const mentalQs = []
+			// const oneMentalQ = mentalArr.forEach((q) => {
+			// 	return mentalQs.push(q.question)
+			// })
+			// const physicalArr = json[0].question.physical
+			// const physicalQs = []
+			// const onePhysicalQ = physicalArr.forEach((q) => {
+			// 	return physicalQs.push(q.question)
+			// })
+			// const emotionalArr = json[0].question.emotional
+			// const emotionalQs = []
+			// const oneEmotionalQ = emotionalArr.forEach((q) => {
+			// 	return emotionalQs.push(q.question)
+			// })
+			// this.setState({ mentalQs: mentalQs })
+			// this.setState({ physicalQs: physicalQs })
+			// this.setState({ emotionalQs: emotionalQs })
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 			// console.log('this is json', json[0].question)
 			// console.log('this is json', physicalQs)
@@ -106,7 +108,7 @@ class QuestionForm extends Component {
   	render() {
 			if(this.state.isLoading){
 				return(
-					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
 			}
 	    return(
