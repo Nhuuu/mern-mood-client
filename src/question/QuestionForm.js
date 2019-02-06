@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import SERVER_URL from '../constants/server';
 import Question from './Question';
 import {Row, Input} from 'react-materialize'
+import Loader from 'react-loader-spinner'
+import '../App.css';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -19,6 +21,7 @@ class QuestionForm extends Component {
 
 	componentDidMount(){
 		this.getQuestions()
+		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
 	// Grab questions
@@ -28,6 +31,7 @@ class QuestionForm extends Component {
 			return response.json()
 		})
 		.then(json => {
+			console.log('question JSON', json)
 			const mentalArr = json[0].question.mental
 			const mentalQs = []
 			const oneMentalQ = mentalArr.forEach((q) => {
@@ -92,12 +96,16 @@ class QuestionForm extends Component {
 
 
   	render() {
+			if(this.state.isLoading){
+				return(
+					<div class="loadingMain"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+				)
+			}
 	    return(
-
-<div className="question-form">
-	<form onSubmit={this.postAnswer}>
-     <Question question={this.getRandomQ()}/>
-       <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+			<div className="question-form">
+					<form onSubmit={this.postAnswer}>
+    				 <Question question={this.getRandomQ()}/>
+      			 <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
 			<Row>
 				<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
 				<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
