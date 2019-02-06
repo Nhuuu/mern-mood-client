@@ -10,7 +10,7 @@ import Nav from './layout/Nav';
 import Profile from './Profile';
 import Result from './results//Result';
 import Signup from './auth/Signup';
-import Profile_Edit from './Profile_Edit';
+import ProfileEdit from './ProfileEdit';
 import QuestionForm from './question/QuestionForm';
 
 class App extends Component {
@@ -75,7 +75,7 @@ class App extends Component {
               () => (<QuestionForm user={this.state.user} />)
             } />
             <Route path="/profile/edit" component={
-              () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)
+              () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />
           </div>
         </Router>
