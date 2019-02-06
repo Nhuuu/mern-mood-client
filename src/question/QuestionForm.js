@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SERVER_URL from '../constants/server';
 import Question from './Question';
+import Loader from 'react-loader-spinner'
 
 class QuestionForm extends Component {
 	constructor(){
@@ -12,12 +13,14 @@ class QuestionForm extends Component {
 			// average: 0,
 			mentalQs: [],
 			physicalQs: [],
-			emotionalQs: []
+			emotionalQs: [],
+			isLoading: true  // loader
 		}
 	}
 
 	componentDidMount(){
 		this.getQuestions()
+		setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
 	}
 
 	// Grab questions
@@ -91,6 +94,11 @@ class QuestionForm extends Component {
 
 
   	render() {
+			if(this.state.isLoading){
+				return(
+					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+				)
+			}
 	    return(
 	    	<div className="question-form">
        			<form onSubmit={this.postAnswer}>
