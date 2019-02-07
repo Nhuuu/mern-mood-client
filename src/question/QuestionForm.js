@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import SERVER_URL from '../constants/server';
 import Question from './Question';
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
 import Rating from 'react-rating';
+import Axios from 'axios';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -13,14 +14,12 @@ class QuestionForm extends Component {
 		this.state = {
 			category: '',
 			score: 0,
-			// average: 0,
 			isLoading: true, // loader
 			user: null
 		}
 	}
 
 	componentDidMount(){
-		// this.getQuestions()
 		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
@@ -35,20 +34,19 @@ class QuestionForm extends Component {
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
+		let token = localStorage.getItem('serverToken');
 		console.log(this.state.category)
-		fetch(SERVER_URL+'/answer/user/'+this.props.user.id, {
-			method: "POST",
+		console.log(this.state.score)
+		Axios.post(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			body: JSON.stringify(this.state),
-			headers: { 'Content-Type': 'application/json' }
-		})
-		.then(response => {
-			return response.json()
+			headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
 		})
 		.then(json => {
 			console.log(json)
-			this.props.question()
+			// this.props.question()
+			// const next = this.props.cat === 'mental' ? 'physical' : 'emotional'
 			// redirect here, if cat is mental, redirect to physical 
-			// <Redirect to=`${next}` />  const next  
+			// <Redirect to=`/${next}` /> 
 		})
 		.catch(err => {
 			console.log('Error fetching data', err)

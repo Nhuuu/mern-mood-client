@@ -43,7 +43,6 @@ class App extends Component {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
-        console.log('Success!');
         this.setState({
           user: response.data.user
         })
@@ -61,38 +60,59 @@ class App extends Component {
 
 // Check this, this should remove the first index everytime a question is answered on the form.
   setCategory = () => {
+    console.log('Category set')
     this.setState({
       currentCategory: this.state.categories[0]
     })
     this.state.categories.splice(0, 1)
+    console.log(this.state.currentCategory)
   }
 
-  // Grab questions
+
+
+  // Grab questions need to tie  to category
   getQuestions = () => {
-    fetch(SERVER_URL + '/question')
-    .then(response => response.json())
+    let token = localStorage.getItem('serverToken');
+    console.log('THIS IS THE TOKEN', token)
+    axios.post(SERVER_URL + '/question', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    // fetch(SERVER_URL + '/question')
+    // .then(response => {
+    //   return response.json();
+    // })
     .then(json => { 
-      const questionArr = json[0].question
-      if(this.props.cat === 'mental'){
-        const mentalQs = []
-        questionArr.mental.forEach((q) => {
-          return mentalQs.push(q.question)
-        })
+      console.log('Retrieving questions', json)
+      const questionArr = json.data[0].question
+      if(this.state.currentCategory === 'mental'){
+        const mentalQs = questionArr.mental.map((q) => {
+          return q.question
+        });
+        // const mentalQs = []
+        // questionArr.mental.forEach((q) => {
+        //   return mentalQs.push(q.question)
+        // })
         this.setState({ currentQuestions: mentalQs })
         console.log('this is json', this.state.currentQuestions)        
       }
-      else if(this.props.cat === 'physical'){
-        const physicalQs = []
-        questionArr.physical.forEach((q) => {
-          return physicalQs.push(q.question)
-        })  
+      else if(this.state.currentCategory === 'physical'){
+        const physicalQs = questionArr.physical.map((q) => {
+          return q.question
+        });
+        // const physicalQs = []
+        // questionArr.physical.forEach((q) => {
+        //   return physicalQs.push(q.question)
+        // })  
         this.setState({ currentQuestions: physicalQs })
         console.log('this is json', this.state.currentQuestions)              
       } else {
-        const emotionalQs = []
-        questionArr.emotional.forEach((q) => {
-          return emotionalQs.push(q.question)
-        })
+        const emotionalQs = questionArr.emotional.map((q) => {
+          return q.question
+        });
+        // const emotionalQs = []
+        // questionArr.emotional.forEach((q) => {
+        //   return emotionalQs.push(q.question)
+        // })
         this.setState({ currentQuestions: emotionalQs })
         console.log('this is json', this.state.currentQuestions)        
       }   
@@ -129,9 +149,15 @@ class App extends Component {
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
             } />
-            <Route path="/questionform" component={ 
+            <Route path="/mental" component={ 
               () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
             } />
+            <Route path="/physical" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />
+            <Route path="/emotional" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />                        
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />

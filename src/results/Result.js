@@ -7,7 +7,11 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+<<<<<<< HEAD
 import WeatherTemp from './WeatherTemp'
+=======
+import Restaurant from './Restaurant';
+>>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -54,24 +58,23 @@ class Result extends Component {
   
   //getFood
   getFood = () => {
-    fetch(SERVER_URL+'/result/restaurant', {
-      method: 'GET'
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/restaurant', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      console.log("food got");
-      const restaurantList = json.map((obj, i) => {
+      const shuffledData = response.data.sort(function() { return 0.5 - Math.random() });
+      const restaurantList = shuffledData.map((obj, i) => {
         return obj.name;
       })
-      const restaurantImg = json.map((obj, i) => {
+      const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
-      console.log(restaurantImg[1]);
+      console.log(restaurantImg);
       this.setState({ 
-        food: restaurantList, 
-        poster:restaurantImg[1]})
+        food: restaurantList,
+        poster: restaurantImg
+      })
     })
     .catch(err => {
       console.log(err)
@@ -80,24 +83,31 @@ class Result extends Component {
   
   // getWeather
   getWeather = () => {
-    fetch(SERVER_URL+'/result/weather')
-    .then(response => {
-      return response.json()
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/weather', {
+      headers: { 'Authorization' : `Bearer ${token}` }
     })
+<<<<<<< HEAD
     .then(json => {
       console.log("weather got");
       const currWeather=json.currently;
       this.setState({ weather: currWeather, weatherTemp: currWeather})
+=======
+    .then(response => {
+      const currWeather= response.data.currently;
+      this.setState({ weather: currWeather })
+>>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
     })
     .catch(err => {
       console.log(err)
     })
   }
+  
   // getOutput
   render() {
     if(this.state.isLoading){
       return(
-        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+        <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
@@ -116,7 +126,12 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
+<<<<<<< HEAD
             <Food foodItem={this.state.food} poster={this.state.poster} />
+=======
+              <Food foodItem={this.state.food} />
+              <Restaurant poster={this.state.poster} />
+>>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
           </div>
           <div className="movie-field">
             {filmList}

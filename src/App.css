@@ -238,7 +238,10 @@ div.results-weather-icon-thermometer {
   /* img: url(./images/icons/rain.png); */
 }
 
-
+/*Food related css*/
+.foodImg{
+  height: 250px;
+}
 
 div.results-weather-bg-rain {
   /* Set rules to fill background */
@@ -256,6 +259,11 @@ div.results-weather-bg-rain {
   z-index: -1;
   background-image: url(./images/rain.png);
   opacity: 0.3;
+}
+
+/* Full page background color */
+div.results-movie-bg {
+  /* css here */
 }
 
 div.results-weather-bg-cloudy {
