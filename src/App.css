@@ -110,7 +110,7 @@ nav a:hover {
 }
 
 
-/* Background */
+/* General Background */
 /* ======================================== */
 /* Full page responsive background image */
 img.main-bg {
@@ -141,17 +141,6 @@ img.main-bg {
   }
 }
 
-
-/* weather related css */
-.weather-result {
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-  text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
-}
-
-
 /* movie related css */
 .movie-result {
   align-items: center;
@@ -160,29 +149,101 @@ img.main-bg {
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
+/* Full page background color */
+div.results-movie-bg {
+  /* css here */
+}
+.results {
+  /* text-align: center; */
+  margin: 2%;
+}
+
+
+
+/* Weather related css */
+/* ======================================== */
+.weather-result {
+  display: inline-block;
+  /* align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
+}
+span.a {
+  display: inline-block;
+}
+/* weather icons */
+div.results-weather-icon-partly-cloudy-day {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/partly-cloudy-day.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-partly-cloudy-night {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/partly-cloudy-night.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-clear-day {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/clear-day.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-clear-night {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/clear-night.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-fog {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/fog.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-rain {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/rain.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-snow {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/snow.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-wind {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/wind.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
+div.results-weather-icon-thermometer {
+  max-width: 50px;
+  max-height: 50px;
+  content: url(./images/icons/thermometer.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
 
 /*Food related css*/
 .foodImg{
   height: 250px;
 }
 
-
-/* Full page background color */
-div.results-movie-bg {
-  /* css here */
-}
-
-
-.results {
-  text-align: center;
-}
-
-
-
-
-/* Full page background color */
-div.results-weather-bg-rain 
-{
+div.results-weather-bg-rain {
   /* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;
@@ -199,9 +260,13 @@ div.results-weather-bg-rain
   background-image: url(./images/rain.png);
   opacity: 0.3;
 }
+
 /* Full page background color */
-div.results-weather-bg-cloudy 
-{
+div.results-movie-bg {
+  /* css here */
+}
+
+div.results-weather-bg-cloudy {
   /* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;
@@ -218,7 +283,7 @@ div.results-weather-bg-cloudy
   background-image: url(./images/cloudy.jpg);
   opacity: 0.3;
 }
-/* Full page background color */
+
 div.results-weather-bg-clear-night 
 {
   /* Set rules to fill background */
@@ -235,5 +300,138 @@ div.results-weather-bg-clear-night
   left: 0;
   z-index: -1;
   background-image: url(./images/clear-night.jpg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-partly-cloudy-day
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/partly-cloudy-day.jpg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-partly-cloudy-night
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/partly-cloudy-night.jpg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-fog
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/fog.jpeg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-wind
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/wind.jpeg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-sleet
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/sleet.jpg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-snow
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/snow.jpg);
+  opacity: 0.3;
+}
+
+div.results-weather-bg-clear-day
+{
+  /* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-image: url(./images/clear-day.jpeg);
   opacity: 0.3;
 }
