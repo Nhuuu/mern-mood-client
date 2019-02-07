@@ -5,7 +5,9 @@ const Movie = (props) => {
     return (
       <div>
          <div className="film-library">
-          {props.films}
+        	<ul>
+       	  		<li>{props.films}</li>
+        	</ul>
         </div>
       </div>
     )

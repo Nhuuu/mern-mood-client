@@ -73,7 +73,7 @@ class QuestionForm extends Component {
 	// Need a random question generate function
 	getRandomQ = (q) => {
 		const mRand = this.state.mentalQs
-		return mRand[Math.floor(mRand.length * Math.random())]
+		// return mRand[Math.floor(mRand.length * Math.random())]
 	}
 
 	// Update state to reflect user input - store input

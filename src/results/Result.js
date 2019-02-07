@@ -14,7 +14,8 @@ class Result extends Component {
     this.state = {
       films: [],
       weather: '',
-      food: '',
+      food: [],
+      poster: [],
       isLoading: true  // loader
     }
   }
@@ -22,7 +23,7 @@ class Result extends Component {
   componentDidMount(){
     this.getFilms()
     this.getWeather()
-    // this.getFood()
+    this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
   }
@@ -47,21 +48,33 @@ class Result extends Component {
   }
 
   //getMusic 
+  
   //getFood
-  // getFood = () => {
-  //   axios.post(`${SERVER_URL}/restaurant`, )
-    // fetch(SERVER_URL+'/restaurant', {
-    //   method: 'POST',
-    //   headers: 
-    // })
-    // .then(response => response.json())
-    // .then(json => {
-    //   console.log(json)
-    // })
-    // .catch(err => {
-    //   console.log(err)
-    // })
-  // }
+  getFood = () => {
+    fetch(SERVER_URL+'/result/restaurant', {
+      method: 'GET'
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(json => {
+      console.log("food got");
+      const restaurantList = json.map((obj, i) => {
+        return obj.name;
+      })
+      const restaurantImg = json.map((obj, i) => {
+        return obj.image_url;    
+      })
+      console.log(restaurantImg[1]);
+      this.setState({ 
+        food: restaurantList, 
+        poster:restaurantImg[1]})
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+  
   // getWeather
   getWeather = () => {
     fetch(SERVER_URL+'/result/weather')
@@ -97,7 +110,7 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-            <Food foodItem={this.state.food} />
+           <Food foodItem={this.state.food} poster={this.state.poster} />
           </div>
           <div className="movie-field">
             {filmList}
