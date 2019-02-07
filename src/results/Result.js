@@ -7,11 +7,8 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
-<<<<<<< HEAD
 import WeatherTemp from './WeatherTemp'
-=======
 import Restaurant from './Restaurant';
->>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -87,16 +84,10 @@ class Result extends Component {
     axios.post(SERVER_URL+'/result/weather', {
       headers: { 'Authorization' : `Bearer ${token}` }
     })
-<<<<<<< HEAD
     .then(json => {
-      console.log("weather got");
-      const currWeather=json.currently;
-      this.setState({ weather: currWeather, weatherTemp: currWeather})
-=======
-    .then(response => {
-      const currWeather= response.data.currently;
-      this.setState({ weather: currWeather })
->>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
+      console.log("weather got", json);
+      const currWeather=json.data.currently;
+      this.setState({ weather: currWeather})
     })
     .catch(err => {
       console.log(err)
@@ -113,8 +104,6 @@ class Result extends Component {
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
-                <div>
-      </div>
           <div className="weather-field">
             <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} ref="inputS" ImD={this.getData}/>
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
@@ -126,12 +115,8 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-<<<<<<< HEAD
-            <Food foodItem={this.state.food} poster={this.state.poster} />
-=======
               <Food foodItem={this.state.food} />
               <Restaurant poster={this.state.poster} />
->>>>>>> ede116c9316f688c4bea5bdc910c7ecc98dcb662
           </div>
           <div className="movie-field">
             {filmList}
