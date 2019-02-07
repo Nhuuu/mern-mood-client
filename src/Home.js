@@ -11,7 +11,7 @@ class Home extends Component {
 
   componentDidMount(){
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
-    setTimeout(() => this.setState({isLoading: false}), 3000)  //  Set to 3 sec timeout to see the effect
+    setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
     
   }
   render() {

@@ -5,6 +5,7 @@ import Question from './Question';
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
+import Rating from 'react-rating';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -55,6 +56,7 @@ class QuestionForm extends Component {
 
 
   	render() {
+			// var Rating = require('react-rating');
 			if(this.state.isLoading){
 				return(
 					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>

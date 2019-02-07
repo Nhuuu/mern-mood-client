@@ -29,7 +29,6 @@ class Nav extends Component {
         );
     }
     return(
-
         <div className="nav-wrapper">
           <nav className="nav">
             <div className="leftlogo">
@@ -38,6 +37,7 @@ class Nav extends Component {
             <div className="rightnav">
               <Link to="/result">Today's Mood</Link> 
               <Link to="/questionform">Questions</Link> 
+              <Link to="/test-component">TEST COMPONENT</Link>
               {links}
             </div>
           </nav>

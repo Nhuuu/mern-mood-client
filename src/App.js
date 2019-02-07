@@ -10,8 +10,9 @@ import Nav from './layout/Nav';
 import Profile from './Profile';
 import Result from './results//Result';
 import Signup from './auth/Signup';
-import Profile_Edit from './Profile_Edit';
+import ProfileEdit from './ProfileEdit';
 import QuestionForm from './question/QuestionForm';
+import TestComponent from './auth/TestComponent';
 
 class App extends Component {
   constructor(props){
@@ -112,7 +113,8 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div>
+          <div className="home-main">
+          <img src={require('./images/home.jpg')} className="main-bg" />
             <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={Home} />
             <Route path="/login" component={
@@ -131,7 +133,10 @@ class App extends Component {
               () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()} />)
             } />
             <Route path="/profile/edit" component={
-              () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)
+              () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
+            } />
+            <Route path='/test-component' component={
+              () => (<TestComponent user={this.state.user} updateUser={this.getUser} />)
             } />
           </div>
         </Router>
