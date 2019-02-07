@@ -67,9 +67,7 @@ class App extends Component {
     this.state.categories.splice(0, 1)
   }
 
-
-
-  // Grab questions need to tie  to category
+  // Grab questions >>>>>>>>>>>> need to tie category into questions
   getQuestions = () => {
     fetch(SERVER_URL + '/question')
     .then(response => response.json())
