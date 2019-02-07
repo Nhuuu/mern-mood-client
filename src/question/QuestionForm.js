@@ -11,11 +11,8 @@ class QuestionForm extends Component {
 		super()
 		this.state = {
 			category: '',
-			score: 0,
-			timestamp: new Date(),
 			// average: 0,
-			isLoading: true,  // loader
-
+			isLoading: true // loader
 		}
 	}
 
@@ -25,26 +22,29 @@ class QuestionForm extends Component {
 	}
 
 	// Update state to reflect user input - store input
-	storeInput = (e) => {
-		this.setState({
-			category: e.target.value,
-			score: e.target.value
-		})
-	}
+	// storeInput = (e) => {
+	// 	this.setState({
+	// 		category: e.target.value,
+	// 		score: e.target.value
+	// 	})
+	// }
 	
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
-		fetch(SERVER_URL, {
+		fetch(SERVER_URL+'/user/:id', {
 			method: "POST",
 			body: JSON.stringify(this.state),
 			headers: { 'Content-Type': 'application/json' }
 		})
-		.then(response => response.json())
+		.then(response => {
+			console.log(response.json())
+			return response.json()
+
+		})
 		.then(json => {
 			console.log(json)
 			this.props.question()
-			// this.props.rerender() 
 			// redirect here, if cat is mental, redirect to physical 
 			// <Redirect to=`${next}` />  const next  
 		})
@@ -66,11 +66,11 @@ class QuestionForm extends Component {
 				<form onSubmit={this.postAnswer}>
 	      			    <Input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
 					<Row>
-						<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
-						<Input name='score' type='radio' value='2' label='2' className='filled-in' onChange={this.storeInput}/>
-						<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
-						<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
-						<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='1' label='1' className='filled-in' />
+						<Input name='score' type='radio' value='2' label='2' className='filled-in' />
+						<Input name='score' type='radio' value='3' label='3' className='filled-in' />
+						<Input name='score' type='radio' value='4' label='4' className='filled-in' />
+						<Input name='score' type='radio' value='5' label='5' className='filled-in' />
 				        {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 				        <input type="submit" value="Your day will be..." />
 					</Row>
