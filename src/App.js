@@ -57,7 +57,8 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <div>
+          <div className="home-main">
+          <img src={require('./images/home.jpg')} className="main-bg" />
             <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={Home} />
             <Route path="/login" component={

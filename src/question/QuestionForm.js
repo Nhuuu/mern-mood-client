@@ -4,6 +4,7 @@ import Question from './Question';
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
+import Rating from 'react-rating';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -23,7 +24,7 @@ class QuestionForm extends Component {
 
 	componentDidMount(){
 		this.getQuestions()
-		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
+	  setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
 	// Grab questions
@@ -73,7 +74,7 @@ class QuestionForm extends Component {
 	// Need a random question generate function
 	getRandomQ = (q) => {
 		const mRand = this.state.mentalQs
-		return mRand[Math.floor(mRand.length * Math.random())]
+		// return mRand[Math.floor(mRand.length * Math.random())]
 	}
 
 	// Update state to reflect user input - store input
@@ -105,6 +106,7 @@ class QuestionForm extends Component {
 
 
   	render() {
+			// var Rating = require('react-rating');
 			if(this.state.isLoading){
 				return(
 					<div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
@@ -113,14 +115,18 @@ class QuestionForm extends Component {
 	    return(
 			<div className="question-form">
 			    <Question question={this.getRandomQ()}/>
+			{/* <Rating
+				emptySymbol="glyphicon glyphicon-heart-empty"
+				fullSymbol="glyphicon glyphicon-heart"
+			/> */}
 				<form onSubmit={this.postAnswer}>
-      			    <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
+					<Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
 					<Row>
-						<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-						<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-						<Input name='group1' type='checkbox' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-						<Input name='group1' type='checkbox' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-						<Input name='group1' type='checkbox' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='radio' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='radio' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='radio' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='radio' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
+						<Input name='group1' type='radio' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
 				        {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 				        <input type="submit" value="Your day will be..." />
 					</Row>
