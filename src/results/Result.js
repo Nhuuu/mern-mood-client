@@ -7,6 +7,7 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+import Restaurant from './Restaurant';
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -63,11 +64,11 @@ class Result extends Component {
       const restaurantImg = response.data.map((obj, i) => {
         return obj.image_url;    
       })
-      console.log(restaurantImg[1]);
+      console.log(restaurantImg);
       this.setState({ 
         food: restaurantList, 
-        poster:restaurantImg[1]})
-      // return response.json()
+        poster:restaurantImg
+      })
     })
     .catch(err => {
       console.log(err)
@@ -100,7 +101,7 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature}/>
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} />
           </div>
           <div className="output-field">
             <Output />
@@ -109,7 +110,8 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-           <Food foodItem={this.state.food} poster={this.state.poster} />
+           <Food foodItem={this.state.food} />
+           <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
             {filmList}
