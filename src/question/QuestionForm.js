@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom';
 import SERVER_URL from '../constants/server';
 import Question from './Question';
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
+import Rating from 'react-rating';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -13,67 +15,14 @@ class QuestionForm extends Component {
 			score: 0,
 			timestamp: new Date(),
 			// average: 0,
-			// mentalQs: [],
-			// physicalQs: [],
-			// emotionalQs: [],
 			isLoading: true,  // loader
-			currentQuestions: []
+
 		}
 	}
 
 	componentDidMount(){
-		this.getQuestions()
+		// this.getQuestions()
 		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
-	}
-
-	// Grab questions
-	getQuestions = () => {
-		fetch(SERVER_URL + '/question')
-		.then(response => {
-			return response.json()
-		})
-		.then(json => {
-			console.log('question JSON', json)
-			// const questionArr = []
-			// questionArr.push(json[0].question)
-			// this.setState({ questions: questionArr[0] })
-			// this.setState({ currentCategory: questionArr[0] })
-
-			// console.log(this.state.questions)
-			// console.log(this.state.currentQuestions)
-
-// indiv categories >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>			
-			const mentalArr = json[0].question.mental
-			const mentalQs = []
-			const oneMentalQ = mentalArr.forEach((q) => {
-				return mentalQs.push(q.question)
-			})
-			const physicalArr = json[0].question.physical
-			const physicalQs = []
-			const onePhysicalQ = physicalArr.forEach((q) => {
-				return physicalQs.push(q.question)
-			})
-			const emotionalArr = json[0].question.emotional
-			const emotionalQs = []
-			const oneEmotionalQ = emotionalArr.forEach((q) => {
-				return emotionalQs.push(q.question)
-			})
-			this.setState({ mentalQs: mentalQs })
-			this.setState({ physicalQs: physicalQs })
-			this.setState({ emotionalQs: emotionalQs })
-			// console.log('this is json', mentalQs)
-			// console.log('this is json', physicalQs)
-			// console.log('this is json', emotionalQs)
-		})
-		.catch(err => {
-			console.log(err)
-		})
-	}
-
-	// Need a random question generate function
-	getRandomQ = (q) => {
-		const mRand = this.state.mentalQs
-		return mRand[Math.floor(mRand.length * Math.random())]
 	}
 
 	// Update state to reflect user input - store input
@@ -95,7 +44,9 @@ class QuestionForm extends Component {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
-			this.props.rerender() // redirect here, if cat is mental, redirect to physical 
+			this.props.question()
+			// this.props.rerender() 
+			// redirect here, if cat is mental, redirect to physical 
 			// <Redirect to=`${next}` />  const next  
 		})
 		.catch(err => {
@@ -105,28 +56,28 @@ class QuestionForm extends Component {
 
 
   	render() {
+			// var Rating = require('react-rating');
 			if(this.state.isLoading){
 				return(
-					<div class="loadingMain"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
 			}
 	    return(
 			<div className="question-form">
-					<form onSubmit={this.postAnswer}>
-    				 <Question question={this.getRandomQ()}/>
-      			 <Input type="hidden" name="category" value="mental" onChange={this.storeInput} />
-			<Row>
-				<Input name='group1' type='checkbox' value='1' label='1' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='2' label='2' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='3' label='3' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='4' label='4' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				<Input name='group1' type='checkbox' value='5' label='5' className='filled-in' defaultChecked='checked' onChange={this.storeInput}/>
-				              {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
-				  <input type="submit" value="Your day will be..." />
-			</Row>
-  </form>
-</div>
-	    
+				<Question question={this.props.question}/>  
+				<form onSubmit={this.postAnswer}>
+	      			    <Input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
+					<Row>
+						<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='2' label='2' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
+				        {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
+				        <input type="submit" value="Your day will be..." />
+					</Row>
+	    		</form>
+			</div>
 	    )
   	}
 }

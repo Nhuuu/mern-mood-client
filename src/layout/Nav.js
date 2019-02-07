@@ -29,7 +29,6 @@ class Nav extends Component {
         );
     }
     return(
-
         <div className="nav-wrapper">
           <nav className="nav">
             <div className="leftlogo">

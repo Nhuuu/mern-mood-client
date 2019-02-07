@@ -32,7 +32,7 @@ class Music extends Component {
   render() {
     return(
     	<div>
-        	<h3>Need some music?</h3>
+        	<h3>Need some music? Under Construction</h3>
         	<div>
         		<h1>{ this.state.music }</h1>
         		<button>Spotify</button>

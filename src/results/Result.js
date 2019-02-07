@@ -7,6 +7,7 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
   constructor(){
@@ -18,17 +19,20 @@ class Result extends Component {
       isLoading: true  // loader
     }
   }
+
   componentDidMount(){
-    this.getWeather()
     this.getFilms()
-    this.getFood()
+    this.getWeather()
+    // this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
-    setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
+    setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
+
   getFilms = () => {
    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
     .then(response => response.json())
     .then(json=> {
+      console.log('films got')
       const filmObj = json.results
       const allTitles = []
       const filmTitle = filmObj.forEach((obj) => {
@@ -45,8 +49,8 @@ class Result extends Component {
 
   //getMusic 
   //getFood
-  getFood = () => {
-    axios.post(`${SERVER_URL}/restaurant`, )
+  // getFood = () => {
+  //   axios.post(`${SERVER_URL}/restaurant`, )
     // fetch(SERVER_URL+'/restaurant', {
     //   method: 'POST',
     //   headers: 
@@ -58,7 +62,7 @@ class Result extends Component {
     // .catch(err => {
     //   console.log(err)
     // })
-  }
+  // }
   // getWeather
   getWeather = () => {
     fetch(SERVER_URL+'/result/weather')
@@ -66,9 +70,9 @@ class Result extends Component {
       return response.json()
     })
     .then(json => {
-      this.setState({ weather: json })
-      const currWeather=json.currently.summary;
-      console.log(currWeather)
+      console.log("weather got");
+      const currWeather=json.currently;
+      this.setState({ weather: currWeather })
     })
     .catch(err => {
       console.log(err)
@@ -78,14 +82,14 @@ class Result extends Component {
   render() {
     if(this.state.isLoading){
       return(
-        <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
+        <div class="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather />
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature}/>
           </div>
           <div className="output-field">
             <Output />
