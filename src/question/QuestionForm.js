@@ -6,6 +6,7 @@ import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css';
 import Rating from 'react-rating';
+import Axios from 'axios';
 
 class QuestionForm extends Component {
 	constructor(){
@@ -33,19 +34,15 @@ class QuestionForm extends Component {
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
+		let token = localStorage.getItem('serverToken');
 		console.log(this.state.category)
 		console.log(this.state.score)
-		fetch(SERVER_URL+'/answer/user/'+this.props.user.id, {
-			method: "POST",
+		Axios.post(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			body: JSON.stringify(this.state),
-			headers: { 'Content-Type': 'application/json' }
-		})
-		.then(response => {
-			return response.json()
+			headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` }
 		})
 		.then(json => {
 			console.log(json)
-			
 			// this.props.question()
 			// const next = this.props.cat === 'mental' ? 'physical' : 'emotional'
 			// redirect here, if cat is mental, redirect to physical 
