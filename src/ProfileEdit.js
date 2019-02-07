@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import SERVER_URL from './constants/server';
 
 
-export default class Profile_Edit extends Component {
+export default class ProfileEdit extends Component {
   constructor(){
     super();
     this.state = {
