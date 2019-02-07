@@ -18,7 +18,8 @@ class Result extends Component {
       weather: '',
       food: [],
       poster: [],
-      isLoading: true  // loader
+      isLoading: true,  // loader
+      song: ''
     }
   }
 
@@ -26,6 +27,7 @@ class Result extends Component {
     this.getFilms()
     this.getWeather()
     this.getFood()
+    this.getSong()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
@@ -49,7 +51,21 @@ class Result extends Component {
     })
   }
 
-  //getMusic 
+  // Grab music
+	getSong = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/music', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+		.then(response => {
+      console.log('can i get a music json please', response)
+      
+			// this.setState({ song: json })
+		})
+		.catch(err => {
+			console.log(err)
+		})
+	}
   
   //getFood
   getFood = () => {
