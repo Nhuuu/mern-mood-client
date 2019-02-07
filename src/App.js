@@ -65,41 +65,52 @@ class App extends Component {
       currentCategory: this.state.categories[0]
     })
     this.state.categories.splice(0, 1)
+    console.log(this.state.currentCategory)
   }
 
   // Grab questions >>>>>>>>>>>> need to tie category into questions
   getQuestions = () => {
-    // let token = localStorage.getItem('serverToken');
-    // axios.post(SERVER_URL + '/question', {
-    //   headers: { 'Authorization': `Bearer ${token}` }
-    // })
-    fetch(SERVER_URL + '/question')
-    .then(response => {
-      return response.json()
+    let token = localStorage.getItem('serverToken');
+    console.log('THIS IS THE TOKEN', token)
+    axios.post(SERVER_URL + '/question', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
+    // fetch(SERVER_URL + '/question')
+    // .then(response => {
+    //   return response.json();
+    // })
     .then(json => { 
-      console.log('Retreiving questions', json)
-      const questionArr = json[0].question
+      console.log('Retrieving questions', json)
+      const questionArr = json.data[0].question
       if(this.state.currentCategory === 'mental'){
-        const mentalQs = []
-        questionArr.mental.forEach((q) => {
-          return mentalQs.push(q.question)
-        })
+        const mentalQs = questionArr.mental.map((q) => {
+          return q.question
+        });
+        // const mentalQs = []
+        // questionArr.mental.forEach((q) => {
+        //   return mentalQs.push(q.question)
+        // })
         this.setState({ currentQuestions: mentalQs })
         console.log('this is json', this.state.currentQuestions)        
       }
       else if(this.state.currentCategory === 'physical'){
-        const physicalQs = []
-        questionArr.physical.forEach((q) => {
-          return physicalQs.push(q.question)
-        })  
+        const physicalQs = questionArr.physical.map((q) => {
+          return q.question
+        });
+        // const physicalQs = []
+        // questionArr.physical.forEach((q) => {
+        //   return physicalQs.push(q.question)
+        // })  
         this.setState({ currentQuestions: physicalQs })
         console.log('this is json', this.state.currentQuestions)              
       } else {
-        const emotionalQs = []
-        questionArr.emotional.forEach((q) => {
-          return emotionalQs.push(q.question)
-        })
+        const emotionalQs = questionArr.emotional.map((q) => {
+          return q.question
+        });
+        // const emotionalQs = []
+        // questionArr.emotional.forEach((q) => {
+        //   return emotionalQs.push(q.question)
+        // })
         this.setState({ currentQuestions: emotionalQs })
         console.log('this is json', this.state.currentQuestions)        
       }   
@@ -111,7 +122,6 @@ class App extends Component {
 
   // Need a random question generate function
   getRandomQ = (q) => {
-    console.log('Random Question Generating')
     const randQ = this.state.currentQuestions
     return randQ[Math.floor(randQ.length * Math.random())]
   }
