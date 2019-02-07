@@ -12,8 +12,10 @@ class QuestionForm extends Component {
 		super()
 		this.state = {
 			category: '',
+			score: '',
 			// average: 0,
-			isLoading: true // loader
+			isLoading: true, // loader
+			user: null
 		}
 	}
 
@@ -23,25 +25,23 @@ class QuestionForm extends Component {
 	}
 
 	// Update state to reflect user input - store input
-	// storeInput = (e) => {
-	// 	this.setState({
-	// 		category: e.target.value,
-	// 		score: e.target.value
-	// 	})
-	// }
+	storeInput = (e) => {
+		this.setState({
+			category: e.target.value,
+			score: e.target.value
+		})
+	}
 	
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
-		fetch(SERVER_URL+'/user/:id', {
+		fetch(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			method: "POST",
 			body: JSON.stringify(this.state),
 			headers: { 'Content-Type': 'application/json' }
 		})
 		.then(response => {
-			console.log(response.json())
 			return response.json()
-
 		})
 		.then(json => {
 			console.log(json)

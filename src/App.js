@@ -130,7 +130,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/questionform" component={ 
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()} />)
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
             } />
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
