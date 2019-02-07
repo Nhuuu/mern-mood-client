@@ -18,6 +18,7 @@ export default class TestComponent extends Component {
     })
     .then(response => {
       console.log(response)
+      localStorage.setItem('serverToken', response.data.token)
     })
     .catch(error => {
       console.log('ERROR POSTING TO THE SERVER', error)
