@@ -1,10 +1,9 @@
 import React from 'react'
 
-const Food = () => {
+const Food = (props) => {
     return(
-    	<div>
-			{/* <h1>Eat this: { this.state.food }</h1> */}
-        </div>
+		<div> Try eating this: {props.foodItem}
+		<img src={props.poster} alt='' /></div>
       );
   	}
 

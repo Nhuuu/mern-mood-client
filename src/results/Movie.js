@@ -6,7 +6,9 @@ const Movie = (props) => {
       <div className="movie-result">
         <div className="results-movie-bg"></div>
          <div className="film-library">
-          {props.films}
+        	<ul>
+       	  		<li>{props.films}</li>
+        	</ul>
         </div>
       </div>
     )
