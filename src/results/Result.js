@@ -7,6 +7,7 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+import WeatherTemp from './WeatherTemp'
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -15,6 +16,7 @@ class Result extends Component {
     this.state = {
       films: [],
       weather: '',
+      weatherTemp: '',
       food: [],
       poster: [],
       isLoading: true  // loader
@@ -85,7 +87,7 @@ class Result extends Component {
     .then(json => {
       console.log("weather got");
       const currWeather=json.currently;
-      this.setState({ weather: currWeather })
+      this.setState({ weather: currWeather, weatherTemp: currWeather})
     })
     .catch(err => {
       console.log(err)
@@ -101,8 +103,11 @@ class Result extends Component {
       const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
+                <div>
+      </div>
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} />
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} ref="inputS" ImD={this.getData}/>
+            {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
             <Output />
@@ -111,7 +116,7 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-           <Food foodItem={this.state.food} poster={this.state.poster} />
+            <Food foodItem={this.state.food} poster={this.state.poster} />
           </div>
           <div className="movie-field">
             {filmList}
