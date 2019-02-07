@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+// import { Redirect } from 'react-router-dom';
 import SERVER_URL from '../constants/server';
 import Question from './Question';
 import {Row, Input} from 'react-materialize'
@@ -13,14 +13,12 @@ class QuestionForm extends Component {
 		this.state = {
 			category: '',
 			score: 0,
-			// average: 0,
 			isLoading: true, // loader
 			user: null
 		}
 	}
 
 	componentDidMount(){
-		// this.getQuestions()
 		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
@@ -36,6 +34,7 @@ class QuestionForm extends Component {
 	postAnswer = (e) => {
 		e.preventDefault()
 		console.log(this.state.category)
+		console.log(this.state.score)
 		fetch(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			method: "POST",
 			body: JSON.stringify(this.state),
@@ -46,9 +45,11 @@ class QuestionForm extends Component {
 		})
 		.then(json => {
 			console.log(json)
-			this.props.question()
+			
+			// this.props.question()
+			// const next = this.props.cat === 'mental' ? 'physical' : 'emotional'
 			// redirect here, if cat is mental, redirect to physical 
-			// <Redirect to=`${next}` />  const next  
+			// <Redirect to=`/${next}` /> 
 		})
 		.catch(err => {
 			console.log('Error fetching data', err)

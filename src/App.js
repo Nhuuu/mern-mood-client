@@ -67,13 +67,13 @@ class App extends Component {
     this.state.categories.splice(0, 1)
   }
 
-  // Grab questions
+  // Grab questions >>>>>>>>>>>> need to tie category into questions
   getQuestions = () => {
     fetch(SERVER_URL + '/question')
     .then(response => response.json())
     .then(json => { 
       const questionArr = json[0].question
-      if(this.props.cat === 'mental'){
+      if(this.state.currentCategory === 'mental'){
         const mentalQs = []
         questionArr.mental.forEach((q) => {
           return mentalQs.push(q.question)
@@ -81,7 +81,7 @@ class App extends Component {
         this.setState({ currentQuestions: mentalQs })
         console.log('this is json', this.state.currentQuestions)        
       }
-      else if(this.props.cat === 'physical'){
+      else if(this.state.currentCategory === 'physical'){
         const physicalQs = []
         questionArr.physical.forEach((q) => {
           return physicalQs.push(q.question)
@@ -129,9 +129,15 @@ class App extends Component {
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
             } />
-            <Route path="/questionform" component={ 
+            <Route path="/mental" component={ 
               () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
             } />
+            <Route path="/physical" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />
+            <Route path="/emotional" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />                        
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />
