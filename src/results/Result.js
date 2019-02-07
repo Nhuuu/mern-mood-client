@@ -53,24 +53,22 @@ class Result extends Component {
   
   //getFood
   getFood = () => {
-    fetch(SERVER_URL+'/result/restaurant', {
-      method: 'GET'
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/restaurant', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      console.log("food got");
-      const restaurantList = json.map((obj, i) => {
+      const shuffledData = response.data.sort(function() { return 0.5 - Math.random() });
+      const restaurantList = shuffledData.map((obj, i) => {
         return obj.name;
       })
-      const restaurantImg = json.map((obj, i) => {
+      const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
       console.log(restaurantImg);
       this.setState({ 
-        food: restaurantList, 
-        poster:restaurantImg
+        food: restaurantList,
+        poster: restaurantImg
       })
     })
     .catch(err => {
@@ -80,19 +78,19 @@ class Result extends Component {
   
   // getWeather
   getWeather = () => {
-    fetch(SERVER_URL+'/result/weather')
-    .then(response => {
-      return response.json()
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/weather', {
+      headers: { 'Authorization' : `Bearer ${token}` }
     })
-    .then(json => {
-      console.log("weather got");
-      const currWeather=json.currently;
+    .then(response => {
+      const currWeather= response.data.currently;
       this.setState({ weather: currWeather })
     })
     .catch(err => {
       console.log(err)
     })
   }
+  
   // getOutput
   render() {
     if(this.state.isLoading){
@@ -113,8 +111,8 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-           <Food foodItem={this.state.food} />
-           <Restaurant poster={this.state.poster} />
+              <Food foodItem={this.state.food} />
+              <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
             {filmList}
