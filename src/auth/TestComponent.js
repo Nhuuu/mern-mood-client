@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import SERVER_URL from '../constants/server';
 
 export default class TestComponent extends Component {
@@ -12,9 +13,11 @@ export default class TestComponent extends Component {
 
   sendShit = (e) => {
     e.preventDefault();
+    let token = localStorage.getItem('serverToken');
+    console.log('token is', token);
     console.log('sending user info', this.props.user.location)
-    fetch(SERVER_URL+'/result/restaurant', {
-      method: 'POST'
+    axios.post(SERVER_URL+'/result/restaurant', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
       console.log(response)
