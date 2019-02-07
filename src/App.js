@@ -18,12 +18,14 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
+      categories: ['mental', 'physical', 'emotional'],
       currentCategory: ''
     }
   }
 
   componentDidMount = () => {
-    this.getUser();
+    this.getUser()
+    this.setCategory()
   }
 
   getUser = () => {
@@ -53,6 +55,23 @@ class App extends Component {
     }
   }
 
+// Check this, this should remove the first index everytime a question is answered on the form.
+  setCategory = () => {
+    this.setState({
+      currentCategory: this.state.categories[0]
+    })
+    this.state.categories.splice(0, 1)
+
+    // maybe this will work ?
+    // let newCategoriesArr = this.state.categories
+    // this.setState({
+    //   currentCategory: newCategoriesArr
+    // })
+    // newCategoriesArr.splice(0, 1)
+
+  }
+
+
   render() {
     return (
       <div>
@@ -72,8 +91,8 @@ class App extends Component {
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
             } />
-            <Route path="/questionform" component={
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory}/>)
+            <Route path="/questionform" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} />)
             } />
             <Route path="/profile/edit" component={
               () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)
