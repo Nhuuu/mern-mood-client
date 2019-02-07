@@ -43,7 +43,6 @@ class App extends Component {
         headers: { 'Authorization': `Bearer ${token}` }
       })
       .then(response => {
-        console.log('Success!');
         this.setState({
           user: response.data.user
         })
@@ -61,19 +60,29 @@ class App extends Component {
 
 // Check this, this should remove the first index everytime a question is answered on the form.
   setCategory = () => {
+    console.log('Category set')
     this.setState({
       currentCategory: this.state.categories[0]
     })
     this.state.categories.splice(0, 1)
   }
 
-  // Grab questions
+
+
+  // Grab questions need to tie  to category
   getQuestions = () => {
+    // let token = localStorage.getItem('serverToken');
+    // axios.post(SERVER_URL + '/question', {
+    //   headers: { 'Authorization': `Bearer ${token}` }
+    // })
     fetch(SERVER_URL + '/question')
-    .then(response => response.json())
+    .then(response => {
+      return response.json()
+    })
     .then(json => { 
+      console.log('Retreiving questions', json)
       const questionArr = json[0].question
-      if(this.props.cat === 'mental'){
+      if(this.state.currentCategory === 'mental'){
         const mentalQs = []
         questionArr.mental.forEach((q) => {
           return mentalQs.push(q.question)
@@ -81,7 +90,7 @@ class App extends Component {
         this.setState({ currentQuestions: mentalQs })
         console.log('this is json', this.state.currentQuestions)        
       }
-      else if(this.props.cat === 'physical'){
+      else if(this.state.currentCategory === 'physical'){
         const physicalQs = []
         questionArr.physical.forEach((q) => {
           return physicalQs.push(q.question)
@@ -104,6 +113,7 @@ class App extends Component {
 
   // Need a random question generate function
   getRandomQ = (q) => {
+    console.log('Random Question Generating')
     const randQ = this.state.currentQuestions
     return randQ[Math.floor(randQ.length * Math.random())]
   }
@@ -129,9 +139,15 @@ class App extends Component {
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
             } />
-            <Route path="/questionform" component={ 
+            <Route path="/mental" component={ 
               () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
             } />
+            <Route path="/physical" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />
+            <Route path="/emotional" component={ 
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
+            } />                        
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />
