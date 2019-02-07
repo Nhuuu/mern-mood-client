@@ -67,6 +67,8 @@ class App extends Component {
     this.state.categories.splice(0, 1)
   }
 
+
+
   // Grab questions
   getQuestions = () => {
     fetch(SERVER_URL + '/question')
