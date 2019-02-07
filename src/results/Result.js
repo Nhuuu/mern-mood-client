@@ -7,6 +7,7 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
   constructor(){
@@ -25,7 +26,7 @@ class Result extends Component {
     this.getWeather()
     this.getFood()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
-    setTimeout(() => this.setState({isLoading: false}), 2000)  //  Set to 3 sec timeout to see the effect
+    setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
 
   getFilms = () => {

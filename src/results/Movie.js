@@ -3,7 +3,8 @@ import '../App.css'
 
 const Movie = (props) => {
     return (
-      <div>
+      <div className="movie-result">
+        <div className="results-movie-bg"></div>
          <div className="film-library">
         	<ul>
        	  		<li>{props.films}</li>
