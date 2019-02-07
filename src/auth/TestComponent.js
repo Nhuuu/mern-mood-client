@@ -12,19 +12,23 @@ export default class TestComponent extends Component {
 
   sendShit = (e) => {
     e.preventDefault();
-    console.log('sending user info', this.props.user.location)
+    let token = localStorage.getItem('serverToken');
+    console.log('THIS IS THE TOKEN', token)
     fetch(SERVER_URL+'/result/restaurant', {
       method: 'POST',
-      headers: {}
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
+      
       console.log(response)
-      localStorage.setItem('serverToken')
+      localStorage.setItem('serverToken', response.data.token)
     })
     .catch(error => {
       console.log('ERROR POSTING TO THE SERVER', error)
     })
   }
+
+  
 
   render() {
     return (
