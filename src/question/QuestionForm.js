@@ -12,7 +12,7 @@ class QuestionForm extends Component {
 		super()
 		this.state = {
 			category: '',
-			score: '',
+			score: 0,
 			// average: 0,
 			isLoading: true, // loader
 			user: null
@@ -27,7 +27,7 @@ class QuestionForm extends Component {
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
 		this.setState({
-			category: e.target.value,
+			category: this.props.cat,
 			score: e.target.value
 		})
 	}
@@ -35,6 +35,7 @@ class QuestionForm extends Component {
 	// POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
+		console.log(this.state.category)
 		fetch(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			method: "POST",
 			body: JSON.stringify(this.state),
@@ -50,7 +51,7 @@ class QuestionForm extends Component {
 			// <Redirect to=`${next}` />  const next  
 		})
 		.catch(err => {
-			console.log('Error fetching data', err) 
+			console.log('Error fetching data', err)
 		})
 	}
 
@@ -66,13 +67,12 @@ class QuestionForm extends Component {
 			<div className="question-form">
 				<Question question={this.props.question}/>  
 				<form onSubmit={this.postAnswer}>
-	      			    <Input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
 					<Row>
-						<Input name='score' type='radio' value='1' label='1' className='filled-in' />
-						<Input name='score' type='radio' value='2' label='2' className='filled-in' />
-						<Input name='score' type='radio' value='3' label='3' className='filled-in' />
-						<Input name='score' type='radio' value='4' label='4' className='filled-in' />
-						<Input name='score' type='radio' value='5' label='5' className='filled-in' />
+						<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='2' label='2' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
+						<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
 				        {/*<input type="hidden" name="average" onChange={this.storeInput} />*/}
 				        <input type="submit" value="Your day will be..." />
 					</Row>
