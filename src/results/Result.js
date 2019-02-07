@@ -58,16 +58,17 @@ class Result extends Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
-      const restaurantList = response.data.map((obj, i) => {
+      const shuffledData = response.data.sort(function() { return 0.5 - Math.random() });
+      const restaurantList = shuffledData.map((obj, i) => {
         return obj.name;
       })
-      const restaurantImg = response.data.map((obj, i) => {
+      const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
       console.log(restaurantImg);
       this.setState({ 
-        food: restaurantList, 
-        poster:restaurantImg
+        food: restaurantList,
+        poster: restaurantImg
       })
     })
     .catch(err => {
@@ -110,8 +111,8 @@ class Result extends Component {
             <Music />
           </div>
           <div className="food-field">
-           <Food foodItem={this.state.food} />
-           <Restaurant poster={this.state.poster} />
+              <Food foodItem={this.state.food} />
+              <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
             {filmList}
