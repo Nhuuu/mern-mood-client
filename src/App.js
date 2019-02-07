@@ -64,14 +64,6 @@ class App extends Component {
       currentCategory: this.state.categories[0]
     })
     this.state.categories.splice(0, 1)
-
-    // maybe this will work ?
-    // let newCategoriesArr = this.state.categories
-    // this.setState({
-    //   currentCategory: newCategoriesArr
-    // })
-    // newCategoriesArr.splice(0, 1)
-
   }
 
   // Grab questions

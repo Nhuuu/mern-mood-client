@@ -66,7 +66,7 @@ class QuestionForm extends Component {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
-			this.props.getRandomQ()
+			this.props.question()
 			// this.props.rerender() 
 			// redirect here, if cat is mental, redirect to physical 
 			// <Redirect to=`${next}` />  const next  
