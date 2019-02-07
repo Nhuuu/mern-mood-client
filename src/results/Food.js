@@ -2,7 +2,7 @@ import React from 'react'
 
 const Food = (props) => {
     return(
-		<div> Try eating this: {props.foodItem}</div>
+		<div> Try eating this: {props.foodItem[0]}</div>
       );
   	}
 
