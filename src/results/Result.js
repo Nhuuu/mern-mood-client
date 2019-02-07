@@ -7,6 +7,7 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
 
 // Need all of the gets to pass down as props for each component?
@@ -16,6 +17,7 @@ class Result extends Component {
     this.state = {
       films: [],
       weather: '',
+      weatherTemp: '',
       food: [],
       poster: [],
       isLoading: true,  // loader
@@ -98,9 +100,10 @@ class Result extends Component {
     axios.post(SERVER_URL+'/result/weather', {
       headers: { 'Authorization' : `Bearer ${token}` }
     })
-    .then(response => {
-      const currWeather= response.data.currently;
-      this.setState({ weather: currWeather })
+    .then(json => {
+      console.log("weather got", json);
+      const currWeather=json.data.currently;
+      this.setState({ weather: currWeather})
     })
     .catch(err => {
       console.log(err)
@@ -118,7 +121,8 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} />
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} ref="inputS" ImD={this.getData}/>
+            {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
             <Output />
