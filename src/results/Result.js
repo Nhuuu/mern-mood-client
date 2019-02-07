@@ -52,24 +52,22 @@ class Result extends Component {
   
   //getFood
   getFood = () => {
-    fetch(SERVER_URL+'/result/restaurant', {
-      method: 'GET'
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/restaurant', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(response => {
-      return response.json()
-    })
-    .then(json => {
-      console.log("food got");
-      const restaurantList = json.map((obj, i) => {
+      const restaurantList = response.data.map((obj, i) => {
         return obj.name;
       })
-      const restaurantImg = json.map((obj, i) => {
+      const restaurantImg = response.data.map((obj, i) => {
         return obj.image_url;    
       })
       console.log(restaurantImg[1]);
       this.setState({ 
         food: restaurantList, 
         poster:restaurantImg[1]})
+      // return response.json()
     })
     .catch(err => {
       console.log(err)
@@ -78,19 +76,19 @@ class Result extends Component {
   
   // getWeather
   getWeather = () => {
-    fetch(SERVER_URL+'/result/weather')
-    .then(response => {
-      return response.json()
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL+'/result/weather', {
+      headers: { 'Authorization' : `Bearer ${token}` }
     })
-    .then(json => {
-      console.log("weather got");
-      const currWeather=json.currently;
+    .then(response => {
+      const currWeather= response.data.currently;
       this.setState({ weather: currWeather })
     })
     .catch(err => {
       console.log(err)
     })
   }
+  
   // getOutput
   render() {
     if(this.state.isLoading){
