@@ -71,16 +71,12 @@ class App extends Component {
 
   // Grab questions need to tie  to category
   getQuestions = () => {
-    // let token = localStorage.getItem('serverToken');
-    // axios.post(SERVER_URL + '/question', {
-    //   headers: { 'Authorization': `Bearer ${token}` }
-    // })
-    fetch(SERVER_URL + '/question')
-    .then(response => {
-      return response.json()
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/question', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
-      console.log('Retreiving questions', json)
+      console.log('Retrieving questions', json)
       const questionArr = json[0].question
       if(this.state.currentCategory === 'mental'){
         const mentalQs = []
