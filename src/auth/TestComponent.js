@@ -14,11 +14,12 @@ export default class TestComponent extends Component {
     e.preventDefault();
     console.log('sending user info', this.props.user.location)
     fetch(SERVER_URL+'/result/restaurant', {
-      method: 'POST'
+      method: 'POST',
+      headers: {}
     })
     .then(response => {
       console.log(response)
-      localStorage.setItem('serverToken', response.data.token)
+      localStorage.setItem('serverToken')
     })
     .catch(error => {
       console.log('ERROR POSTING TO THE SERVER', error)
@@ -33,3 +34,6 @@ export default class TestComponent extends Component {
     )
   }
 }
+
+
+
