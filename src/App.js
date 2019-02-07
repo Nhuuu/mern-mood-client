@@ -19,13 +19,16 @@ class App extends Component {
     this.state = {
       user: null,
       categories: ['mental', 'physical', 'emotional'],
-      currentCategory: ''
+      currentCategory: '',
+      currentQuestions: []
     }
   }
 
   componentDidMount = () => {
     this.getUser()
     this.setCategory()
+    this.getQuestions()
+    this.getRandomQ()
   }
 
   getUser = () => {
@@ -71,6 +74,47 @@ class App extends Component {
 
   }
 
+  // Grab questions
+  getQuestions = () => {
+    fetch(SERVER_URL + '/question')
+    .then(response => response.json())
+    .then(json => { 
+      const questionArr = json[0].question
+      if(this.props.cat === 'mental'){
+        const mentalQs = []
+        questionArr.mental.forEach((q) => {
+          return mentalQs.push(q.question)
+        })
+        this.setState({ currentQuestions: mentalQs })
+        console.log('this is json', this.state.currentQuestions)        
+      }
+      else if(this.props.cat === 'physical'){
+        const physicalQs = []
+        questionArr.physical.forEach((q) => {
+          return physicalQs.push(q.question)
+        })  
+        this.setState({ currentQuestions: physicalQs })
+        console.log('this is json', this.state.currentQuestions)              
+      } else {
+        const emotionalQs = []
+        questionArr.emotional.forEach((q) => {
+          return emotionalQs.push(q.question)
+        })
+        this.setState({ currentQuestions: emotionalQs })
+        console.log('this is json', this.state.currentQuestions)        
+      }   
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  // Need a random question generate function
+  getRandomQ = (q) => {
+    const randQ = this.state.currentQuestions
+    return randQ[Math.floor(randQ.length * Math.random())]
+  }
+
 
   render() {
     return (
@@ -92,7 +136,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/questionform" component={ 
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} />)
+              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()} />)
             } />
             <Route path="/profile/edit" component={
               () => (<Profile_Edit user={this.state.user} updateUser={this.getUser} />)

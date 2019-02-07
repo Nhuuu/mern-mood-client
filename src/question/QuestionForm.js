@@ -15,54 +15,13 @@ class QuestionForm extends Component {
 			timestamp: new Date(),
 			// average: 0,
 			isLoading: true,  // loader
-			currentQuestions: []
+
 		}
 	}
 
 	componentDidMount(){
-		this.getQuestions()
+		// this.getQuestions()
 		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
-	}
-
-	// Grab questions
-	getQuestions = () => {
-		fetch(SERVER_URL + '/question')
-		.then(response => response.json())
-		.then(json => {	
-			const questionArr = json[0].question
-			if(this.props.cat === 'mental'){
-				const mentalQs = []
-				questionArr.mental.forEach((q) => {
-					return mentalQs.push(q.question)
-				})
-				this.setState({ currentQuestions: mentalQs })
-				console.log('this is json', this.state.currentQuestions)				
-			}
-			else if(this.props.cat === 'physical'){
-				const physicalQs = []
-				questionArr.physical.forEach((q) => {
-					return physicalQs.push(q.question)
-				})	
-				this.setState({ currentQuestions: physicalQs })
-				console.log('this is json', this.state.currentQuestions)							
-			} else {
-				const emotionalQs = []
-				questionArr.emotional.forEach((q) => {
-					return emotionalQs.push(q.question)
-				})
-				this.setState({ currentQuestions: emotionalQs })
-				console.log('this is json', this.state.currentQuestions)				
-			}		
-		})
-		.catch(err => {
-			console.log(err)
-		})
-	}
-
-	// Need a random question generate function
-	getRandomQ = (q) => {
-		const randQ = this.state.currentQuestions
-		return randQ[Math.floor(randQ.length * Math.random())]
 	}
 
 	// Update state to reflect user input - store input
@@ -84,7 +43,7 @@ class QuestionForm extends Component {
 		.then(response => response.json())
 		.then(json => {
 			console.log(json)
-			this.getQuestions()
+			this.props.getRandomQ()
 			// this.props.rerender() 
 			// redirect here, if cat is mental, redirect to physical 
 			// <Redirect to=`${next}` />  const next  
@@ -103,7 +62,7 @@ class QuestionForm extends Component {
 			}
 	    return(
 			<div className="question-form">
-				<Question question={this.getRandomQ()}/> 
+				<Question question={this.props.question}/>  
 				<form onSubmit={this.postAnswer}>
 	      			    <Input type="hidden" name="category" value={this.props.cat} onChange={this.storeInput} />
 					<Row>
