@@ -129,7 +129,6 @@ class Result extends Component {
       const giphyItem = giphyList.map((obj, i) => {
         return obj;
       })
-      console.log(giphyItem[0].embed_url);
       this.setState({ 
         giphy: giphyItem[0].images.original.url
       })
