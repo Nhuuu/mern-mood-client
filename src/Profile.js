@@ -9,23 +9,44 @@ class Profile extends Component {
   constructor(){
     super();
     this.state = {
-      answers: []
+      scores: '',
+      time: ''
     }
   }
 
   componentDidMount = () => {
     this.getAnswers()
+    this.getTime()
   }
 
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer', {
+    axios.post(SERVER_URL + '/answer/score/userId', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-    .then(answerRecorded => { 
-      const answerScore = answerRecorded.score;
-      console.log("answer hit", answerScore);
-      this.setState({ answers: answerScore })
+    .then(foundAnswers => { 
+      const answerScore = foundAnswers.data.map((obj, i) => {
+        return obj.score;
+      })
+      console.log("score hit", answerScore);
+      this.setState({ scores: answerScore })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  getTime = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/answer/score/userId', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(foundAnswers => { 
+      const answerTime = foundAnswers.data.map((obj, i) => {
+        return obj.timestamp;
+      })
+      console.log("timestamp hit", answerTime);
+      this.setState({ time: answerTime })
     })
     .catch(err => {
       console.log(err)
@@ -41,6 +62,9 @@ class Profile extends Component {
 
   render() {
     if(this.props.user){
+      const userScore = this.state.scores;
+      const userTime = this.state.timestamp;
+      console.log(userScore);
       return (
           <div>
             <h2>Hello again, {this.firstCapitalization(this.props.user.name)}!</h2>
@@ -49,18 +73,18 @@ class Profile extends Component {
             <Link to="/profile/edit">Edit Profile</Link>
             <h4>My Mood-rythm This Week</h4>
             <div>  <BarChart
-          colorBars
+          colorBars 
           height={150}
           width={650}
           margin={{top: 0, right: 0, bottom: 30, left: 100}}
           data={[
-            {x: 'A', y: 20},
-            {x: 'B', y: 30},
-            {x: 'C', y: 40},
-            {x: 'D', y: 20},
-            {x: 'E', y: 40},
-            {x: 'F', y: 25},
-            {x: 'G', y: 5}
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}}
           ]} />  
         </div>
 
