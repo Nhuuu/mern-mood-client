@@ -131,7 +131,7 @@ class Result extends Component {
       })
       console.log(giphyItem[0].embed_url);
       this.setState({ 
-        giphy: giphyItem[0].images.fixed_height_small.url
+        giphy: giphyItem[0].images.original.url
       })
     })
     .catch(error => {
