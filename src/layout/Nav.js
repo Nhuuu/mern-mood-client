@@ -16,8 +16,8 @@ class Nav extends Component {
       <div className="main-layout">
       <nav className="navbar">
         <div className="nav-wrapper">
-          <a href="/" class="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a href="/" className="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
             {/* <li><a href="/">Don't Be Salty</a></li> */}
             <li><a href="/result">Today's Mood</a></li>
             <li><a href="/question">You Got This!</a></li>
@@ -35,8 +35,8 @@ class Nav extends Component {
       <div className="main-layout">
       <nav className="navbar">
         <div className="nav-wrapper">
-          <a href="/" class="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <a href="/" className="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><a href="/login">Log In</a></li>
             <li><a href="/signup">Sign Up</a></li>
           </ul>

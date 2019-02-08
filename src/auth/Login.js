@@ -36,21 +36,21 @@ class Login extends Component {
       return (<Redirect to="/" />);
     }
     return(
-        <div>
-          <h2>Login as an existing user</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange} />
-            </div>
-            <div>
-              <input name="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-            </div>
-            <button className="btn waves-effect waves-light" type="submit" name="action">Log Me In NOW
-              <i className="material-icons right">arrow_forward</i>
-            </button>
-          </form>
-        </div>
-      );
+      <div>
+        <h2>Login as an existing user</h2>
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange} />
+          </div>
+          <div>
+            <input name="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+          </div>
+          <button className="btn waves-effect waves-light" type="submit" name="action">Log Me In NOW
+            <i className="material-icons right">arrow_forward</i>
+          </button>
+        </form>
+      </div>
+    );
   }
 }
 

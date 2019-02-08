@@ -25,8 +25,8 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser()
-    // this.getQuestions()
-    // this.getRandomQ()
+    this.getQuestions()
+    this.getRandomQ()
   }
 
   getUser = () => {
@@ -55,7 +55,6 @@ class App extends Component {
     }
   }
 
-  // Grab questions
   getQuestions = () => {
     let token = localStorage.getItem('serverToken');
     // console.log('THIS IS THE TOKEN', token)
@@ -69,7 +68,6 @@ class App extends Component {
           return q.question
         })
         this.setState({ currentQuestions: questions })
-        // console.log('this is json', this.state.currentQuestions)
     })
     
     .catch(err => {
@@ -77,17 +75,10 @@ class App extends Component {
     })
   }
 
-  // Need a random question generate function
   getRandomQ = (q) => {
     const randQ = this.state.currentQuestions
     return randQ[Math.floor(randQ.length * Math.random())]
   }
-
-  // // Need a random question generate function
-  // getRandomQ = (q) => {
-  //   const randQ = this.state.currentQuestions
-  //   return randQ[Math.floor(randQ.length * Math.random())]
-  // }
 
   render() {
     return (
