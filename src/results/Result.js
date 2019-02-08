@@ -1,24 +1,13 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import Music from './SpotifyPlayer';
+import Music from './Music';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
-import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
-// import SpotifyPlayer from 'react-spotify-player'
-
-
-// const size = {
-// 	width: '100%',
-// 	height: 300,
-//   };
-//   const view = 'list'; // or 'coverart'
-//   const theme = 'black';
-// }
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -27,11 +16,9 @@ class Result extends Component {
     this.state = {
       films: [],
       weather: '',
-      weatherTemp: '',
       food: [],
       poster: [],
-      isLoading: true,  // loader
-      song: ''
+      isLoading: true  // loader
     }
   }
 
@@ -48,7 +35,7 @@ class Result extends Component {
     .then(response => response.json())
     .then(json=> {
       console.log('films got')
-      const filmObj = json.results.sort(function() { return 0.5 - Math.random() });
+      const filmObj = json.results
       const allTitles = []
       const filmTitle = filmObj.forEach((obj) => {
         return allTitles.push(obj.original_title)
@@ -62,24 +49,7 @@ class Result extends Component {
     })
   }
 
-  // Grab music
-	// getSong = () => {
-  //   let token = localStorage.getItem('serverToken');
-  //   axios.post(SERVER_URL+'/result/music', {
-  //     headers: { 'Authorization': `Bearer ${token}` }
-  //   })
-	// 	.then(response => {
-  //     console.log('can i get a music json please', response)
-      
-	// 		// this.setState({ song: json })
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err)
-	// 	})
-	// }
-  
-
-
+  //getMusic 
   
   //getFood
   getFood = () => {
@@ -112,15 +82,15 @@ class Result extends Component {
     axios.post(SERVER_URL+'/result/weather', {
       headers: { 'Authorization' : `Bearer ${token}` }
     })
-    .then(json => {
-      console.log("weather got", json);
-      const currWeather=json.data.currently;
-      this.setState({ weather: currWeather})
+    .then(response => {
+      const currWeather= response.data.currently;
+      this.setState({ weather: currWeather })
     })
     .catch(err => {
       console.log(err)
     })
   }
+nodemon
   
   // getOutput
   render() {
@@ -133,26 +103,20 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
-            {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} />
           </div>
           <div className="output-field">
             <Output />
           </div>        
           <div className="music-field">
-          {/* <SpotifyPlayer
-            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
-            size={size}
-            view={view}
-            theme={theme}
-          /> */}
+            <Music />
           </div>
           <div className="food-field">
               <Food foodItem={this.state.food} />
               <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
-            {filmList[0]}
+            {filmList}
           </div>
         </div>
       );

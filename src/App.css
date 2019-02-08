@@ -1,6 +1,6 @@
 /* CUSTOM STYLES */
 /* ======================================== */
-nav {
+/* nav {
   font-family: 'Oxygen', sans-serif;
   width: 100%;
   background-color: #B0C0BF;
@@ -48,6 +48,14 @@ nav a:hover {
 .footer-text{
   color: white;
   font-size: 11px;
+} */
+
+.navbar {
+  background-color:transparent !important;
+  border-color:transparent !important;
+  background-image:none !important;
+  box-shadow:none !important;  
+  padding: 3px;
 }
 
 /* DEFAULT STYLES */
@@ -433,4 +441,8 @@ div.results-weather-bg-clear-day
   z-index: -1;
   background-image: url(./images/clear-day.jpeg);
   opacity: 0.3;
+}
+
+.giphyPic{
+  height: 250px;
 }
