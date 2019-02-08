@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import Music from './Music';
+import Music from './SpotifyPlayer';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
@@ -9,6 +9,16 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
 import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
+// import SpotifyPlayer from 'react-spotify-player'
+
+
+// const size = {
+// 	width: '100%',
+// 	height: 300,
+//   };
+//   const view = 'list'; // or 'coverart'
+//   const theme = 'black';
+// }
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -20,7 +30,8 @@ class Result extends Component {
       weatherTemp: '',
       food: [],
       poster: [],
-      isLoading: true  // loader
+      isLoading: true,  // loader
+      song: ''
     }
   }
 
@@ -37,7 +48,7 @@ class Result extends Component {
     .then(response => response.json())
     .then(json=> {
       console.log('films got')
-      const filmObj = json.results
+      const filmObj = json.results.sort(function() { return 0.5 - Math.random() });
       const allTitles = []
       const filmTitle = filmObj.forEach((obj) => {
         return allTitles.push(obj.original_title)
@@ -51,7 +62,24 @@ class Result extends Component {
     })
   }
 
-  //getMusic 
+  // Grab music
+	// getSong = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   axios.post(SERVER_URL+'/result/music', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+	// 	.then(response => {
+  //     console.log('can i get a music json please', response)
+      
+	// 		// this.setState({ song: json })
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err)
+	// 	})
+	// }
+  
+
+
   
   //getFood
   getFood = () => {
@@ -112,14 +140,19 @@ class Result extends Component {
             <Output />
           </div>        
           <div className="music-field">
-            <Music />
+          {/* <SpotifyPlayer
+            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+            size={size}
+            view={view}
+            theme={theme}
+          /> */}
           </div>
           <div className="food-field">
               <Food foodItem={this.state.food} />
               <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
-            {filmList}
+            {filmList[0]}
           </div>
         </div>
       );
