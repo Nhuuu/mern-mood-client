@@ -9,6 +9,8 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
 import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
+import Giphy from './Giphy';
+
 // import SpotifyPlayer from 'react-spotify-player'
 
 
@@ -19,6 +21,7 @@ import Restaurant from './Restaurant';
 //   const view = 'list'; // or 'coverart'
 //   const theme = 'black';
 // }
+
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -39,6 +42,7 @@ class Result extends Component {
     this.getFilms()
     this.getWeather()
     this.getFood()
+    this.getGiphy()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
@@ -106,6 +110,43 @@ class Result extends Component {
     })
   }
   
+ // get giphy based on weather
+ getGiphy = () => {
+  let token = localStorage.getItem('serverToken');
+  axios.post(SERVER_URL+'/result/weather', {
+    headers: { 'Authorization' : `Bearer ${token}` }
+  })
+  .then(response => {
+    const currWeather= response.data.currently;
+    this.setState({ weather: currWeather })
+  })
+  .then(currently => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/result/giphy/'+this.state.weather.summary, {
+      headers: { 'Authorization' : `Bearer ${token}` }
+    })
+    .then(response => {
+      console.log("giphy got",response)
+      const giphyList = response.data.data.sort(function() { return 0.5 - Math.random() });
+      const giphyItem = giphyList.map((obj, i) => {
+        return obj;
+      })
+      console.log(giphyItem[0].embed_url);
+      this.setState({ 
+        giphy: giphyItem[0].images.fixed_height_small.url
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+  })
+  .catch(err => {
+    console.log(err)
+  })
+}
+
+
+
   // getWeather
   getWeather = () => {
     let token = localStorage.getItem('serverToken');
@@ -138,6 +179,9 @@ class Result extends Component {
           </div>
           <div className="output-field">
             <Output />
+          </div>
+          <div className="giphy-field">
+            <Giphy giphy={this.state.giphy} />
           </div>        
           <div className="music-field">
           {/* <SpotifyPlayer
