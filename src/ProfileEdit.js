@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import SERVER_URL from './constants/server';
+import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 
 export default class ProfileEdit extends Component {
   constructor(){
     super();
     this.state = {
-      name: ''
+      name: '',
+      redirectToProfile: false
     }
   }
 
@@ -25,22 +28,18 @@ export default class ProfileEdit extends Component {
 
   updateProfile = (e) => {
     e.preventDefault();
-    console.log('About to edit name', this.state);
-    console.log(this.props.user.id)
-    fetch(SERVER_URL+'/profile/edit/'+this.props.user.id, {
-      method: 'PUT',
-      body: JSON.stringify(this.state), // data to send to the server
-      headers: {
-        'Content-Type': 'application/json' // let the server know what data is coming
-      }
+    let token = localStorage.getItem('serverToken');
+    this.setState({
+      redirectToProfile: true
     })
-    .then(response => {
-      console.log(response)
-      response.json()
+    Axios.put(SERVER_URL+'/profile/edit/'+this.props.user.id, {
+      name: this.state.name, // data to send to the server
+      headers: { 
+        'Authorization': `Bearer ${token}` // let the server know what data is coming 
+      }
     })
     .then(json => {
       console.log(json);
-      this.props.udpateUser();
     })
     .catch(error => {
         console.log('ERROR POSTING DATA', error)
@@ -52,6 +51,11 @@ export default class ProfileEdit extends Component {
   }
 
   render() {
+    if(this.state.redirectToProfile){
+      return (
+        <Redirect to={'/profile'} />
+      )
+    }
     return (
       <div>
         <form onSubmit={this.updateProfile}>
