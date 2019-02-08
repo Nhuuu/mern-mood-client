@@ -9,23 +9,43 @@ class Profile extends Component {
   constructor(){
     super();
     this.state = {
-      answers: []
+      scores: 0,
+      time: ''
     }
   }
 
   componentDidMount = () => {
     this.getAnswers()
+    this.getTime()
   }
 
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer', {
+    axios.post(SERVER_URL + '/answer/score/:id', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
-    .then(answerRecorded => { 
-      const answerScore = answerRecorded.score;
+    .then(foundAnswers => { 
+      const answerScore = foundAnswers.map((obj, i) => {
+        return obj.score;
+      })
+
       console.log("answer hit", answerScore);
-      this.setState({ answers: answerScore })
+      this.setState({ scores: answerScore })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  getTime = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/answer/score/:id', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(foundAnswers => { 
+      const answerTime = foundAnswers;
+      console.log("answer hit", answerTime);
+      this.setState({ time: answerTime })
     })
     .catch(err => {
       console.log(err)
@@ -38,6 +58,8 @@ class Profile extends Component {
   }
 
   render() {
+    const userScore = Number(this.state.scores);
+    const userTime = Number(this.state.timestamp);
     if(this.props.user){
       return (
           <div>
@@ -52,13 +74,13 @@ class Profile extends Component {
           width={650}
           margin={{top: 0, right: 0, bottom: 30, left: 100}}
           data={[
-            {x: 'A', y: 20},
-            {x: 'B', y: 30},
-            {x: 'C', y: 40},
-            {x: 'D', y: 20},
-            {x: 'E', y: 40},
-            {x: 'F', y: 25},
-            {x: 'G', y: 5}
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}},
+            {x: {userTime}, y: {userScore}}
           ]} />  
         </div>
 
