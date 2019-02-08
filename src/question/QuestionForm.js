@@ -15,7 +15,8 @@ class QuestionForm extends Component {
 			score: 0,
 			isLoading: true, // loader
 			user: null,
-			// isSubmit: false
+			isSubmit: false
+
 		}
 	}
 
@@ -39,7 +40,8 @@ class QuestionForm extends Component {
 // POST form answers to the fetch call
     postAnswer = (e) => {
       	e.preventDefault()
-      	console.log(this.state.score)
+				console.log(this.state.score)
+				this.setState=({ isSubmit: true })
       	let token = localStorage.getItem('serverToken');
       	Axios.post(SERVER_URL+'/answer/user/'+this.props.user.id, {
         score: this.state.score,
@@ -62,6 +64,10 @@ class QuestionForm extends Component {
 				return(
 					<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
 				)
+			} else if (this.state.isSubmit){
+				return (
+					<Redirect to={'/profile'} />
+				)				
 			}
 	    return(
 			
