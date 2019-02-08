@@ -25,8 +25,8 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser()
-    this.getQuestions()
-    this.getRandomQ()
+    // this.getQuestions()
+    // this.getRandomQ()
   }
 
   getUser = () => {
@@ -55,33 +55,32 @@ class App extends Component {
     }
   }
 
-  // Grab questions
-  getQuestions = () => {
-    let token = localStorage.getItem('serverToken');
-    // console.log('THIS IS THE TOKEN', token)
-    axios.post(SERVER_URL + '/question', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(json => { 
-      console.log("we here", json);
-      const questionArr = json.data[0].question
-        const questions = questionArr.mental.map((q) => {
-          return q.question
-        })
-        this.setState({ currentQuestions: questions })
-        // console.log('this is json', this.state.currentQuestions)
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+  // // Grab questions
+  // getQuestions = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   // console.log('THIS IS THE TOKEN', token)
+  //   axios.post(SERVER_URL + '/question', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+  //   .then(json => { 
+  //     console.log("we here", json);
+  //     const questionArr = json.data[0].question
+  //       const questions = questionArr.mental.map((q) => {
+  //         return q.question
+  //       })
+  //       this.setState({ currentQuestions: questions })
+  //       // console.log('this is json', this.state.currentQuestions)
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }
 
-  // Need a random question generate function
-  getRandomQ = (q) => {
-    const randQ = this.state.currentQuestions
-    return randQ[Math.floor(randQ.length * Math.random())]
-  }
-
+  // // Need a random question generate function
+  // getRandomQ = (q) => {
+  //   const randQ = this.state.currentQuestions
+  //   return randQ[Math.floor(randQ.length * Math.random())]
+  // }
 
   render() {
     return (
@@ -90,7 +89,9 @@ class App extends Component {
           <div className="home-main">
           <img src={require('./images/home.jpg')} className="main-bg" alt="bg"/>
             <Nav user={this.state.user} updateUser={this.getUser} />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={
+              () => (<Home user={this.state.user} updateUser={this.getUser} />)
+            } />
             <Route path="/login" component={
               () => (<Login user={this.state.user} updateUser={this.getUser} />)
             } />
