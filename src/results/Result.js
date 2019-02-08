@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import SpotifyPlayer from './SpotifyPlayer';
+import Music from './SpotifyPlayer';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
+import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
 // import SpotifyPlayer from 'react-spotify-player'
@@ -27,9 +28,11 @@ class Result extends Component {
     this.state = {
       films: [],
       weather: '',
+      weatherTemp: '',
       food: [],
       poster: [],
-      isLoading: true  // loader
+      isLoading: true,  // loader
+      song: ''
     }
   }
 
@@ -37,6 +40,7 @@ class Result extends Component {
     this.getFilms()
     this.getWeather()
     this.getFood()
+    this.getGiphy()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
@@ -46,7 +50,7 @@ class Result extends Component {
     .then(response => response.json())
     .then(json=> {
       console.log('films got')
-      const filmObj = json.results
+      const filmObj = json.results.sort(function() { return 0.5 - Math.random() });
       const allTitles = []
       const filmTitle = filmObj.forEach((obj) => {
         return allTitles.push(obj.original_title)
@@ -60,7 +64,24 @@ class Result extends Component {
     })
   }
 
-  //getMusic 
+  // Grab music
+	// getSong = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   axios.post(SERVER_URL+'/result/music', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+	// 	.then(response => {
+  //     console.log('can i get a music json please', response)
+      
+	// 		// this.setState({ song: json })
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err)
+	// 	})
+	// }
+  
+
+
   
   //getFood
   getFood = () => {
@@ -129,9 +150,10 @@ class Result extends Component {
     axios.post(SERVER_URL+'/result/weather', {
       headers: { 'Authorization' : `Bearer ${token}` }
     })
-    .then(response => {
-      const currWeather= response.data.currently;
-      this.setState({ weather: currWeather })
+    .then(json => {
+      console.log("weather got", json);
+      const currWeather=json.data.currently;
+      this.setState({ weather: currWeather})
     })
     .catch(err => {
       console.log(err)
@@ -149,20 +171,29 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} />
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
+            {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
             <Output />
+          </div>
+          <div className="giphy-field">
+            <Giphy giphy={this.state.giphy} />
           </div>        
           <div className="music-field">
-            <SpotifyPlayer />
+          {/* <SpotifyPlayer
+            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+            size={size}
+            view={view}
+            theme={theme}
+          /> */}
           </div>
           <div className="food-field">
               <Food foodItem={this.state.food} />
               <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
-            {filmList}
+            {filmList[0]}
           </div>
         </div>
       );
