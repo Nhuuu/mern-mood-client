@@ -35,6 +35,7 @@ nav a:hover {
   left: 70%;
   display: inline-block;
 }
+*/
 
 .footer {
   background-color: #424C55;
@@ -48,7 +49,7 @@ nav a:hover {
 .footer-text{
   color: white;
   font-size: 11px;
-} */
+}
 
 .navbar {
   background-color:transparent !important;
@@ -95,9 +96,9 @@ nav a:hover {
 
 /* question box */
 /* ======================================== */
-.test {
+/* .test {
   background-image: url(./images/home.jpg) 
-  }
+  } */
 
 /* .results-weather-bg{
   background-image: url(./images/rain.png)
@@ -238,6 +239,13 @@ div.results-weather-icon-wind {
   /* margin: 0 5px 0; */
   /* img: url(./images/icons/rain.png); */
 }
+div.results-weather-icon-cloudy {
+  max-width: 250px;
+  max-height: 250px;
+  content: url(./images/icons/cloudy.png);
+  /* margin: 0 5px 0; */
+  /* img: url(./images/icons/rain.png); */
+}
 div.results-weather-icon-thermometer {
   max-width: 50px;
   max-height: 50px;
@@ -289,7 +297,7 @@ div.results-weather-bg-cloudy {
   left: 0;
   z-index: -1;
   background-image: url(./images/cloudy.jpg);
-  opacity: 0.3;
+  opacity: 0.5;
 }
 
 div.results-weather-bg-clear-night 

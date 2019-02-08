@@ -52,6 +52,8 @@ class Profile extends Component {
     })
   }
 
+
+  
   // Write helper function to capitalize the first letter of the first name of user
   firstCapitalization = (firstName) => {
     return firstName.charAt(0).toUpperCase() + firstName.slice(1)

@@ -7,7 +7,6 @@ import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
-import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
 // import SpotifyPlayer from 'react-spotify-player'
@@ -46,7 +45,7 @@ class Result extends Component {
   }
 
   getFilms = () => {
-   fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
+    fetch(`https://api.themoviedb.org/3/genre/35/movies?api_key=b1b4d1f42d4ead1ab1d5fb013cb9340d`)
     .then(response => response.json())
     .then(json=> {
       console.log('films got')
@@ -108,17 +107,8 @@ class Result extends Component {
     })
   }
   
- // get giphy based on weather
- getGiphy = () => {
-  let token = localStorage.getItem('serverToken');
-  axios.post(SERVER_URL+'/result/weather', {
-    headers: { 'Authorization' : `Bearer ${token}` }
-  })
-  .then(response => {
-    const currWeather= response.data.currently;
-    this.setState({ weather: currWeather })
-  })
-  .then(currently => {
+  // get giphy based on weather
+  getGiphy = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL + '/result/giphy/'+this.state.weather.summary, {
       headers: { 'Authorization' : `Bearer ${token}` }
@@ -136,14 +126,13 @@ class Result extends Component {
     .catch(error => {
       console.log(error)
     })
-  })
   .catch(err => {
     console.log(err)
   })
 }
 
 
-  // getWeather
+    // getWeather
   getWeather = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL+'/result/weather', {
