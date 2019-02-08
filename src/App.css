@@ -435,3 +435,7 @@ div.results-weather-bg-clear-day
   background-image: url(./images/clear-day.jpeg);
   opacity: 0.3;
 }
+
+.giphyPic{
+  height: 250px;
+}
