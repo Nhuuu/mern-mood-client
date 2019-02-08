@@ -63,12 +63,13 @@ class App extends Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
+      console.log("we here", json);
       const questionArr = json.data[0].question
         const questions = questionArr.mental.map((q) => {
           return q.question
         })
         this.setState({ currentQuestions: questions })
-        // console.log('this is json', this.state.currentQuestions)         
+        // console.log('this is json', this.state.currentQuestions)
     })
     .catch(err => {
       console.log(err)
