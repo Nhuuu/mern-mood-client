@@ -55,7 +55,7 @@ class App extends Component {
     }
   }
 
-  // Grab questions 
+  // Grab questions
   getQuestions = () => {
     let token = localStorage.getItem('serverToken');
     // console.log('THIS IS THE TOKEN', token)
