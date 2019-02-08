@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import Music from './Music';
+import SpotifyPlayer from './SpotifyPlayer';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
@@ -90,7 +90,6 @@ class Result extends Component {
       console.log(err)
     })
   }
-nodemon
   
   // getOutput
   render() {
@@ -109,7 +108,7 @@ nodemon
             <Output />
           </div>        
           <div className="music-field">
-            <Music />
+            <SpotifyPlayer />
           </div>
           <div className="food-field">
               <Food foodItem={this.state.food} />

@@ -71,6 +71,7 @@ class App extends Component {
         this.setState({ currentQuestions: questions })
         // console.log('this is json', this.state.currentQuestions)
     })
+    
     .catch(err => {
       console.log(err)
     })
