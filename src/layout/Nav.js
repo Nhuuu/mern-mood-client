@@ -11,43 +11,42 @@ class Nav extends Component {
   }
 
   render() {
-    let links = '';
     if(this.props.user){
-      links = (
-          <span>
-            <a onClick={this.handleLogout}>Logout</a>
-            <Link to="/profile">Profile</Link>
-          </span>
-        );
+      return(
+      <div className="main-layout">
+      <nav className="navbar">
+        <div className="nav-wrapper">
+          <a href="/" class="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {/* <li><a href="/">Don't Be Salty</a></li> */}
+            <li><a href="/result">Today's Mood</a></li>
+            <li><a href="/question">You Got This!</a></li>
+            {/* <li><a href="/test-component">TEST COMPONENT</a></li> */}
+            <li><a href="/profile">Profile</a></li>
+            <li><a onClick={this.handleLogout}>Logout</a></li>
+          </ul>
+        </div>
+      </nav>
+      </div>
+         );
     }
     else {
-      links = (
-          <span>
-            <Link to="/login">Log In</Link>
-            <Link to="/signup">Sign Up</Link> 
-          </span>
-        );
-    }
-    return(
+      return(
+      <div className="main-layout">
+      <nav className="navbar">
         <div className="nav-wrapper">
-          <nav className="nav">
-            <div className="leftlogo">
-              <Link to="/">Don't Be Salty</Link>
-            </div>
-            <div className="rightnav">
-              <Link to="/result">Today's Mood</Link> 
-              <Link to="/question">Questions</Link> 
-              <Link to="/test-component">TEST COMPONENT</Link>
-              {links}
-            </div>
-          </nav>
-          <header>
-            <div className="logo-wrapper">
-              <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            
-            </div>
-          </header>
+          <a href="/" class="brand-logo "> <img src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo" />            </a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="/login">Log In</a></li>
+            <li><a href="/signup">Sign Up</a></li>
+          </ul>
         </div>
-      );
+      </nav>
+      </div>
+        )
+      }
+      
+    
   }
 }
 
