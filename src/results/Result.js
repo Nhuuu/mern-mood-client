@@ -37,7 +37,7 @@ class Result extends Component {
     .then(response => response.json())
     .then(json=> {
       console.log('films got')
-      const filmObj = json.results
+      const filmObj = json.results.sort(function() { return 0.5 - Math.random() });
       const allTitles = []
       const filmTitle = filmObj.forEach((obj) => {
         return allTitles.push(obj.original_title)
@@ -119,7 +119,7 @@ class Result extends Component {
               <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
-            {filmList}
+            {filmList[0]}
           </div>
         </div>
       );
