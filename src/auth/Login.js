@@ -33,7 +33,7 @@ class Login extends Component {
 
   render() {
     if(this.props.user){
-      return (<Redirect to="/question" />);
+      return (<Redirect to="/" />);
     }
     return(
         <div>
