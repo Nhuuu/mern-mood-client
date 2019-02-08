@@ -1,18 +1,17 @@
 import React, { Component } from 'react'
 // import { Redirect } from 'react-router-dom';
-import SERVER_URL from '../constants/server';
-import Question from './Question';
+import SERVER_URL from '../constants/server'
+import Question from './Question'
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
-import '../App.css';
-import Rating from 'react-rating';
-import Axios from 'axios';
+import '../App.css'
+// import Rating from 'react-rating'
+import Axios from 'axios'
 
 class QuestionForm extends Component {
 	constructor(){
 		super()
 		this.state = {
-			category: '',
 			score: 0,
 			isLoading: true, // loader
 			user: null
@@ -26,7 +25,6 @@ class QuestionForm extends Component {
 	// Update state to reflect user input - store input
 	storeInput = (e) => {
 		this.setState({
-			category: this.props.cat,
 			score: e.target.value
 		})
 	}
@@ -35,7 +33,6 @@ class QuestionForm extends Component {
 	postAnswer = (e) => {
 		e.preventDefault()
 		let token = localStorage.getItem('serverToken');
-		console.log(this.state.category)
 		console.log(this.state.score)
 		Axios.post(SERVER_URL+'/answer/user/'+this.props.user.id, {
 			body: JSON.stringify(this.state),
@@ -43,10 +40,7 @@ class QuestionForm extends Component {
 		})
 		.then(json => {
 			console.log(json)
-			// this.props.question()
-			// const next = this.props.cat === 'mental' ? 'physical' : 'emotional'
-			// redirect here, if cat is mental, redirect to physical 
-			// <Redirect to=`/${next}` /> 
+			// direct to results
 		})
 		.catch(err => {
 			console.log('Error fetching data', err)

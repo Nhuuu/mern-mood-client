@@ -163,7 +163,7 @@ div.results-movie-bg {
 /* Weather related css */
 /* ======================================== */
 .weather-result {
-  display: inline-block;
+  /* display: inline-block; */
   /* align-items: center;
   justify-content: center; */
   font-size: calc(10px + 2vmin);
@@ -303,8 +303,7 @@ div.results-weather-bg-clear-night
   opacity: 0.3;
 }
 
-div.results-weather-bg-partly-cloudy-day
-{
+div.results-weather-bg-partly-cloudy-day {
   /* Set rules to fill background */
   min-height: 100%;
   min-width: 1024px;

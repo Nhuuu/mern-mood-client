@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import Music from './Music';
+import Music from './SpotifyPlayer';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
@@ -10,6 +10,18 @@ import Loader from 'react-loader-spinner' //module for loading gif
 import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
+
+// import SpotifyPlayer from 'react-spotify-player'
+
+
+// const size = {
+// 	width: '100%',
+// 	height: 300,
+//   };
+//   const view = 'list'; // or 'coverart'
+//   const theme = 'black';
+// }
+
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -21,7 +33,8 @@ class Result extends Component {
       weatherTemp: '',
       food: [],
       poster: [],
-      isLoading: true  // loader
+      isLoading: true,  // loader
+      song: ''
     }
   }
 
@@ -53,7 +66,24 @@ class Result extends Component {
     })
   }
 
-  //getMusic 
+  // Grab music
+	// getSong = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   axios.post(SERVER_URL+'/result/music', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+	// 	.then(response => {
+  //     console.log('can i get a music json please', response)
+      
+	// 		// this.setState({ song: json })
+	// 	})
+	// 	.catch(err => {
+	// 		console.log(err)
+	// 	})
+	// }
+  
+
+
   
   //getFood
   getFood = () => {
@@ -144,7 +174,7 @@ class Result extends Component {
       return(
         <div className="results">
           <div className="weather-field">
-            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon} ref="inputS" ImD={this.getData}/>
+            <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
@@ -154,7 +184,12 @@ class Result extends Component {
             <Giphy giphy={this.state.giphy} />
           </div>        
           <div className="music-field">
-            <Music />
+          {/* <SpotifyPlayer
+            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
+            size={size}
+            view={view}
+            theme={theme}
+          /> */}
           </div>
           <div className="food-field">
               <Food foodItem={this.state.food} />
