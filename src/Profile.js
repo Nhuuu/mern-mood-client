@@ -9,7 +9,7 @@ class Profile extends Component {
   constructor(){
     super();
     this.state = {
-      scores: 0,
+      scores: '',
       time: ''
     }
   }
@@ -21,15 +21,14 @@ class Profile extends Component {
 
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/:id', {
+    axios.post(SERVER_URL + '/answer/score/userId', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
-      const answerScore = foundAnswers.map((obj, i) => {
+      const answerScore = foundAnswers.data.map((obj, i) => {
         return obj.score;
       })
-
-      console.log("answer hit", answerScore);
+      console.log("score hit", answerScore);
       this.setState({ scores: answerScore })
     })
     .catch(err => {
@@ -39,12 +38,14 @@ class Profile extends Component {
 
   getTime = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/:id', {
+    axios.post(SERVER_URL + '/answer/score/userId', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
-      const answerTime = foundAnswers;
-      console.log("answer hit", answerTime);
+      const answerTime = foundAnswers.data.map((obj, i) => {
+        return obj.timestamp;
+      })
+      console.log("timestamp hit", answerTime);
       this.setState({ time: answerTime })
     })
     .catch(err => {
@@ -60,9 +61,10 @@ class Profile extends Component {
   }
 
   render() {
-    const userScore = Number(this.state.scores);
-    const userTime = Number(this.state.timestamp);
     if(this.props.user){
+      const userScore = this.state.scores;
+      const userTime = this.state.timestamp;
+      console.log(userScore);
       return (
           <div>
             <h2>Hello again, {this.firstCapitalization(this.props.user.name)}!</h2>
@@ -71,7 +73,7 @@ class Profile extends Component {
             <Link to="/profile/edit">Edit Profile</Link>
             <h4>My Mood-rythm This Week</h4>
             <div>  <BarChart
-          colorBars
+          colorBars 
           height={150}
           width={650}
           margin={{top: 0, right: 0, bottom: 30, left: 100}}
