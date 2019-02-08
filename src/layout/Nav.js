@@ -20,7 +20,6 @@ class Nav extends Component {
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             {/* <li><a href="/">Don't Be Salty</a></li> */}
             <li><a href="/result">Today's Mood</a></li>
-            <li><a href="/question">You Got This!</a></li>
             {/* <li><a href="/test-component">TEST COMPONENT</a></li> */}
             <li><a href="/profile">Profile</a></li>
             <li><a onClick={this.handleLogout}>Logout</a></li>
