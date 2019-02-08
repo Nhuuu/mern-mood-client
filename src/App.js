@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import axios from 'axios'; //like fetch, you don't have to parse json
+import axios from 'axios';
 import SERVER_URL from './constants/server';
 import './App.css';
 import Footer from './layout/Footer';
@@ -46,7 +46,7 @@ class App extends Component {
       })
       .catch(err => {
         console.log('Error looking up user by token: ', err, err.response);
-        this.setState({ user: null });
+        this.setState({ user: null })
       })
     }
     else {
@@ -69,7 +69,6 @@ class App extends Component {
         })
         this.setState({ currentQuestions: questions })
     })
-    
     .catch(err => {
       console.log(err)
     })
