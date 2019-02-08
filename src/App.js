@@ -94,7 +94,7 @@ class App extends Component {
       <div>
         <Router>
           <div className="home-main">
-          <img src={require('./images/home.jpg')} className="main-bg" alt="bg"/>
+          <img src={require('./images/salty2.gif')} className="main-bg" alt="bg"/>
             <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={
               () => (<Home user={this.state.user} updateUser={this.getUser} />)
