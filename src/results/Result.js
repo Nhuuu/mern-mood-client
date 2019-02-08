@@ -10,7 +10,6 @@ import Loader from 'react-loader-spinner' //module for loading gif
 import WeatherTemp from './WeatherTemp'
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
-
 // import SpotifyPlayer from 'react-spotify-player'
 
 
@@ -21,7 +20,6 @@ import Giphy from './Giphy';
 //   const view = 'list'; // or 'coverart'
 //   const theme = 'black';
 // }
-
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -133,7 +131,7 @@ class Result extends Component {
       })
       console.log(giphyItem[0].embed_url);
       this.setState({ 
-        giphy: giphyItem[0].images.fixed_height_small.url
+        giphy: giphyItem[0].images.original.url
       })
     })
     .catch(error => {
@@ -144,7 +142,6 @@ class Result extends Component {
     console.log(err)
   })
 }
-
 
 
   // getWeather
