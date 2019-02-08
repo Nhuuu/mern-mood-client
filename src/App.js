@@ -19,15 +19,12 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      categories: ['mental', 'physical', 'emotional'],
-      currentCategory: '',
       currentQuestions: []
     }
   }
 
   componentDidMount = () => {
     this.getUser()
-    this.setCategory()
     this.getQuestions()
     this.getRandomQ()
   }
@@ -58,64 +55,21 @@ class App extends Component {
     }
   }
 
-// Check this, this should remove the first index everytime a question is answered on the form.
-  setCategory = () => {
-    console.log('Category set')
-    this.setState({
-      currentCategory: this.state.categories[0]
-    })
-    this.state.categories.splice(0, 1)
-    console.log(this.state.currentCategory)
-  }
-
-
-
-  // Grab questions need to tie  to category
+  // Grab questions
   getQuestions = () => {
-    // let token = localStorage.getItem('serverToken');
+    let token = localStorage.getItem('serverToken');
     // console.log('THIS IS THE TOKEN', token)
-    // axios.post(SERVER_URL + '/question', {
-    //   headers: { 'Authorization': `Bearer ${token}` }
-    // })
-    fetch(SERVER_URL + '/question')
-    .then(response => {
-      return response.json();
+    axios.post(SERVER_URL + '/question', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
-      console.log('Retrieving questions', json)
+      console.log("we here", json);
       const questionArr = json.data[0].question
-      if(this.state.currentCategory === 'mental'){
-        const mentalQs = questionArr.mental.map((q) => {
+        const questions = questionArr.mental.map((q) => {
           return q.question
-        });
-        // const mentalQs = []
-        // questionArr.mental.forEach((q) => {
-        //   return mentalQs.push(q.question)
-        // })
-        this.setState({ currentQuestions: mentalQs })
-        console.log('this is json', this.state.currentQuestions)        
-      }
-      else if(this.state.currentCategory === 'physical'){
-        const physicalQs = questionArr.physical.map((q) => {
-          return q.question
-        });
-        // const physicalQs = []
-        // questionArr.physical.forEach((q) => {
-        //   return physicalQs.push(q.question)
-        // })  
-        this.setState({ currentQuestions: physicalQs })
-        console.log('this is json', this.state.currentQuestions)              
-      } else {
-        const emotionalQs = questionArr.emotional.map((q) => {
-          return q.question
-        });
-        // const emotionalQs = []
-        // questionArr.emotional.forEach((q) => {
-        //   return emotionalQs.push(q.question)
-        // })
-        this.setState({ currentQuestions: emotionalQs })
-        console.log('this is json', this.state.currentQuestions)        
-      }   
+        })
+        this.setState({ currentQuestions: questions })
+        // console.log('this is json', this.state.currentQuestions)
     })
     .catch(err => {
       console.log(err)
@@ -134,7 +88,7 @@ class App extends Component {
       <div>
         <Router>
           <div className="home-main">
-          <img src={require('./images/home.jpg')} className="main-bg" />
+          <img src={require('./images/home.jpg')} className="main-bg" alt="bg"/>
             <Nav user={this.state.user} updateUser={this.getUser} />
             <Route exact path="/" component={Home} />
             <Route path="/login" component={
@@ -149,15 +103,9 @@ class App extends Component {
             <Route path="/result" component={
               () => (<Result user={this.state.user} />)
             } />
-            <Route path="/mental" component={ 
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
-            } />
-            <Route path="/physical" component={ 
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
-            } />
-            <Route path="/emotional" component={ 
-              () => (<QuestionForm user={this.state.user} cat={this.state.currentCategory} question={this.getRandomQ()}/>)
-            } />                        
+            <Route path="/question" component={ 
+              () => (<QuestionForm user={this.state.user} question={this.getRandomQ()}/>)
+            } />                       
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />
