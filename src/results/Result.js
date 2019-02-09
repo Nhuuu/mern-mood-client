@@ -76,9 +76,6 @@ class Result extends Component {
 	// 	})
 	// }
   
-
-
-  
   //getFood
   getFood = () => {
     let token = localStorage.getItem('serverToken');
@@ -93,7 +90,7 @@ class Result extends Component {
       const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
-      console.log(restaurantImg);
+      // console.log(restaurantImg);
       this.setState({ 
         food: restaurantList,
         poster: restaurantImg
@@ -129,7 +126,7 @@ class Result extends Component {
 }
 
 
-    // getWeather
+  // getWeather
   getWeather = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL+'/result/weather', {
