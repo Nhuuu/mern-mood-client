@@ -19,16 +19,9 @@ class Profile extends Component {
     this.getTime()
     }
 
-  // getUserInfo = () => {
-  //   const userId = this.state.getUser;
-  //   this.props.match.params.ParamName
-  //   console.log(userId)
-  //   return userId;
-  // }
-
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/5c5dd0cd8208196a006fa733', {
+    axios.post(SERVER_URL + '/answer/score', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
@@ -46,7 +39,7 @@ class Profile extends Component {
 
   getTime = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/5c5dd0cd8208196a006fa733', {
+    axios.post(SERVER_URL + '/answer/score', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
@@ -65,7 +58,6 @@ class Profile extends Component {
   }
 
 
-  
   // Write helper function to capitalize the first letter of the first name of user
   firstCapitalization = (firstName) => {
     return firstName.charAt(0).toUpperCase() + firstName.slice(1)
