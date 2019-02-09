@@ -15,19 +15,20 @@ class Profile extends Component {
   }
 
   componentDidMount = () => {
-    this.getUserInfo()
     this.getAnswers()
     this.getTime()
-  }
+    }
 
-  getUserInfo = () => {
-    return this.props.updateUser;
-  }
-  
+  // getUserInfo = () => {
+  //   const userId = this.state.getUser;
+  //   this.props.match.params.ParamName
+  //   console.log(userId)
+  //   return userId;
+  // }
 
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/' + this.props.user.id, {
+    axios.post(SERVER_URL + '/answer/score/5c5dd0cd8208196a006fa733', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
@@ -45,16 +46,16 @@ class Profile extends Component {
 
   getTime = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/' + this.props.user.id, {
+    axios.post(SERVER_URL + '/answer/score/5c5dd0cd8208196a006fa733', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
       let timeArr=[];
       const answerTime = foundAnswers.data.map((obj, i) => {
-          timeArr.push(obj.timestamp.split(" "));
-          return timeArr
+        let str = obj.timestamp
+          return str.slice(0,10);
       })
-      console.log(timeArr)
+      console.log('answer time gettt',answerTime)
       console.log("timestamp hit", answerTime);
       this.setState({ time: answerTime })
     })
@@ -73,10 +74,10 @@ class Profile extends Component {
   render() {
     if(this.props.user){
       const userScore = Number(this.state.scores);
-      const userTime = this.state.timestamp;
+      const userTime = String(this.state.time);
       console.log(typeof userTime)
-      console.log(userTime);
-      console.log(userScore);
+      console.log("log user time", userTime);
+      console.log("log user score", userScore);
       return (
           <div>
             <h2>Hello again, {this.firstCapitalization(this.props.user.name)}!</h2>
@@ -90,13 +91,13 @@ class Profile extends Component {
           width={650}
           margin={{top: 0, right: 0, bottom: 30, left: 100}}
           data={[
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}},
-            {x: {userTime}, y: {userScore}}
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore},
+            {x: userTime, y: userScore}
           ]} />  
         </div>
 
