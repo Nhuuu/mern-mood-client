@@ -25,7 +25,10 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getUser()
-    this.getQuestion()
+    if (this.state.user) {
+      this.getQuestion()
+    }
+    // this.getQuestion()
   }
 
   getUser = () => {
@@ -42,6 +45,7 @@ class App extends Component {
         this.setState({
           user: response.data.user
         })
+        // this.getQuestion()
       })
       .catch(err => {
         console.log('Error looking up user by token: ', err, err.response);
