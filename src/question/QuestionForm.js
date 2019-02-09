@@ -28,8 +28,9 @@ class QuestionForm extends Component {
 		this.setState({
 			score: e.target.value
 		})
- 	}
-  
+}
+
+	
 // POST form answers to the fetch call
 	postAnswer = (e) => {
 		e.preventDefault()
