@@ -26,7 +26,6 @@ class App extends Component {
   componentDidMount = () => {
     this.getUser()
     this.getQuestions()
-    this.getRandomQ()
   }
 
   getUser = () => {
@@ -57,14 +56,12 @@ class App extends Component {
 
   getQuestions = () => {
     let token = localStorage.getItem('serverToken');
-    // console.log('THIS IS THE TOKEN', token)
     axios.post(SERVER_URL + '/question', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
-      console.log("we here", json);
-      const questionArr = json.data[0].question
-        const questions = questionArr.mental.map((q) => {
+      const questionArr = json.data[0].questions
+        const questions = questionArr.map((q) => {
           return q.question
         })
         this.setState({ currentQuestions: questions })

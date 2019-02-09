@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class Output extends Component {
-  render() {
-    return(
-    	<div>
-			<h1>{ this.props.output }</h1>
-        </div>
-    );
-  }
+const Output = () => {
+  return(
+    <div>
+      {/* <h1>{ this.props.saying }</h1> */}
+    </div>
+  )
 }
 
 export default Output
