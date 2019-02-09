@@ -60,6 +60,7 @@ class App extends Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
+      console.log(json)
       const questionArr = json.data[0].questions
         const questions = questionArr.map((q) => {
           return q.question
