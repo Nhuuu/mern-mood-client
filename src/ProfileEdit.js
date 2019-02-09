@@ -13,9 +13,6 @@ export default class ProfileEdit extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setState(this.props.current)
-  }
 
   storeInput = (e) => {
     // update state to reflect user input
