@@ -27,7 +27,7 @@ class Profile extends Component {
 
   getAnswers = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/' + this.props.user.id, {
+    axios.post(SERVER_URL + '/answer/score/' + this.props.updateUser, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
@@ -45,7 +45,7 @@ class Profile extends Component {
 
   getTime = () => {
     let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score/' + this.props.user.id, {
+    axios.post(SERVER_URL + '/answer/score/' + this.props.updateUser, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 

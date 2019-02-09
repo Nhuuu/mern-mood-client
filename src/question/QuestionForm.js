@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
 import SERVER_URL from '../constants/server'
-import Question from './Question'
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import '../App.css'
@@ -60,7 +59,7 @@ class QuestionForm extends Component {
 		}
 		return(
 			<div className="question-form">
-				<Question question={this.props.question}/>  
+				{this.props.question}
 				<form onSubmit={this.postAnswer}>
 					<Row>
 						<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
