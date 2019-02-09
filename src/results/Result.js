@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
-import Music from './SpotifyPlayer';
 import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
@@ -10,7 +9,7 @@ import Loader from 'react-loader-spinner' //module for loading gif
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
 // import SpotifyPlayer from 'react-spotify-player'
-
+// import Music from './SpotifyPlayer';
 
 // const size = {
 // 	width: '100%',
@@ -25,13 +24,14 @@ class Result extends Component {
   constructor(){
     super()
     this.state = {
-      films: [],
+      film: '',
       weather: '',
       weatherTemp: '',
       food: [],
       poster: [],
       isLoading: true,  // loader
-      song: ''
+      // song: '',
+      saying: ''
     }
   }
 
@@ -50,12 +50,8 @@ class Result extends Component {
     .then(json=> {
       console.log('films got')
       const filmObj = json.results.sort(function() { return 0.5 - Math.random() });
-      const allTitles = []
-      const filmTitle = filmObj.forEach((obj) => {
-        return allTitles.push(obj.original_title)
-      })
       this.setState({
-        films: allTitles
+        film: filmObj[0]
       })
     })
     .catch(error => {
@@ -149,13 +145,16 @@ class Result extends Component {
   }
   
   // getOutput
+
+
+
   render() {
     if(this.state.isLoading){
       return(
         <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
-      const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
+      // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
           <div className="weather-field">
@@ -163,7 +162,7 @@ class Result extends Component {
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
-            <Output />
+            <Output saying={this.state.saying} />
           </div>
           <div className="giphy-field">
             <Giphy giphy={this.state.giphy} />
@@ -181,7 +180,7 @@ class Result extends Component {
               <Restaurant poster={this.state.poster} />
           </div>
           <div className="movie-field">
-            {filmList[0]}
+            <Movie films={this.state.film.original_title} />
           </div>
         </div>
       );

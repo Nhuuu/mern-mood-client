@@ -25,9 +25,7 @@ export default class ProfileEdit extends Component {
   updateProfile = (e) => {
     e.preventDefault();
     let token = localStorage.getItem('serverToken');
-    this.setState({
-      redirectToProfile: true
-    })
+
     Axios.put(SERVER_URL+'/profile/edit/'+this.props.user.id, {
       name: this.state.name, // data to send to the server
       headers: { 
@@ -36,6 +34,9 @@ export default class ProfileEdit extends Component {
     })
     .then(json => {
       console.log(json);
+      this.setState({
+        redirectToProfile: true
+      })
     })
     .catch(error => {
         console.log('ERROR POSTING DATA', error)
