@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router-dom';
 
 
 class Nav extends Component {
@@ -21,7 +22,7 @@ class Nav extends Component {
             <li><a href="/result">Today's Mood</a></li>
             {/* <li><a href="/test-component">TEST COMPONENT</a></li> */}
             <li><a href="/profile">Profile</a></li>
-            <li><a onClick={this.handleLogout}>Logout</a></li>
+            <li><button onClick={this.handleLogout}>Logout</button></li>
           </ul>
         </div>
       </nav>

@@ -18,14 +18,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: null,
-      currentQuestions: []
+      user: null
     }
   }
 
   componentDidMount = () => {
     this.getUser()
-    this.getQuestions()
   }
 
   getUser = () => {
@@ -42,6 +40,7 @@ class App extends Component {
         this.setState({
           user: response.data.user
         })
+        // this.getQuestion()
       })
       .catch(err => {
         console.log('Error looking up user by token: ', err, err.response);
@@ -100,7 +99,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/question" component={ 
-              () => (<QuestionForm user={this.state.user} question={this.getRandomQ()}/>)
+              () => (<QuestionForm user={this.state.user} />)
             } />                       
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)

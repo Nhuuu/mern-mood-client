@@ -163,6 +163,9 @@ class Result extends Component {
         <div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
       )
     }
+    if(this.props.user){
+
+
       // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
@@ -196,6 +199,12 @@ class Result extends Component {
           </div>
         </div>
       );
+    }
+    return (
+      <div>
+					<p><a href="/login">Log In</a> or <a href="/signup">Sign up</a> to get started!</p>
+      </div>
+    )
   }
 }
 export default Result
