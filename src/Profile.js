@@ -9,48 +9,49 @@ class Profile extends Component {
   constructor(){
     super();
     this.state = {
-      scores: '',
-      time: ''
+      // scores: '',
+      // time: '',
+      userInput: [{}]
     }
   }
 
   componentDidMount = () => {
-    this.getAnswers()
-    this.getTime()
+    // this.getAnswers()
+    // this.getTime()
+    this.getUserData()
     }
 
-  getAnswers = () => {
-    let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/answer/score', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(foundAnswers => { 
-      console.log(foundAnswers)
-      const answerScore = foundAnswers.data.map((obj, i) => {
-        return obj.score;
-      })
-      console.log("score hit", answerScore);
-      this.setState({ scores: answerScore })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
+  // getAnswers = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   axios.post(SERVER_URL + '/answer/score', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+  //   .then(foundAnswers => { 
+  //     console.log(foundAnswers)
+  //     const answerScore = foundAnswers.data.map((obj, i) => {
+  //       return obj.score;
+  //     })
+  //     console.log("score hit", answerScore);
+  //     this.setState({ scores: answerScore })
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }
 
-  getTime = () => {
+  getUserData = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL + '/answer/score', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
-      let timeArr=[];
-      const answerTime = foundAnswers.data.map((obj, i) => {
-        let str = obj.timestamp
-          return str.slice(0,10);
+      const userInput = foundAnswers.data.map((obj, i) => {
+        return { x: Date(obj.timestamp).slice(0,10), y: obj.score }
       })
-      console.log('answer time gettt',answerTime)
-      console.log("timestamp hit", answerTime);
-      this.setState({ time: answerTime })
+      console.log("userinput hittttttttt", userInput);
+      console.log("time test", userInput[0])
+      this.setState({ userInput : userInput })
+      // this.setState({ time: userInput.x, score: userInput.y })
     })
     .catch(err => {
       console.log(err)
@@ -65,11 +66,8 @@ class Profile extends Component {
 
   render() {
     if(this.props.user){
-      const userScore = Number(this.state.scores);
-      const userTime = String(this.state.time);
-      console.log(typeof userTime)
-      console.log("log user time", userTime);
-      console.log("log user score", userScore);
+      const userInput = this.state.userInput;
+      console.log("userInput render hit", userInput)
       return (
           <div>
             <h2>Hello again, {this.firstCapitalization(this.props.user.name)}!</h2>
@@ -79,18 +77,21 @@ class Profile extends Component {
             <h4>My Mood-rythm This Week</h4>
             <div>  <BarChart
           colorBars 
-          height={150}
-          width={650}
+          axes
+          height={100}
+          width={600}
           margin={{top: 0, right: 0, bottom: 30, left: 100}}
-          data={[
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore},
-            {x: userTime, y: userScore}
-          ]} />  
+          data= {userInput}
+          // {[
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore},
+          //   {x: userTime, y: userScore}
+          // ]} 
+          />  
         </div>
 
           </div>
