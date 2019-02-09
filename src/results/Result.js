@@ -40,6 +40,7 @@ class Result extends Component {
     this.getWeather()
     this.getFood()
     this.getGiphy()
+    this.getSayingNorm()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
@@ -145,7 +146,18 @@ class Result extends Component {
   }
   
   // getOutput
-
+  getSayingNorm = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/result/saying', {
+      headers: { 'Authorization' : `Bearer ${token}` }
+    })
+    .then(json => {
+      console.log('THESE ARE THE SAYING NORM', json)
+    })
+    .catch(error => {
+      console.log('ERROR RETRIEVING NORM SAYING', error)
+    })
+  }
 
 
   render() {
@@ -157,6 +169,9 @@ class Result extends Component {
       // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
+          <div className="motivational-saying">
+            <Output saying={this.getSayingNorm} />
+          </div>
           <div className="weather-field">
             <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
