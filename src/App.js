@@ -19,13 +19,13 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
-      currentQuestions: []
+      currentQuestion: ''
     }
   }
 
   componentDidMount = () => {
     this.getUser()
-    this.getQuestions()
+    this.getQuestion()
   }
 
   getUser = () => {
@@ -54,26 +54,22 @@ class App extends Component {
     }
   }
 
-  getQuestions = () => {
+  getQuestion = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL + '/question', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(json => { 
       const questionArr = json.data[0].questions
-        const questions = questionArr.map((q) => {
-          return q.question
-        })
-        this.setState({ currentQuestions: questions })
+      const questions = questionArr.map((q) => {
+        return q.question
+      })
+        const randQ = questions[Math.floor(questions.length * Math.random())]
+        this.setState({ currentQuestion: randQ })
     })
     .catch(err => {
       console.log(err)
     })
-  }
-
-  getRandomQ = (q) => {
-    const randQ = this.state.currentQuestions
-    return randQ[Math.floor(randQ.length * Math.random())]
   }
 
   render() {
@@ -99,7 +95,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/question" component={ 
-              () => (<QuestionForm user={this.state.user} question={this.getRandomQ()}/>)
+              () => (<QuestionForm user={this.state.user} question={this.state.currentQuestion}/>)
             } />                       
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
