@@ -18,14 +18,12 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      user: null,
-      currentQuestion: ''
+      user: null
     }
   }
 
   componentDidMount = () => {
     this.getUser()
-    this.getQuestion()
   }
 
   getUser = () => {
@@ -42,6 +40,7 @@ class App extends Component {
         this.setState({
           user: response.data.user
         })
+        // this.getQuestion()
       })
       .catch(err => {
         console.log('Error looking up user by token: ', err, err.response);
@@ -52,24 +51,6 @@ class App extends Component {
       console.log('No token in localStorage');
       this.setState({ user: null })
     }
-  }
-
-  getQuestion = () => {
-    let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/question', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(json => { 
-      const questionArr = json.data[0].questions
-      const questions = questionArr.map((q) => {
-        return q.question
-      })
-        const randQ = questions[Math.floor(questions.length * Math.random())]
-        this.setState({ currentQuestion: randQ })
-    })
-    .catch(err => {
-      console.log(err)
-    })
   }
 
   render() {
@@ -95,7 +76,7 @@ class App extends Component {
               () => (<Result user={this.state.user} />)
             } />
             <Route path="/question" component={ 
-              () => (<QuestionForm user={this.state.user} question={this.state.currentQuestion}/>)
+              () => (<QuestionForm user={this.state.user} />)
             } />                       
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
