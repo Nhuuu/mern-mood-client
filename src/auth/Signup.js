@@ -25,13 +25,10 @@ class Signup extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log('In submit function state is: ', this.state)
-    // SEND DATA TO SERVER
     axios.post(`${SERVER_URL}/auth/signup`, this.state)
     .then(response => {
       console.log('Success', response)
-      // Assume we have a token that we should save to LS
       localStorage.setItem('serverToken', response.data.token)
-      // Need to update... somehow?
       this.props.updateUser()
     })
     .catch(err => {
@@ -43,7 +40,6 @@ class Signup extends Component {
     if(this.props.user){
       return (
         <Redirect to="/question" />
-        // <Food userLocation={this.state.location} />
       );
     }
     return(
