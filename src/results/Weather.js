@@ -7,7 +7,7 @@ const Weather = (props) => {
         <div className={'results-weather-icon-' + props.cssClass}></div>
         {/* <h3>Current weather is:</h3> */}
         {/* <div>{props.cssClass}</div> */}
-        <div><span class="a">{props.temp} ℉</span>
+        <div><span className="a">{props.temp} ℉</span>
         </div>
 
       </div>
