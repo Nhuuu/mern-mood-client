@@ -13,7 +13,6 @@ export default class ProfileEdit extends Component {
     }
   }
 
-
   storeInput = (e) => {
     // update state to reflect user input
     let newState;
