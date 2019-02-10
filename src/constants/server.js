@@ -1,2 +1,2 @@
-export default 'https://dontbesalty.herokuapp.com/';
+export default 'http://localhost:3000';
 

@@ -28,6 +28,9 @@ class Result extends Component {
       weather: '',
       weatherTemp: '',
       food: [],
+      address:[],
+      phone: [],
+      rating: [],
       poster: [],
       isLoading: true,  // loader
       // song: '',
@@ -86,13 +89,25 @@ class Result extends Component {
       const restaurantList = shuffledData.map((obj, i) => {
         return obj.name;
       })
+      const restaurantAddress = shuffledData.map((obj, i) => {
+        return obj.location.display_address;
+      })
+      const restRate = shuffledData.map((obj, i) => {
+        return obj.rating;
+      })
+      const restPhone = shuffledData.map((obj, i) => {
+        return obj.phone;
+      })
       const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
       // console.log(restaurantImg);
       this.setState({ 
         food: restaurantList,
-        poster: restaurantImg
+        poster: restaurantImg,
+        address: restaurantAddress,
+        rating: restRate,
+        phone: restPhone
       })
     })
     .catch(err => {
@@ -176,11 +191,11 @@ class Result extends Component {
           /> */}
           </div>
           <div className="food-field">
-              <Food foodItem={this.state.food} />
-              <Restaurant poster={this.state.poster} />
+              <Food foodItem={this.state.food} address={this.state.address} rating={this.state.rating} phone={this.state.phone} />
+              <Restaurant poster={this.state.poster} /> 
           </div>
           <div className="movie-field">
-            <Movie films={this.state.film.original_title} />
+            <Movie films={this.state.film.original_title} filmPoster={this.state.film.poster_path} />
           </div>
         </div>
       );
