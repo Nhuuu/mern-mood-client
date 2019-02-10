@@ -195,7 +195,7 @@ class Result extends Component {
               <Restaurant poster={this.state.poster} /> 
           </div>
           <div className="movie-field">
-            <Movie films={this.state.film.original_title} filmPoster={this.state.film.poster_path} />
+            <Movie films={this.state.film.original_title} filmVote={this.state.film.vote_average} filmOverview={this.state.film.overview} filmPoster={this.state.film.poster_path} />
           </div>
         </div>
       );

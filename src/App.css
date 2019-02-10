@@ -47,6 +47,7 @@ nav a:hover {
 }
 
 .footer-text{
+  font-family: 'Oxygen', sans-serif;
   color: white;
   font-size: 11px;
 }
@@ -152,6 +153,7 @@ img.main-bg {
 
 /* movie related css */
 .movie-result-title{
+  padding: 20px 0;
   font-style: italic;
   font-weight: bold;
   display: flex;
@@ -191,9 +193,9 @@ div.results-movie-bg {
 /* Weather related css */
 /* ======================================== */
 .weather-result {
-  /* display: inline-block; */
-  /* align-items: center;
-  justify-content: center; */
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
   font-size: calc(10px + 2vmin);
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
@@ -280,6 +282,7 @@ div.results-weather-icon-thermometer {
   justify-content: center;
 }
 .food-result-title{
+  padding: 20px 0;
   font-style: italic;
   font-weight: bold;
   display: flex;
@@ -495,4 +498,5 @@ div.results-weather-bg-clear-day
 .giphy-result{
   display: flex;
   justify-content: center;
+  padding: 20px 0;
 }
