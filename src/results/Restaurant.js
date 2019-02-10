@@ -7,7 +7,7 @@ export default class Restaurant extends Component {
 			<img className="foodImg" src={p} alt='' /></div>
 		})
 		return(
-			<div>{posterList[0]}</div>
+			<div className="foodImg">{posterList[0]}</div>
 		);
 	}
 }
