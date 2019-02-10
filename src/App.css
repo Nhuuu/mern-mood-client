@@ -95,6 +95,33 @@ nav a:hover {
   to { transform: rotate(360deg); }
 }
 
+.overall-style{
+  padding: 0 20px;
+  font-family: 'Oxygen', sans-serif;
+}
+
+.center-style{
+  display: flex;
+  justify-content: center;
+  font-family: 'Oxygen', sans-serif;
+  padding: 20px 0;
+}
+
+.center-style-title{
+  display: flex;
+  justify-content: center;
+  font-family: 'Oxygen', sans-serif;
+  padding: 20px 0;
+  color: white;
+  text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
+}
+
+
+.logout-button{
+  background-color: transparent;
+  border: transparent;
+}
+
 /* question box */
 /* ======================================== */
 /* .test {
