@@ -1,2 +1,2 @@
-export default 'https://dontbesalty.herokuapp.com/';
+export default 'https://dontbesalty-server.herokuapp.com/';
 
