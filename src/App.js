@@ -12,7 +12,6 @@ import Result from './results//Result';
 import Signup from './auth/Signup';
 import ProfileEdit from './ProfileEdit';
 import QuestionForm from './QuestionForm';
-import TestComponent from './auth/TestComponent';
 
 class App extends Component {
   constructor(props){
@@ -53,6 +52,29 @@ class App extends Component {
     }
   }
 
+  getQuestions = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/question', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
+    .then(json => { 
+      console.log(json)
+      const questionArr = json.data[0].questions
+        const questions = questionArr.map((q) => {
+          return q.question
+        })
+        this.setState({ currentQuestions: questions })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
+  getRandomQ = (q) => {
+    const randQ = this.state.currentQuestions
+    return randQ[Math.floor(randQ.length * Math.random())]
+  }
+
   render() {
     return (
       <div>
@@ -80,9 +102,6 @@ class App extends Component {
             } />                       
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
-            } />
-            <Route path='/test-component' component={
-              () => (<TestComponent user={this.state.user} updateUser={this.getUser} />)
             } />
           </div>
         </Router>
