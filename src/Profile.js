@@ -29,7 +29,6 @@ class Profile extends Component {
       console.log("userinput hittttttttt", userInput);
       console.log("time test", userInput[0])
       this.setState({ userInput : userInput })
-      // this.setState({ time: userInput.x, score: userInput.y })
     })
     .catch(err => {
       console.log(err)
@@ -48,22 +47,21 @@ class Profile extends Component {
       console.log("userInput render hit", userInput)
       return (
           <div className="overall-style">
-            <h2>Hello again,<i>{this.firstCapitalization(this.props.user.name)}</i>!</h2>
+            <h3>Hello again, <i>{this.firstCapitalization(this.props.user.name)}</i> !</h3>
             <h4>Your email is <b>{this.props.user.email}</b></h4>
             <h4>Your current location is <b>{this.props.user.location}</b></h4>
             <Link to="/profile/edit">Edit Profile</Link>
-            <div>
-                <h4 className="center-style-title">My Mood-rythm of the Week</h4>
-                <div className="center-style">  <BarChart
-              colorBars 
-              axes
-              height={100}
-              width={600}
-              margin={{top: 0, right: 0, bottom: 30, left: 100}}
-              data= {userInput}
-              />  
-            </div>
-          </div>
+            <h3 className="center-style-title">My Mood-rythm This Week</h3>
+            <div className="center-style">  <BarChart
+          colorBars 
+          axes
+          height={100}
+          width={600}
+          margin={{top: 0, right: 0, bottom: 30, left: 100}}
+          data= {userInput}
+          />  
+        </div>
+
           </div>
         );
     }
