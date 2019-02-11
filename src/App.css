@@ -6,7 +6,6 @@
   background-color: #B0C0BF;
   padding: 10px 0;
 }
-
 nav a {
   margin: 10px;
   text-decoration: none;
@@ -14,22 +13,18 @@ nav a {
   color: #424C55;
   cursor: pointer;
 }
-
 nav a:hover {
   color: #86E8FB;
 }
-
 .navwrapper{
   position: relative;
 }
-
 .leftlogo{
   position: absolute;
   font-style: italic;
   left: 5%;
   display: inline-block;
 }
-
 .rightnav{
   position: absolute;
   left: 70%;

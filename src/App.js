@@ -11,7 +11,7 @@ import Profile from './Profile';
 import Result from './results//Result';
 import Signup from './auth/Signup';
 import ProfileEdit from './ProfileEdit';
-import QuestionForm from './question/QuestionForm';
+import QuestionForm from './QuestionForm';
 import TestComponent from './auth/TestComponent';
 
 class App extends Component {

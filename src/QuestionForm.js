@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom';
-import SERVER_URL from '../constants/server'
+import SERVER_URL from './constants/server'
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
-import '../App.css'
+import './App.css'
 // import Rating from 'react-rating'
 import axios from 'axios'
 
@@ -88,9 +88,9 @@ class QuestionForm extends Component {
 							<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
-					    <Input type="submit" value="Your day will be..." />
+					    <Input type="submit" value="Your day will be..." />
 						</Row>
-		    	</form>
+		    	</form>
 				</div>
 			)
 		}
