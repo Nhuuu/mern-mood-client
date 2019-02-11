@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import SERVER_URL from './constants/server'
 import {Row, Input} from 'react-materialize'
 import Loader from 'react-loader-spinner'
 import './App.css'
-// import Rating from 'react-rating'
 import axios from 'axios'
 
 class QuestionForm extends Component {
@@ -12,34 +11,14 @@ class QuestionForm extends Component {
 		super()
 		this.state = {
 			score: 0,
-			isLoading: true, // loader
-			isSubmit: false,
-			currentQuestion: ''
+			isLoading: true,
+			isSubmit: false
 		}
 	}
 
 	componentDidMount(){
-		// this.getQuestion()
-		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
+		setTimeout(() => this.setState({isLoading: false}), 1000) 
 	}
-
-  // getQuestion = () => {
-  //   let token = localStorage.getItem('serverToken');
-  //   axios.post(SERVER_URL + '/question', {
-  //     headers: { 'Authorization': `Bearer ${token}` }
-  //   })
-  //   .then(json => { 
-  //     const questionArr = json.data[0].questions
-  //     const questions = questionArr.map((q) => {
-  //       return q.question
-  //     })
-  //       const randQ = questions[Math.floor(questions.length * Math.random())]
-  //       this.setState({ currentQuestion: randQ })
-  //   })
-  //   .catch(err => {
-  //     console.log(err)
-  //   })
-  // }	
 
 // Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -66,7 +45,6 @@ class QuestionForm extends Component {
 	}
 
 	render() {
-		// var Rating = require('react-rating');
 		if(this.state.isLoading){
 			return(
 				<div className="loading"><Loader type="Hearts" color="#B0C0BF" height={120} width={120} /> </div>
@@ -80,7 +58,6 @@ class QuestionForm extends Component {
 		if(this.props.user){
 			return(
 				<div className="question-form">
-					{/* {this.state.currentQuestion} */}
 					<h4>How's your mood today?</h4>
 					<form onSubmit={this.postAnswer}>
 						<Row>
@@ -97,7 +74,7 @@ class QuestionForm extends Component {
 		}
     	return(
 				<div>
-					<p><a href="/login">Log In</a> or <a href="/signup">Sign up</a> to get started!</p>
+					<p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
 				</div>
       );
 	}

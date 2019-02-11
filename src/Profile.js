@@ -23,6 +23,7 @@ class Profile extends Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
+      console.log('doug1', foundAnswers)
       const userInput = foundAnswers.data.map((obj, i) => {
         return { x: obj.timestamp.slice(0,10), y: obj.score }
       })
@@ -46,31 +47,30 @@ class Profile extends Component {
       const userInput = this.state.userInput;
       console.log("userInput render hit", userInput)
       return (
-          <div className="overall-style">
-            <h3>Hello again, <i>{this.firstCapitalization(this.props.user.name)}</i> !</h3>
-            <h4>Your email is <b>{this.props.user.email}</b></h4>
-            <h4>Your current location is <b>{this.props.user.location}</b></h4>
-            <Link to="/profile/edit">Edit Profile</Link>
-            <h3 className="center-style-title">My Mood-rythm This Week</h3>
-            <div className="center-style">  <BarChart
-          colorBars 
-          axes
-          height={100}
-          width={600}
-          margin={{top: 0, right: 0, bottom: 30, left: 100}}
-          data= {userInput}
-          />  
-        </div>
-
+        <div className="overall-style">
+          <h3>Hello again, <i>{this.firstCapitalization(this.props.user.name)}</i> !</h3>
+          <h4>Your email is <b>{this.props.user.email}</b></h4>
+          <h4>Your current location is <b>{this.props.user.location}</b></h4>
+          <Link to="/profile/edit">Edit Profile</Link>
+          <h3 className="center-style-title">My Mood-rythm This Week</h3>
+          <div className="center-style">  <BarChart
+            colorBars 
+            axes
+            height={100}
+            width={600}
+            margin={{top: 0, right: 0, bottom: 30, left: 100}}
+            data= {userInput}
+            />  
           </div>
-        );
+        </div>
+      )
     }
     return(
       <div>
         <p>This is a profile page. You must be logged in to see it.</p>
         <p>Would you like to <Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link>?</p>
       </div>
-      );
+    );
   }
 }
 

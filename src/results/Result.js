@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import SERVER_URL from '../constants/server';
 import Weather from './Weather';
 import Food from './Food';
@@ -8,16 +9,7 @@ import axios from 'axios';
 import Loader from 'react-loader-spinner' //module for loading gif
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
-// import SpotifyPlayer from 'react-spotify-player'
-// import Music from './SpotifyPlayer';
 
-// const size = {
-// 	width: '100%',
-// 	height: 300,
-//   };
-//   const view = 'list'; // or 'coverart'
-//   const theme = 'black';
-// }
 
 // Need all of the gets to pass down as props for each component?
 class Result extends Component {
@@ -32,8 +24,7 @@ class Result extends Component {
       phone: [],
       rating: [],
       poster: [],
-      isLoading: true,  // loader
-      // song: '',
+      isLoading: true,
       rainSaying: '',
       snowSaying: ''
     }
@@ -63,24 +54,8 @@ class Result extends Component {
       console.log("Error:", error)
     })
   }
-
-  // Grab music
-	// getSong = () => {
-  //   let token = localStorage.getItem('serverToken');
-  //   axios.post(SERVER_URL+'/result/music', {
-  //     headers: { 'Authorization': `Bearer ${token}` }
-  //   })
-	// 	.then(response => {
-  //     console.log('can i get a music json please', response)
-      
-	// 		// this.setState({ song: json })
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err)
-	// 	})
-	// }
   
-  //getFood
+
   getFood = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL+'/result/restaurant', {
@@ -117,7 +92,6 @@ class Result extends Component {
     })
   }
   
-  // get giphy based on weather
   getGiphy = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL + '/result/giphy/'+this.state.weather.summary, {
@@ -141,8 +115,6 @@ class Result extends Component {
   })
 }
 
-
-  // getWeather
   getWeather = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL+'/result/weather', {
@@ -158,7 +130,6 @@ class Result extends Component {
     })
   }
   
-  // getOutput
   getSayingNorm = () => {
     let token = localStorage.getItem('serverToken');
     axios.post(SERVER_URL + '/result/saying', {
@@ -203,14 +174,6 @@ class Result extends Component {
           <div className="giphy-field">
             <Giphy giphy={this.state.giphy} />
           </div>        
-          <div className="music-field">
-          {/* <SpotifyPlayer
-            uri="spotify:album:1TIUsv8qmYLpBEhvmBmyBk"
-            size={size}
-            view={view}
-            theme={theme}
-          /> */}
-          </div>
           <div className="food-field">
               <Food foodItem={this.state.food} address={this.state.address} rating={this.state.rating} phone={this.state.phone} />
               <Restaurant poster={this.state.poster} /> 
@@ -223,7 +186,7 @@ class Result extends Component {
     }
     return (
       <div>
-					<p><a href="/login">Log In</a> or <a href="/signup">Sign up</a> to get started!</p>
+					<p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
       </div>
     )
   }
