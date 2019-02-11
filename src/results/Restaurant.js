@@ -11,4 +11,3 @@ export default class Restaurant extends Component {
 		);
 	}
 }
-

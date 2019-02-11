@@ -21,7 +21,7 @@ class Home extends Component {
       )
     }
     return(
-    	<div>
+    	<div className="overall-style">
         <h4>Welcome,</h4>
         <h3>How are you today?</h3>
         {/* <button> Sign up or login </button> */}
