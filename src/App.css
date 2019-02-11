@@ -174,7 +174,7 @@ img.main-bg {
 }
 
 /* movie related css */
-.movie-result-title{
+.movie-result-title, .giphy-result-title, .food-result-title{
   padding: 20px 0;
   font-style: italic;
   font-weight: bold;
@@ -214,7 +214,7 @@ div.results-movie-bg {
 
 /* Weather related css */
 /* ======================================== */
-.weather-result {
+.weather-result, .output-result {
   display: flex;
   justify-content: center;
   padding: 20px 0;
@@ -303,16 +303,7 @@ div.results-weather-icon-thermometer {
   display: flex;
   justify-content: center;
 }
-.food-result-title{
-  padding: 20px 0;
-  font-style: italic;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  font-size: calc(16px + 2vmin);
-  color: white;
-  text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
-}
+
 .food-result {
   display: flex;
   justify-content: center;
