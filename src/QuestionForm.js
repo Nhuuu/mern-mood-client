@@ -19,27 +19,27 @@ class QuestionForm extends Component {
 	}
 
 	componentDidMount(){
-		this.getQuestion()
+		// this.getQuestion()
 		setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
 	}
 
-  getQuestion = () => {
-    let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/question', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(json => { 
-      const questionArr = json.data[0].questions
-      const questions = questionArr.map((q) => {
-        return q.question
-      })
-        const randQ = questions[Math.floor(questions.length * Math.random())]
-        this.setState({ currentQuestion: randQ })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }	
+  // getQuestion = () => {
+  //   let token = localStorage.getItem('serverToken');
+  //   axios.post(SERVER_URL + '/question', {
+  //     headers: { 'Authorization': `Bearer ${token}` }
+  //   })
+  //   .then(json => { 
+  //     const questionArr = json.data[0].questions
+  //     const questions = questionArr.map((q) => {
+  //       return q.question
+  //     })
+  //       const randQ = questions[Math.floor(questions.length * Math.random())]
+  //       this.setState({ currentQuestion: randQ })
+  //   })
+  //   .catch(err => {
+  //     console.log(err)
+  //   })
+  // }	
 
 // Update state to reflect user input - store input
 	storeInput = (e) => {
@@ -80,7 +80,8 @@ class QuestionForm extends Component {
 		if(this.props.user){
 			return(
 				<div className="question-form">
-					{this.state.currentQuestion}
+					{/* {this.state.currentQuestion} */}
+					<h4>How's your mood today?</h4>
 					<form onSubmit={this.postAnswer}>
 						<Row>
 							<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
@@ -88,7 +89,7 @@ class QuestionForm extends Component {
 							<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
-					    <Input type="submit" value="Your day will be..." />
+					    <Input type="submit" value="Check it!" />
 						</Row>
 		    	</form>
 				</div>
