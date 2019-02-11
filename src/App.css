@@ -181,6 +181,7 @@ img.main-bg {
   display: flex;
   justify-content: center;
   font-size: calc(16px + 2vmin);
+  font-family: 'Oxygen', sans-serif;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
@@ -198,6 +199,7 @@ img.main-bg {
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: 'Oxygen', sans-serif;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
@@ -219,6 +221,7 @@ div.results-movie-bg {
   justify-content: center;
   padding: 20px 0;
   font-size: calc(10px + 2vmin);
+  font-family: 'Oxygen', sans-serif;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
@@ -310,6 +313,7 @@ div.results-weather-icon-thermometer {
   display: flex;
   justify-content: center;
   font-size: calc(16px + 2vmin);
+  font-family: 'Oxygen', sans-serif;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
@@ -317,6 +321,7 @@ div.results-weather-icon-thermometer {
   display: flex;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  font-family: 'Oxygen', sans-serif;
   color: white;
   text-shadow: 1px 1px 2px black, 0 0 25px #B0C0BF, 0 0 5px rgb(127, 139, 139);
 }
