@@ -1,8 +1,5 @@
 # Summary
- A full-stack MERN app. Concept consisted of 3 randomized questions to analyze the user's mood and provide a results page with conditional entertainment output based on the analysis. Due time constraints, we've pivoted to a direct mood question with a randomized entertainment output and a chart tracking the user's weekly mood.  
-
-# Demo
-Coming soon!
+ A full-stack MERN app. Concept consisted of 3 randomized questions to analyze the user's mood and provide a results page with conditional entertainment output based on the analysis. Due time constraints, we've pivoted to creating a dashboard that alters the background with the current weather of the user's location and provides a randomized entertainment output. 
 
 # Technologies Used
 * Mongodb
@@ -12,16 +9,16 @@ Coming soon!
 
 ## React Components
 * Auth components: success redirects to profile page
-  * Login
+  * Login: Directs to QuestionForm
   * Signup
 * Layout components
   * Nav
   * Footer
-* Home (stub): Landing page with app description.
-* QuestionForm: Authorized route - logged in users only. Displays mood question and form.
-* Profile: Authorized route - logged in users only. Displays user info, ability to edit user info and a chart tracking the user's mood throughout the week. 
-  * ProfileEdit.js: Edit form to for user info.
-* Results: Authorized route: logged in users only. Displays uplifting content and suggestions to improve/maintain user's daily mood. 
+* Home: Landing page with app description.
+* QuestionForm: Authorized route - logged in users only. Displays mood question and form. After answering this  directs to the Results page.
+* Profile: Authorized route - logged in users only. Displays user info, ability to edit user info and a bar chart tracking the user's mood throughout the week. 
+  * ProfileEdit.js: Edit form for user info.
+* Results: Authorized route - logged in users only. Dashboard displaying uplifting content and suggestions to improve/maintain user's daily mood. 
   * Food.js: Displays suggested restaurant information.
   * Restaurant.js:  displays suggested restaurant image.
   * Giphy.js:  Displays entertaining giphy.
@@ -29,7 +26,7 @@ Coming soon!
   * Output.js: Displays sayings output, normal/vulgar options available
   * Weather.js: Displays weather icon based on current weather description. 
   * WeatherTemp.js: Displays temperature based on user location.
-* App.js
+* App.js: Get user info and set all routes.
 
 
 ## Technical Notes
