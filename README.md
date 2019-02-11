@@ -1,5 +1,5 @@
 # Summary
- A full-stack MERN app. Concept consisted of 3 randomized questions to analyze the user's mood and provide a results page with conditional entertainment output based on the analysis. Due time constraints, we've pivoted to creating a dashboard that alters the background with the current weather of the user's location and provides a randomized entertainment output. 
+ A full-stack MERN app. Dashboard that alters the background with the current weather of the user's location and provides randomized entertainment output. Original concept consisted of 3 randomized questions to analyze the user's mood and provide a results page with conditional entertainment output based on the analysis. Due to time constraints, 
 
 # Technologies Used
 * Mongodb
@@ -31,17 +31,25 @@
 
 ## Technical Notes
 
-A single page application (SPA) that uses react-router and axios to interact with a very loosely coupled back-end. The back-end can sign up, log in, or verify a user using JSON web tokens (JWTs). Back-end also tracks user's response to mood question.
+A single page application (SPA) that uses react-router and axios to interact with a very loosely coupled back-end. The back-end can sign up, log in, or verify a user using JSON web tokens (JWTs). Back-end also tracks user's response to mood question and contains database of output sayings that are randomized upon page refresh.
+
+
+# Backend Routes
+METHOD | URL | Purpose
+--- | --- | ---
+POST | /auth/signup | Adds new user to user database
+POST | /auth/login | Authenticates login details
+POST | /auth/current/user | If token present, refresh user data
+PUT  | /profile/edit/:id | Edit user/profile info
+POST | /answer/user/:id | Tracks user's daily question input in the db
+POST | /answer/score | Get's all answers for the user to display in profile bar chart
+POST | /result/weather | Fetches darksky API for weather
+POST | /result/restaurant | Fetches Yelp restaurant information
+POST | /result/giphy/:currently | Fetches Giphy 
+
 
 ## Still To Do
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
-* 
+* Tie user's mood response to randomized output. 
+
 
 
