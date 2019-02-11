@@ -6,12 +6,10 @@ import Food from './Food';
 import Movie from './Movie';
 import Output from './Output'
 import axios from 'axios';
-import Loader from 'react-loader-spinner' //module for loading gif
+import Loader from 'react-loader-spinner' 
 import Restaurant from './Restaurant';
 import Giphy from './Giphy';
 import { Row, Col } from 'react-materialize';
-// import SpotifyPlayer from 'react-spotify-player'
-// import Music from './SpotifyPlayer';
 
 
 // Need all of the gets to pass down as props for each component?
@@ -81,7 +79,6 @@ class Result extends Component {
       const restaurantImg = shuffledData.map((obj, i) => {
         return obj.image_url;    
       })
-      // console.log(restaurantImg);
       this.setState({ 
         food: restaurantList,
         poster: restaurantImg,
@@ -164,35 +161,33 @@ class Result extends Component {
       )
     }
     if(this.props.user){
-      // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
         <Row>
           <div className="weather-field">
             <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
-            {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
             <Output saying={this.state.rainSaying} />
           </div>
         </Row>
         <Row>
-        <Col s={4} className='grid-example'>
-          <div className="giphy-field">
-            <Giphy giphy={this.state.giphy} />
-          </div>
-        </Col>
-        <Col s={4} className='grid-example'>
-          <div className="food-field">
-            <Restaurant poster={this.state.poster} /> 
-            <Food foodItem={this.state.food} address={this.state.address} rating={this.state.rating} phone={this.state.phone} />
-          </div>
-        </Col>
-        <Col s={4} className='grid-example'>
-          <div className="movie-field">
-            <Movie films={this.state.film.original_title} filmVote={this.state.film.vote_average} filmOverview={this.state.film.overview} filmPoster={this.state.film.poster_path} />
-          </div>
-        </Col>
+          <Col s={4} className='grid-example'>
+            <div className="giphy-field">
+              <Giphy giphy={this.state.giphy} />
+            </div>
+          </Col>
+          <Col s={4} className='grid-example'>
+            <div className="food-field">
+              <Restaurant poster={this.state.poster} /> 
+              <Food foodItem={this.state.food} address={this.state.address} rating={this.state.rating} phone={this.state.phone} />
+            </div>
+          </Col>
+          <Col s={4} className='grid-example'>
+            <div className="movie-field">
+              <Movie films={this.state.film.original_title} filmVote={this.state.film.vote_average} filmOverview={this.state.film.overview} filmPoster={this.state.film.poster_path} />
+            </div>
+          </Col>
         </Row>
         </div>
       );
