@@ -23,7 +23,7 @@
   * Restaurant.js:  displays suggested restaurant image.
   * Giphy.js:  Displays entertaining giphy.
   * Movie.js : Displays suggested movie and corresponding rating and description.
-  * Output.js: Displays sayings output, normal/vulgar options available
+  * Output.js: Displays sayings output.
   * Weather.js: Displays weather icon based on current weather description. 
   * WeatherTemp.js: Displays temperature based on user location.
 * App.js: Get user info and set all routes.
@@ -42,11 +42,11 @@ POST | /auth/login | Authenticates login details
 POST | /auth/current/user | If token present, refresh user data
 PUT  | /profile/edit/:id | Edit user/profile info
 POST | /answer/user/:id | Tracks user's daily question input in the db
-POST | /answer/score | Get's all answers for the user to display in profile bar chart
+POST | /answer/score | Finds all answers for the user to display in profile bar chart
 POST | /result/weather | Fetches darksky API for weather
 POST | /result/restaurant | Fetches Yelp restaurant information
 POST | /result/giphy/:currently | Fetches Giphy 
-
+POST | /result/saying | Finds all sayings for results page
 
 ## Still To Do
 * Tie user's mood response to randomized output. 
