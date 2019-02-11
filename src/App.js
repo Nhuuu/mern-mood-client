@@ -39,7 +39,6 @@ class App extends Component {
         this.setState({
           user: response.data.user
         })
-        // this.getQuestion()
       })
       .catch(err => {
         console.log('Error looking up user by token: ', err, err.response);
@@ -50,29 +49,6 @@ class App extends Component {
       console.log('No token in localStorage');
       this.setState({ user: null })
     }
-  }
-
-  getQuestions = () => {
-    let token = localStorage.getItem('serverToken');
-    axios.post(SERVER_URL + '/question', {
-      headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(json => { 
-      console.log(json)
-      const questionArr = json.data[0].questions
-        const questions = questionArr.map((q) => {
-          return q.question
-        })
-        this.setState({ currentQuestions: questions })
-    })
-    .catch(err => {
-      console.log(err)
-    })
-  }
-
-  getRandomQ = (q) => {
-    const randQ = this.state.currentQuestions
-    return randQ[Math.floor(randQ.length * Math.random())]
   }
 
   render() {
