@@ -34,7 +34,8 @@ class Result extends Component {
       poster: [],
       isLoading: true,  // loader
       // song: '',
-      saying: ''
+      rainSaying: '',
+      snowSaying: ''
     }
   }
 
@@ -43,6 +44,7 @@ class Result extends Component {
     this.getWeather()
     this.getFood()
     this.getGiphy()
+    this.getSayingNorm()
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
     setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
   }
@@ -157,7 +159,28 @@ class Result extends Component {
   }
   
   // getOutput
-
+  getSayingNorm = () => {
+    let token = localStorage.getItem('serverToken');
+    axios.post(SERVER_URL + '/result/saying', {
+      headers: { 'Authorization' : `Bearer ${token}` }
+    })
+    .then(json => {
+      console.log('THESE ARE THE SAYING NORM', json)
+      const rainSaying = json.data[0].output.rain.map((obj, i) => {
+        return obj.output;
+      })
+      const snowSaying = json.data[0].output.snow.map((obj, i) => {
+        return obj.output
+      })
+      this.setState({
+        rainSaying: rainSaying,
+        snowSaying: snowSaying
+      })
+    })
+    .catch(error => {
+      console.log('ERROR RETRIEVING NORM SAYING', error) 
+    })
+  }
 
 
   render() {
@@ -167,8 +190,6 @@ class Result extends Component {
       )
     }
     if(this.props.user){
-
-
       // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
@@ -177,7 +198,7 @@ class Result extends Component {
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
-            <Output saying={this.state.saying} />
+            <Output saying={this.state.rainSaying} />
           </div>
           <div className="giphy-field">
             <Giphy giphy={this.state.giphy} />

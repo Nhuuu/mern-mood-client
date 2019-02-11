@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Output = () => {
-  return(
-    <div>
-      {/* <h1>{ this.props.saying }</h1> */}
-    </div>
-  )
+const Output = (props) => {
+    return (
+      <div>
+        <h5>{ props.saying[2] }</h5>
+      </div>
+    )
 }
 
-export default Output
+export default Output;

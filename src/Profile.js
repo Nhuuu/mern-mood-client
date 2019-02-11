@@ -23,7 +23,6 @@ class Profile extends Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
     .then(foundAnswers => { 
-      console.log('doug1', foundAnswers)
       const userInput = foundAnswers.data.map((obj, i) => {
         return { x: obj.timestamp.slice(0,10), y: obj.score }
       })
