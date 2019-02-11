@@ -34,7 +34,8 @@ class Result extends Component {
       poster: [],
       isLoading: true,  // loader
       // song: '',
-      saying: ''
+      rainSaying: '',
+      snowSaying: ''
     }
   }
 
@@ -165,9 +166,19 @@ class Result extends Component {
     })
     .then(json => {
       console.log('THESE ARE THE SAYING NORM', json)
+      const rainSaying = json.data[0].output.rain.map((obj, i) => {
+        return obj.output;
+      })
+      const snowSaying = json.data[0].output.snow.map((obj, i) => {
+        return obj.output
+      })
+      this.setState({
+        rainSaying: rainSaying,
+        snowSaying: snowSaying
+      })
     })
     .catch(error => {
-      console.log('ERROR RETRIEVING NORM SAYING', error)
+      console.log('ERROR RETRIEVING NORM SAYING', error) 
     })
   }
 
@@ -179,20 +190,15 @@ class Result extends Component {
       )
     }
     if(this.props.user){
-
-
       // const filmList = this.state.films.map((film, i) => <Movie key={i} films={film} />)
       return(
         <div className="results">
-          <div className="motivational-saying">
-            <Output saying={this.getSayingNorm} />
-          </div>
           <div className="weather-field">
             <Weather summary={this.state.weather.summary} temp={this.state.weather.temperature} cssClass={this.state.weather.icon}/>
             {/* <WeatherTemp cssClass={this.state.weather.temperature}/> */}
           </div>
           <div className="output-field">
-            <Output saying={this.state.saying} />
+            <Output saying={this.state.rainSaying} />
           </div>
           <div className="giphy-field">
             <Giphy giphy={this.state.giphy} />
