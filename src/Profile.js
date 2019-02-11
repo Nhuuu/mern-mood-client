@@ -24,7 +24,7 @@ class Profile extends Component {
     })
     .then(foundAnswers => { 
       const userInput = foundAnswers.data.map((obj, i) => {
-        return { x: Date(obj.timestamp).slice(0,10), y: obj.score }
+        return { x: obj.timestamp.slice(0,10), y: obj.score }
       })
       console.log("userinput hittttttttt", userInput);
       console.log("time test", userInput[0])
