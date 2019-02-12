@@ -560,7 +560,7 @@ class Newresult extends Component {
             {this.state.film.original_title}
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-            (Rating:{this.state.rating}⭐)</p>
+            (Rating:{this.state.film.vote_average}⭐)</p>
             <p style={{ fontSize: '1.33em' }}>
            Synopsis: 
            {this.state.film.overview}</p>
