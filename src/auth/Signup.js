@@ -95,7 +95,7 @@ class Signup extends Component {
         />
 
 
-        <Button color='teal' fluid size='large' content='Submit' name="action">
+        <Button color='teal' fluid size='large' name="action">
           Sign Up Now
         </Button>
       </Segment>

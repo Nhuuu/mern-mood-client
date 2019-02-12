@@ -71,7 +71,7 @@ class Login extends Component {
           onChange={this.handlePasswordChange}
         />
 
-        <Button color='teal' fluid size='large' content='Submit' name="action">
+        <Button color='teal' fluid size='large' name="action">
           Login
         </Button>
       </Segment>
