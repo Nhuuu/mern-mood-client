@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import SERVER_URL from '../constants/server';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class Signup extends Component {
   constructor(props){
@@ -43,28 +44,70 @@ class Signup extends Component {
       );
     }
     return(
-        <div>
-          <h2>Signup as a new user</h2>
-          <form onSubmit={this.handleSubmit}>
-            <div>
-              <input name="Name" placeholder="What is your name?" value={this.state.name} onChange={this.handleNameChange} />
-            </div>
-            <div>
-              <input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange} />
-            </div>
-            <div>
-              <input name="Password" placeholder="Set your password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-            </div>
-            <div>
-              <input name="Location" type="text" placeholder="Which city do you live in? (ex. Seattle, WA)" value={this.state.location} onChange={this.handleLocationChange} />
-            </div>
-            <button className="btn waves-effect waves-light" type="submit" name="action">Sign Me Up NOW
-              <i className="material-icons right">add</i>
-            </button>
-          </form>
-        </div>
+<div className='login-form'>
+{/*
+  Heads up! The styles below are necessary for the correct render of this example.
+  You can do same with CSS, the main idea is that all the elements up to the `Grid`
+  below must have a height of 100%.
+*/}
+<style>{`
+  body > div,
+  body > div > div,
+  body > div > div > div.login-form {
+    height: 100%;
+  }
+`}</style>
+<Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+  <Grid.Column style={{ maxWidth: 450 }}>
+    <Header as='h2'  textAlign='center'>
+      <Image src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo"/> Signup as new user
+    </Header>
+    <Form size='large' onSubmit={this.handleSubmit}>
+
+      <Segment stacked>
+        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' value={this.state.email} onChange={this.handleEmailChange}/>
+        <Form.Input
+          fluid
+          icon='lock'
+          iconPosition='left'
+          placeholder='Name'
+          type='text'
+          value={this.state.name} 
+          onChange={this.handleNameChange}
+        />
+        <Form.Input
+          fluid
+          icon='lock'
+          iconPosition='left'
+          placeholder='Password'
+          type='password'
+          value={this.state.password} 
+          onChange={this.handlePasswordChange}
+        />
+        <Form.Input
+          fluid
+          icon='lock'
+          iconPosition='left'
+          placeholder='Location'
+          type='text'
+          value={this.state.location} 
+          onChange={this.handleLocationChange}
+        />
+
+
+        <Button color='teal' fluid size='large' name="action">
+          Sign Up Now
+        </Button>
+      </Segment>
+
+    </Form>
+  </Grid.Column>
+</Grid>
+</div>
       );
   }
 }
 
 export default Signup;
+
+
