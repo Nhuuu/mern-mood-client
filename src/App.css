@@ -116,6 +116,12 @@ nav a:hover {
   border: transparent;
 }
 
+body > div,
+  body > div > div,
+  body > div > div > div.login-form {
+    height: 100%;
+  }
+  
 /* question box */
 /* ======================================== */
 /* .test {

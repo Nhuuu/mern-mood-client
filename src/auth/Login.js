@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import SERVER_URL from '../constants/server';
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class Login extends Component {
   constructor(props){
@@ -36,20 +37,53 @@ class Login extends Component {
       return (<Redirect to="/question" />);
     }
     return(
-      <div>
-        <h2>Login as an existing user</h2>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input name="Email" placeholder="What is your email?" value={this.state.email} onChange={this.handleEmailChange} />
-          </div>
-          <div>
-            <input name="Password" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
-          </div>
-          <button className="btn waves-effect waves-light" type="submit" name="action">Log Me In NOW
-            <i className="material-icons right">arrow_forward</i>
-          </button>
-        </form>
-      </div>
+
+
+<div className='login-form'>
+{/*
+  Heads up! The styles below are necessary for the correct render of this example.
+  You can do same with CSS, the main idea is that all the elements up to the `Grid`
+  below must have a height of 100%.
+*/}
+<style>{`
+  body > div,
+  body > div > div,
+  body > div > div > div.login-form {
+    height: 100%;
+  }
+`}</style>
+<Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+  <Grid.Column style={{ maxWidth: 450 }}>
+    <Header as='h2'  textAlign='center'>
+      <Image src='https://res.cloudinary.com/kellyp/image/upload/v1549305186/smileface.png' className="App-logo" alt="logo"/> Log-in to your account
+    </Header>
+    <Form size='large' onSubmit={this.handleSubmit}>
+
+      <Segment stacked>
+        <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' value={this.state.email} onChange={this.handleEmailChange}/>
+        <Form.Input
+          fluid
+          icon='lock'
+          iconPosition='left'
+          placeholder='Password'
+          type='password'
+          value={this.state.password} 
+          onChange={this.handlePasswordChange}
+        />
+
+        <Button color='teal' fluid size='large' name="action">
+          Login
+        </Button>
+      </Segment>
+
+    </Form>
+    <Message>
+      New to us? <a href='/signup'>Sign Up</a>
+    </Message>
+  </Grid.Column>
+</Grid>
+</div>
+
     );
   }
 }
