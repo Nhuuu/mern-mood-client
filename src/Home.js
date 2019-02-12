@@ -2,10 +2,10 @@ import React from 'react';
 
 const Home = () => {
   return(
-    <div className="overall-style">
-      <h4>Welcome,</h4>
-      <h3>How are you today?</h3>
-    </div>
+      <div>
+        <h3 className="center-style-title">Welcome,</h3>
+        <h3 className="center-style-title"><i>How salty are you today?!</i></h3>
+      </div>
   );
 }
 

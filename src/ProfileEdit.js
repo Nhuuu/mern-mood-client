@@ -61,7 +61,8 @@ export default class ProfileEdit extends Component {
             <input type="text" name="name" onChange={this.storeInput} value={this.state.name} />
           </div>
           <div className="form-control">
-            <input type="submit" value="Update Profile" />
+            <button class="btn waves-effect waves-light orange lighten-2" type="submit" name="action">Update Profile
+            <i class="material-icons right">thumb_up</i> </button>
           </div>
         </form>
       </div>

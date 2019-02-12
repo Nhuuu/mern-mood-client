@@ -57,8 +57,9 @@ class QuestionForm extends Component {
 		}
 		if(this.props.user){
 			return(
-				<div className="question-form">
-					<h4>How's your mood today?</h4>
+				<div>
+					<h4 className="center-style-title">How's your mood today?</h4>
+					<div className="center-style">
 					<form onSubmit={this.postAnswer}>
 						<Row>
 							<Input name='score' type='radio' value='1' label='1' className='filled-in' onChange={this.storeInput}/>
@@ -66,10 +67,12 @@ class QuestionForm extends Component {
 							<Input name='score' type='radio' value='3' label='3' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='4' label='4' className='filled-in' onChange={this.storeInput}/>
 							<Input name='score' type='radio' value='5' label='5' className='filled-in' onChange={this.storeInput}/>
-					    <Input type="submit" value="Check it!" />
+					    <button class="btn waves-effect waves-light orange lighten-2" type="submit" name="action">Let's check!
+		    			<i class="material-icons right">arrow_forward</i> </button>
 						</Row>
 		    	</form>
 				</div>
+			</div>
 			)
 		}
     	return(
