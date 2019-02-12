@@ -22,7 +22,6 @@ class Nav extends Component {
             <li><a href="/result">Today's Mood</a></li>
             {/* <li><a href="/test-component">TEST COMPONENT</a></li> */}
             <li><a href="/profile">Profile</a></li>
-            <li><a href="/test">test</a></li>
             <li><button className="logout-button" onClick={this.handleLogout}>Logout</button></li>
           </ul>
         </div>

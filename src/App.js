@@ -8,11 +8,11 @@ import Home from './Home';
 import Login from './auth/Login';
 import Nav from './layout/Nav';
 import Profile from './Profile';
-import Result from './results//Result';
+import Result from './results/Result';
 import Signup from './auth/Signup';
 import ProfileEdit from './ProfileEdit';
 import QuestionForm from './QuestionForm';
-import Newresult from './results/Newresult';
+
 
 class App extends Component {
   constructor(props){
@@ -80,9 +80,6 @@ class App extends Component {
             <Route path="/profile/edit" component={
               () => (<ProfileEdit user={this.state.user} updateUser={this.getUser} />)
             } />
-             <Route path="/newresult" component={ 
-              () => (<Newresult user={this.state.user} />)
-            } />  
           </div>
         </Router>
       </div>
