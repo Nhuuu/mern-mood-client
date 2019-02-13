@@ -433,7 +433,7 @@ class Result extends Component {
               <Grid.Row>
                 <Grid.Column width={8}>
                   <Header as='h3' style={{ fontSize: '2em' }}>
-                    We Help individuals lighten their mood
+                    We help individuals lighten their mood
                   </Header>
                   <p style={{ fontSize: '1.33em' }}>
                     Nothing too serious, we will continue to evolve to ensure your can refresh your mood with a click!

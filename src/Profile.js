@@ -48,12 +48,10 @@ class Profile extends Component {
       console.log("userInput render hit", userInput)
       return (
         <div className="overall-style">
-          <div className="center-style">
-            <h3>Hello again, <i>{this.firstCapitalization(this.props.user.name)}</i> !</h3>
-            <h4>Your email is <b>{this.props.user.email}</b></h4>
-            <h4>Your current location is <b>{this.props.user.location}</b></h4>
-            <Link to="/profile/edit">Edit Profile</Link>
-          </div>
+            <h3 className="center-style">Hello again, <i>{this.firstCapitalization(this.props.user.name)}</i> !</h3>
+            <h4 className="center-style">Your email is <b>{this.props.user.email}</b></h4>
+            <h4 className="center-style">Your current location is <b>{this.props.user.location}</b></h4>
+            <p className="center-style"><Link to="/profile/edit">Edit Profile</Link></p>
           <h3 className="center-style-title">My Mood-Rhythm This Week</h3>
           <div className="center-style">  
             <BarChart
