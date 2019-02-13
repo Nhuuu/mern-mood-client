@@ -32,7 +32,6 @@ import Giphy from './Giphy';
 // For more advanced usage please check Responsive docs under the "Usage" section.
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
-
   return isSSR ? Responsive.onlyTablet.minWidth : window.innerWidth
 }
 
@@ -64,7 +63,7 @@ const HomepageHeading = (props, { mobile }) => (
       }}
     />
     <Button primary size='huge'>
-      Let's Git it! (stretchgoals)
+      Let's Git it! (stretch goals)
       <Icon name='right arrow' />
     </Button>
   </Container>
