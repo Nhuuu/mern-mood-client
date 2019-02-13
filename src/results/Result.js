@@ -302,7 +302,7 @@ ResponsiveContainer.propTypes = {
 }
 
 
-class Newresult extends Component {
+class Result extends Component {
   constructor(){
     super()
     this.state = {
