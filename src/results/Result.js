@@ -1,4 +1,3 @@
-
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import {
@@ -175,11 +174,12 @@ componentDidMount(){
               </Container> */}
             </Menu>
             <HomepageHeading 
-            saying={this.state.rainSaying}
-            saying={this.state.rainSaying} 
-            summary={this.state.weather.summary} 
-            temp={this.state.weather.temperature} 
-            cssClass={this.state.weather.icon}/>
+              saying={this.state.rainSaying}
+              saying={this.state.rainSaying} 
+              summary={this.state.weather.summary} 
+              temp={this.state.weather.temperature} 
+              cssClass={this.state.weather.icon}
+            />
 
           </Segment>
         </Visibility>
@@ -259,31 +259,28 @@ componentDidMount(){
         maxWidth={Responsive.onlyMobile.maxWidth}
       >
 
-
-            <Container>
-              <Menu inverted pointing secondary size='large'>
-                <Menu.Item onClick={this.handleToggle}>
-                  <Icon name='sidebar' />
-                </Menu.Item>
-                <Menu.Item position='right'>
-                  <Button as='a' inverted>
-                    Log in
-                  </Button>
-                  <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
-                </Menu.Item>
-              </Menu>
-            </Container>
-            <HomepageHeading mobile 
-            saying={this.state.rainSaying} 
-            summary={this.state.weather.summary} 
-            temp={this.state.weather.temperature} 
-            cssClass={this.state.weather.icon}/>
-
-
-          {children}
-
+        <Container>
+          <Menu inverted pointing secondary size='large'>
+            <Menu.Item onClick={this.handleToggle}>
+              <Icon name='sidebar' />
+            </Menu.Item>
+            <Menu.Item position='right'>
+              <Button as='a' inverted>
+                Log in
+              </Button>
+              <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
+                Sign Up
+              </Button>
+            </Menu.Item>
+          </Menu>
+        </Container>
+        <HomepageHeading mobile 
+          saying={this.state.rainSaying} 
+          summary={this.state.weather.summary} 
+          temp={this.state.weather.temperature} 
+          cssClass={this.state.weather.icon}
+        />
+        {children}
       </Responsive>
     )
   }
@@ -311,11 +308,9 @@ class Newresult extends Component {
     this.state = {
       yelp: [],
       film: '',
-      // food: [],
       address:[],
       phone: [],
       rating: [],
-      // poster: [],
       isLoading: true,
       weather: '',
       weatherTemp: ''
@@ -330,7 +325,7 @@ class Newresult extends Component {
     this.getWeather()
 
     // this.setState({isLoading: false}) // This is used for acutal loader usage:
-    setTimeout(() => this.setState({isLoading: false}), 1000)  //  Set to 3 sec timeout to see the effect
+    setTimeout(() => this.setState({isLoading: false}), 1000) 
   }
 
   getFilms = () => {
@@ -388,8 +383,6 @@ class Newresult extends Component {
         console.log(shuffledData[0])
       this.setState({ 
         yelp: shuffledData[0],
-        // food: restaurantList[0],
-        // poster: restaurantImg[0],
         address: restaurantAddress[0],
         rating: restRate[0],
         phone: restPhone[0]
@@ -434,194 +427,191 @@ class Newresult extends Component {
     }
     if(this.props.user){
       return(
-  <ResponsiveContainer>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Individuals lighten their mood
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Nothing too serious, we will continue to evolve to ensure your can refresh your mood with a click!
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              Gify of the day
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Yes, our developers pulled gify directly from your current weather condition of where you're sitting right now, so epic! right! right?! no? Hmm yeah, the results are hit or miss but we appreciate the thought.
-            </p>
-          </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-          <Image bordered rounded size='large' src={this.state.giphy} />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'>Gif Search options (strech goals)</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header content='center' as='h3' style={{ fontSize: '2em' }}>Current Temperature is {this.state.weather.temperature} ℉
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>Current condition outside is {this.state.weather.summary}.</p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='div' style={{ padding: '0 40% 0' }}>
-            <div className={'results-weather-icon-' + this.state.weather.icon}></div>
-            </Header>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    {/* stretch goals */}
-    {/* <Segment style={{ padding: '8em 0em' }} vertical>
-      <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Breaking The Grid, Grabs Your Attention
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the
-          art of doing nothing by providing massive amounts of whitespace and generic content that
-          can seem massive, monolithic and worth your attention.
-        </p>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
-        <Divider
-          as='h4'
-          className='header'
-          horizontal
-          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-        >
-          <a href='#'>Case Studies</a>
-        </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Did We Tell You About Our Bananas?
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-          it's really true. It took years of gene splicing and combinatory DNA research, but our
-          bananas can really dance.
-        </p>
-        <Button as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
-      </Container>
-    </Segment> */}
-     <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-             We all got to eat right!? 
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              I hate having to decide where to eat what... so our developers have once again combined their God given talents and provided you with a solution!
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-               {this.state.yelp.name}
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-            Rating:{this.state.rating} ⭐</p>
-            <p style={{ fontSize: '1.33em' }}>
-            ☎️{this.state.phone}   </p>
-            <p style={{ fontSize: '1.33em' }}>
-            📌{this.state.address} </p>
-         
-          </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-          <Image bordered rounded size='large' src={this.state.yelp.image_url} />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'>Gif Search options (strech goals)</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-             One more, Latest movie out now based on your overall mood results.
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Complex algorithm developed to provide you the movie result from your mood inputs and increase your mental health ...don't look into our code, just trust us :) 
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-            {this.state.film.original_title}
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-            (Rating:{this.state.film.vote_average}⭐)</p>
-            <p style={{ fontSize: '1.33em' }}>
-           Synopsis: 
-           {this.state.film.overview}</p>
-         
-          </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-          <Image bordered rounded size='large' src={`https://image.tmdb.org/t/p/w500/${this.state.film.poster_path}`} />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button size='huge'>Gif Search options (strech goals)</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
-        <Grid divided inverted stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About - Strech Goals' />
-              <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Freelance Work</List.Item>
-                <List.Item as='a'>Feedback</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Technology Used' />
-              <List link inverted>
-                <List.Item as='a'>React</List.Item>
-                <List.Item as='a'>React Materialize/React Semantic</List.Item>
-                <List.Item as='a'>Express</List.Item>
-                <List.Item as='a'>MongoDB</List.Item>
-                <List.Item as='a'>Mongoose</List.Item>
-                <List.Item as='a'>Axios</List.Item>
-                <List.Item as='a'>Node</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                SEI22 - Software Engineering Emmersive
+        <ResponsiveContainer>
+          <Segment style={{ padding: '8em 0em' }} vertical>
+            <Grid container stackable verticalAlign='middle'>
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    We Help individuals lighten their mood
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    Nothing too serious, we will continue to evolve to ensure your can refresh your mood with a click!
+                  </p>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    Giphy of the day
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    Yes, our developers pulled giphy directly from your current weather condition of where you're sitting right now, so epic! right! right?! no? Hmm yeah, the results are hit or miss but we appreciate the thought.
+                  </p>
+                </Grid.Column>
+                <Grid.Column floated='right' width={6}>
+                  <Image bordered rounded size='large' src={this.state.giphy} />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column textAlign='center'>
+                  <Button size='huge'>Gif Search options (stretch goals)</Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment style={{ padding: '0em' }} vertical>
+            <Grid celled='internally' columns='equal' stackable>
+              <Grid.Row textAlign='center'>
+                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+                  <Header content='center' as='h3' style={{ fontSize: '2em' }}>Current Temperature is {this.state.weather.temperature} ℉
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>Current condition outside is {this.state.weather.summary}.</p>
+                </Grid.Column>
+                <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+                  <Header as='div' style={{ padding: '0 40% 0' }}>
+                    <div className={'results-weather-icon-' + this.state.weather.icon}></div>
+                  </Header>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          {/* stretch goals */}
+          {/* <Segment style={{ padding: '8em 0em' }} vertical>
+            <Container text>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Breaking The Grid, Grabs Your Attention
               </Header>
-              <p>
-              Created with Love by Doug Klemp, Kelly Park, Nhu Trinh, and Paolo Chidrome &copy; {new Date().getFullYear()}
+              <p style={{ fontSize: '1.33em' }}>
+                Instead of focusing on content creation and hard work, we have learned how to master the
+                art of doing nothing by providing massive amounts of whitespace and generic content that
+                can seem massive, monolithic and worth your attention.
               </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Container>
-    </Segment>
-  </ResponsiveContainer>
+              <Button as='a' size='large'>
+                Read More
+              </Button>
+              <Divider
+                as='h4'
+                className='header'
+                horizontal
+                style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+              >
+                <a href='#'>Case Studies</a>
+              </Divider>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Did We Tell You About Our Bananas?
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+                Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
+                it's really true. It took years of gene splicing and combinatory DNA research, but our
+                bananas can really dance.
+              </p>
+              <Button as='a' size='large'>
+                I'm Still Quite Interested
+              </Button>
+            </Container>
+          </Segment> */}
+          <Segment style={{ padding: '8em 0em' }} vertical>
+            <Grid container stackable verticalAlign='middle'>
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    We all got to eat right!? 
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    I hate having to decide where to eat what... so our developers have once again combined their God given talents and provided you with a solution!
+                  </p>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    {this.state.yelp.name}
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    Rating:{this.state.rating} ⭐</p>
+                  <p style={{ fontSize: '1.33em' }}>
+                    ☎️{this.state.phone}   </p>
+                  <p style={{ fontSize: '1.33em' }}>
+                    📌{this.state.address} </p>
+                </Grid.Column>
+                <Grid.Column floated='right' width={6}>
+                  <Image bordered rounded size='large' src={this.state.yelp.image_url} />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column textAlign='center'>
+                  <Button size='huge'>Gif Search options (stretch goals)</Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment style={{ padding: '8em 0em' }} vertical>
+            <Grid container stackable verticalAlign='middle'>
+              <Grid.Row>
+                <Grid.Column width={8}>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    One more, Latest movie out now based on your overall mood results.
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    Complex algorithm developed to provide you the movie result from your mood inputs and increase your mental health ...don't look into our code, just trust us :) 
+                  </p>
+                  <Header as='h3' style={{ fontSize: '2em' }}>
+                    {this.state.film.original_title}
+                  </Header>
+                  <p style={{ fontSize: '1.33em' }}>
+                    (Rating:{this.state.film.vote_average}⭐)</p>
+                  <p style={{ fontSize: '1.33em' }}>
+                    Synopsis: {this.state.film.overview}</p>
+                </Grid.Column>
+                <Grid.Column floated='right' width={6}>
+                  <Image bordered rounded size='large' src={`https://image.tmdb.org/t/p/w500/${this.state.film.poster_path}`} />
+                </Grid.Column>
+              </Grid.Row>
+              <Grid.Row>
+                <Grid.Column textAlign='center'>
+                  <Button size='huge'>Gif Search options (stretch goals)</Button>
+                </Grid.Column>
+              </Grid.Row>
+            </Grid>
+          </Segment>
+          <Segment inverted vertical style={{ padding: '5em 0em' }}>
+            <Container>
+              <Grid divided inverted stackable>
+                <Grid.Row>
+                  <Grid.Column width={3}>
+                    <Header inverted as='h4' content='About - Stretch Goals' />
+                    <List link inverted>
+                      <List.Item as='a'>Sitemap</List.Item>
+                      <List.Item as='a'>Contact Us</List.Item>
+                      <List.Item as='a'>Freelance Work</List.Item>
+                      <List.Item as='a'>Feedback</List.Item>
+                    </List>
+                  </Grid.Column>
+                  <Grid.Column width={3}>
+                    <Header inverted as='h4' content='Technologies Used' />
+                    <List link inverted>
+                      <List.Item as='a'>React</List.Item>
+                      <List.Item as='a'>React Materialize/React Semantic</List.Item>
+                      <List.Item as='a'>Express</List.Item>
+                      <List.Item as='a'>MongoDB</List.Item>
+                      <List.Item as='a'>Mongoose</List.Item>
+                      <List.Item as='a'>Axios</List.Item>
+                      <List.Item as='a'>Node</List.Item>
+                    </List>
+                  </Grid.Column>
+                  <Grid.Column width={7}>
+                    <Header as='h4' inverted>
+                      SEI22 - Software Engineering Immersive
+                    </Header>
+                    <p>
+                      Created with Love by Doug Klemp, Kelly Park, Nhu Trinh, and Paolo Chidrome &copy; {new Date().getFullYear()}
+                    </p>
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Container>
+          </Segment>
+        </ResponsiveContainer>
       );
     }
-  return (
-    <div>
-        <p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
-    </div>
-  )
+    return (
+      <div>
+          <p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
+      </div>
+    )
   }
 }
-export default Newresult
+export default Result

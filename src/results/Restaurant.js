@@ -11,6 +11,6 @@ export default class Restaurant extends Component {
 				<h4 className="food-result-title">Check this place out!</h4>
 				<div className="foodImg">{posterList[0]}</div>
 			</div>
-		);
+		)
 	}
 }

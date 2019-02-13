@@ -25,7 +25,6 @@ export default class ProfileEdit extends Component {
   updateProfile = (e) => {
     e.preventDefault();
     let token = localStorage.getItem('serverToken');
-
     Axios.put(SERVER_URL+'/profile/edit/'+this.props.user.id, {
       name: this.state.name, // data to send to the server
       headers: { 

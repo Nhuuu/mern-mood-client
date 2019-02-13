@@ -75,11 +75,11 @@ class QuestionForm extends Component {
 			</div>
 			)
 		}
-    	return(
-				<div>
-					<p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
-				</div>
-      );
+		return(
+			<div>
+				<p><Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link> to get started!</p>
+			</div>
+		);
 	}
 }
 

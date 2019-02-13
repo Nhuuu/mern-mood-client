@@ -15,7 +15,7 @@ class Profile extends Component {
 
   componentDidMount = () => {
     this.getUserData()
-    }
+  }
 
   getUserData = () => {
     let token = localStorage.getItem('serverToken');
@@ -37,7 +37,7 @@ class Profile extends Component {
   }
 
 
-  // Write helper function to capitalize the first letter of the first name of user
+  // Helper function to capitalize the first letter of the first name of user
   firstCapitalization = (firstName) => {
     return firstName.charAt(0).toUpperCase() + firstName.slice(1)
   }
@@ -52,14 +52,15 @@ class Profile extends Component {
           <h4>Your email is <b>{this.props.user.email}</b></h4>
           <h4>Your current location is <b>{this.props.user.location}</b></h4>
           <Link to="/profile/edit">Edit Profile</Link>
-          <h3 className="center-style-title">My Mood-rythm This Week</h3>
-          <div className="center-style">  <BarChart
-            colorBars 
-            axes
-            height={100}
-            width={600}
-            margin={{top: 0, right: 0, bottom: 30, left: 100}}
-            data= {userInput}
+          <h3 className="center-style-title">My Mood-Rhythm This Week</h3>
+          <div className="center-style">  
+            <BarChart
+              colorBars 
+              axes
+              height={100}
+              width={600}
+              margin={{top: 0, right: 0, bottom: 30, left: 100}}
+              data= {userInput}
             />  
           </div>
         </div>
@@ -70,7 +71,7 @@ class Profile extends Component {
         <p>This is a profile page. You must be logged in to see it.</p>
         <p>Would you like to <Link to="/login">Log In</Link> or <Link to="/signup">Sign up</Link>?</p>
       </div>
-    );
+    )
   }
 }
 
